@@ -1,10 +1,10 @@
 void setup()
 {
-	fullscreen();
+	fullScreen();
 	background(255);
 }
 
 void draw()
 {
-
+	
 }
