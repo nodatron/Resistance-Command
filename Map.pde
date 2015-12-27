@@ -31,8 +31,16 @@ class Map
 						mapLayout.add(point);
 					}
 				}
-
-				drawMap(level);
+				
+				currentlevel = createShape();
+				currentlevel.beginShape();
+				currentlevel.fill(153, 75, 0);
+				currentlevel.stroke(153, 75, 0);
+				for (int i = 0 ; i < mapLayout.size() ; i ++) 
+				{
+					currentlevel.vertex(mapLayout.get(i).x, mapLayout.get(i).y);
+				}
+				currentlevel.endShape(CLOSE);
 			} break;
 
 			// case 2:
@@ -61,7 +69,7 @@ class Map
 		}
 	}
 
-	void drawMap(int level)
+	void drawMap()
 	{
 		/*TODO:		Take the location of the turrets and draw a map arounf the battlements
 					HOW I WILL DO THIS:
@@ -71,11 +79,6 @@ class Map
 					TODO: come up with some sort of graphic for the are outside the roads			-PROB a Castle
 					4. Make these roads the borders for the solidiers
 		*/
-		for (int i = 1 ; i < mapLayout.size() ; i ++) 
-		{
-			stroke(0);
-			line(mapLayout.get(i).x, mapLayout.get(i).y, mapLayout.get(i - 1).x, mapLayout.get(i - 1).y);
-		}
 
 	}
 }

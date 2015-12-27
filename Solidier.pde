@@ -22,15 +22,15 @@ class Solidier extends GameObject
 
 		//Get the position of the unit
 		//NOTE: 	- This will be replaced by info read from a file
-		position.x = 1800;
-		position.y = 100;
+		position.x = mapLayout.get(0).x + (width * 0.05f);
+		position.y = mapLayout.get(0).y + (height  * 0.05f);
 
 		goalPosition.x = width * 0.5f;
 		goalPosition.y = height - 100;
 
 		// This will be changed for movement towards the goal positon
 		speed.x = 1;
-		speed.y = 0;
+		speed.y = 1;
 
 		println("In the init function");
 	}
@@ -49,18 +49,22 @@ class Solidier extends GameObject
 			if (position.x > goalPosition.x && position.x != goalPosition.x)
 			{
 				position.x --;
+				// position.add(speed);
 			}
 			if (position.x < goalPosition.x && position.x != goalPosition.x) 
 			{
 				position.x ++;
+				// position.add(speed);
 			}
 			if (position.y > goalPosition.y && position.y != goalPosition.y)
 			{
 				position.y --;
+				// position.add(speed);
 			}
 			if (position.y < goalPosition.y && position.y != goalPosition.y) 
 			{
-				position.y ++;
+				position.y++;
+				// position.add(speed);
 			}
 		// }
 		// else if (isXBorder && !isYBorder)
