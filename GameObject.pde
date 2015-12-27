@@ -10,12 +10,13 @@ abstract class GameObject
 	//Position stuff
 	PVector position;
 	PVector goalPosition;
+	PVector distance;
 	PVector speed;
 
 	//Apperance   -replaced by sprites later
 	float spriteWidth;
 	float spriteHeight;
-	color spriteColor;
+	color spriteColour;
 
 	GameObject ()
 	{
@@ -28,9 +29,10 @@ abstract class GameObject
 		health = level * 100;
 		armour = level * 5;
 		cost = level * 500;
-		reward = cost * 0.5f;
+		reward = cost / 2;
 		position = new PVector();
 		goalPosition = new PVector();
+		distance = new PVector();
 		speed = new PVector();
 		spriteWidth = 50;
 		spriteHeight = 50;
