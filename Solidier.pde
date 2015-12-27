@@ -18,7 +18,7 @@ class Solidier extends GameObject
 	void init()
 	{
 		// Gets the colour of the solider
-		spriteColour = utils.getColour(level);
+		spriteColour = utils.getColourFriendly(level);
 
 		//Get the position of the unit
 		//NOTE: 	- This will be replaced by info read from a file
