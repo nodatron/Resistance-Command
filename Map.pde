@@ -8,6 +8,7 @@ class Map
 
 	void init(int mapNo, int level)
 	{
+		// Selects which map that the user wants
 		switch (mapNo)
 		{
 			case 1:
@@ -16,12 +17,22 @@ class Map
 
 				for(String s : locations)
 				{
-					String[] ratios = s.split(",");
-					float xRatio = Float.parseFloat(ratios[0]);
-					float yRatio = Float.parseFloat(ratios[1]);
-					Battlements tower = new Battlements(level, xRatio, yRatio);
-					battlements.add(tower);
+					String[] lines = s.split(",");
+					float xRatio = Float.parseFloat(lines[1]);
+					float yRatio = Float.parseFloat(lines[2]);
+					if (lines[0].equals("battlement"))
+					{
+						Battlements tower = new Battlements(level, xRatio, yRatio);
+						battlements.add(tower);
+					}
+					else 
+					{
+						PVector point = new PVector(width * xRatio, height * yRatio);
+						mapLayout.add(point);
+					}
 				}
+
+				drawMap(level);
 			} break;
 
 			// case 2:
@@ -48,5 +59,23 @@ class Map
 			// 	}
 			// } break;
 		}
+	}
+
+	void drawMap(int level)
+	{
+		/*TODO:		Take the location of the turrets and draw a map arounf the battlements
+					HOW I WILL DO THIS:
+					1. Take the values of the locations and add a distance around them that is determined from the level of the towers
+					2. Make roads from these points that i can use to make the roads the solidiers will walk along
+					3. Make the are around the roads green for now
+					TODO: come up with some sort of graphic for the are outside the roads			-PROB a Castle
+					4. Make these roads the borders for the solidiers
+		*/
+		for (int i = 1 ; i < mapLayout.size() ; i ++) 
+		{
+			stroke(0);
+			line(mapLayout.get(i).x, mapLayout.get(i).y, mapLayout.get(i - 1).x, mapLayout.get(i - 1).y);
+		}
+
 	}
 }

@@ -34,8 +34,8 @@ abstract class GameObject
 		goalPosition = new PVector();
 		distance = new PVector();
 		speed = new PVector();
-		spriteWidth = 50;
-		spriteHeight = 50;
+		spriteWidth = width * 0.04f;
+		spriteHeight = height * 0.04f;
 	}
 
 	abstract void init();

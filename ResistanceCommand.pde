@@ -1,6 +1,8 @@
 // Used for util functions throughout the game
 RCUtils utils = new RCUtils();
 
+ArrayList<PVector> mapLayout = new ArrayList<PVector>();
+
 ArrayList<Battlements> battlements = new ArrayList<Battlements>();
 
 Solidier solidier;
@@ -13,13 +15,17 @@ void setup()
 
 	solidier =  new Solidier();
 	map = new Map();
-	map.init(1, 1);
+
+	
+	
 
 }
 
 void draw()
 {
 	background(255);
+	//NOTE: This will be replaced by input from the user as to which map they want
+	map.init(1, 1);
 	solidier.render();
 	solidier.update();
 	for (Battlements b : battlements) 
