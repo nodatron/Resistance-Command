@@ -49,7 +49,11 @@ class Solidier extends GameObject
 		//			checks if the solidier hits anything 
 		// if (isXBorder && isYBorder)
 		// {
-
+		if(pointsHit == (mapLayout.size() / 2))
+		{
+			println("I'm dead");
+			solidier.remove(this);
+		}
 
 
 		if (position.x == goalPosition.x && position.y == goalPosition.y)

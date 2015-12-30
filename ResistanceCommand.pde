@@ -1,5 +1,5 @@
 //TODO(30/12/2015) 	1. Move the stuff from the map class into the utils class becuase it doesnt make sense to have a map class   DONE
-//					2. Make the Solidiers move in the way of the map
+//					2. Make the Solidiers move in the way of the map   MOSTLY DONE
 //					3. Make the battlements fire at the solidiers.
 //					4. Make collision detection for the solidiers and the battlements
 //   				5. Make the damage from the towers get effected by the armour of the solidiers and do the same for the solidiers being hit by the battlements
@@ -13,6 +13,9 @@
 //NOTE:  Try to break the fucking game as much as possible
 
 
+
+
+
 // Used for util functions throughout the game
 RCUtils utils = new RCUtils();
 
@@ -21,6 +24,8 @@ ArrayList<PVector> mapLayout = new ArrayList<PVector>();
 ArrayList<Battlements> battlements = new ArrayList<Battlements>();
 
 ArrayList<Solidier> solidier = new ArrayList<Solidier>();
+
+ArrayList<Projectile> projectile = new ArrayList<Projectile>();
 
 PShape currentlevel;
 PVector endPoint;
@@ -52,15 +57,16 @@ void draw()
 {
 	background(0, 128, 0);
 	shape(currentlevel);
-	for (int i = 0 ; i < solidier.size() ; i ++)
+	//FIXME: This doesnt work when you remove stuff from the arraylist
+	for (Solidier s : solidier)
 	{
-		if(solidier.get(i).pointsHit == (mapLayout.size() / 2))
-		{
-			solidier.remove(i);
-			continue;
-		}
-		solidier.get(i).render();
-		solidier.get(i).update();
+	// 	if(solidier.get(i).pointsHit == (mapLayout.size() / 2))
+	// 	{
+	// 		solidier.remove(i);
+	// 		continue;
+	// 	}
+		s.update();
+		s.render();
 	}
 	// for (Solidier s : solidier)
 	// {
