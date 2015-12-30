@@ -22,7 +22,7 @@ class Battlements extends GameObject
 
 	void update()
 	{
-
+		
 	}
 
 	void render()
