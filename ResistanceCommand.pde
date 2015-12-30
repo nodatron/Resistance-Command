@@ -1,3 +1,5 @@
+//FIXME: The firing of the towers is not working at all 
+
 //TODO(30/12/2015) 	1. Move the stuff from the map class into the utils class becuase it doesnt make sense to have a map class   DONE
 //					2. Make the Solidiers move in the way of the map   MOSTLY DONE
 //					3. Make the battlements fire at the solidiers.
@@ -65,8 +67,8 @@ void draw()
 	// 		solidier.remove(i);
 	// 		continue;
 	// 	}
-		s.update();
 		s.render();
+		s.update();
 	}
 	// for (Solidier s : solidier)
 	// {
@@ -80,6 +82,11 @@ void draw()
 	// }
 	// ss.update();
 	// ss.render();
+	for (Projectile p : projectile)
+	{
+		p.render();
+		p.update();
+	}
 	for (Battlements b : battlements) 
 	{
 		b.render();

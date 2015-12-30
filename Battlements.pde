@@ -6,7 +6,7 @@ class Battlements extends GameObject
 	Battlements ()
 	{
 		super();
-		isTargetting = false;
+		isTargetting = true;
 	}
 	
 	Battlements (int level, float xRatio, float yRatio)
@@ -27,10 +27,12 @@ class Battlements extends GameObject
 
 	void update()
 	{
-		forward.x = sin(theta);
-    	forward.y = - cos(theta);
+		// forward.x = sin(theta);
+  //   	forward.y = - cos(theta);
+
 		for (Solidier s : solidier)
 		{
+			theta = PVector.angleBetween(position, s.position);
 			if (s.position.x + s.spriteWidth > position.x - 100 
 				|| s.position.x - s.spriteWidth < position.y + 100 
 				|| s.position.y + s.spriteHeight > position.y - 100 
@@ -38,9 +40,10 @@ class Battlements extends GameObject
 				&& isTargetting == false)
 			{
 				isTargetting = true;
-				theta = PVector.angleBetween(position, s.position);
+				// theta = PVector.angleBetween(position, s.position);
 				Projectile projectiles = new Projectile();
-				projectiles.position = position;
+				projectiles.position.x = position.x;
+				projectiles.position.y = position.y;
 				projectiles.theta = theta;
 				projectile.add(projectiles);
 			}
