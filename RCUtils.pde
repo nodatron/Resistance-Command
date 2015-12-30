@@ -73,6 +73,10 @@ class RCUtils
 						Battlements tower = new Battlements(level, xRatio, yRatio);
 						battlements.add(tower);
 					}
+					else if(lines[0].equals("endpoint"))
+					{
+						endPoint = new PVector(width * xRatio, height * yRatio);
+					}
 					else 
 					{
 						PVector point = new PVector(width * xRatio, height * yRatio);
@@ -116,4 +120,5 @@ class RCUtils
 			// } break;
 		}
 	}
+
 }

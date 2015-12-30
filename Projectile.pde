@@ -1,4 +1,4 @@
-class Pojectile extends GameObject
+class Projectile extends GameObject
 {
 
 	Projectile ()
@@ -8,7 +8,7 @@ class Pojectile extends GameObject
 
 	void init()
 	{
-		utils.getProjectileInfo(level);
+		// utils.getProjectileInfo(level);
 	}
 
 	void update()

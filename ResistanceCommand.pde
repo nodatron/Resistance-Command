@@ -20,10 +20,13 @@ ArrayList<PVector> mapLayout = new ArrayList<PVector>();
 
 ArrayList<Battlements> battlements = new ArrayList<Battlements>();
 
-PShape currentlevel;
+ArrayList<Solidier> solidier = new ArrayList<Solidier>();
 
-Solidier solidier;
-Map map;
+PShape currentlevel;
+PVector endPoint;
+
+// Map map;
+// Solidier ss;
 
 void setup()
 {
@@ -31,23 +34,51 @@ void setup()
 	background(0, 128, 0);
 	frameRate(90);
 	
-	map = new Map();
+	// map = new Map();
 	//NOTE: This will be replaced by input from the user as to which map they want
 	// map.init(1, 1);
 	utils.initMap(1, 1);
-	solidier =  new Solidier();
-
+	for(int i = 0 ; i < 5 ; i ++)
+	{
+		Solidier s = new Solidier();
+		solidier.add(s);
+	}
+	// ss = new Solidier();
 }
+
+int counter = 0;
 
 void draw()
 {
 	background(0, 128, 0);
 	shape(currentlevel);
-	solidier.render();
-	solidier.update();
+	for (int i = 0 ; i < solidier.size() ; i ++)
+	{
+		if(solidier.get(i).pointsHit == (mapLayout.size() / 2))
+		{
+			solidier.remove(i);
+			continue;
+		}
+		solidier.get(i).render();
+		solidier.get(i).update();
+	}
+	// for (Solidier s : solidier)
+	// {
+	// 	if(s.pointsHit == (mapLayout.size() / 2))
+	// 	{
+	// 		solidier.remove(s);
+	// 		continue;
+	// 	}
+	// 	s.render();
+	// 	s.update();
+	// }
+	// ss.update();
+	// ss.render();
 	for (Battlements b : battlements) 
 	{
 		b.render();
 		b.update();
 	}
+	stroke(0);
+	line(0,216,width,216);
 }

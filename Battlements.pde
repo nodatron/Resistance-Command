@@ -1,3 +1,4 @@
+//can use the function .angleBetween() to find the right way to fire, this is for vectors
 class Battlements extends GameObject
 {
 	Battlements ()
@@ -22,7 +23,7 @@ class Battlements extends GameObject
 
 	void update()
 	{
-		
+
 	}
 
 	void render()

@@ -1,8 +1,12 @@
+//NOTE: First map needs to follow along y of 20% of height until 50% of width
+
 class Solidier extends GameObject
 {
 	// Used for checking if the unit hits off a solidier
 	boolean isXBorder;
 	boolean isYBorder;
+
+	int pointsHit;
 
 	Solidier ()
 	{
@@ -12,6 +16,7 @@ class Solidier extends GameObject
 	Solidier (int level)
 	{
 		super(level);
+		pointsHit = 0;
 		init();
 	}
 
@@ -23,16 +28,14 @@ class Solidier extends GameObject
 		//Get the position of the unit
 		//NOTE: 	- This will be replaced by info read from a file
 		position.x = mapLayout.get(0).x + (width * 0.05f);
-		position.y = mapLayout.get(0).y + (height  * 0.05f);
+		position.y = mapLayout.get(0).y + (height  * 0.10f);
 
-		goalPosition.x = width * 0.5f;
-		goalPosition.y = height - 100;
+		goalPosition.x = mapLayout.get(0).x + (width * 0.05f);
+		goalPosition.y = mapLayout.get(0).y + (height  * 0.10f);
 
 		// This will be changed for movement towards the goal positon
 		speed.x = 1;
 		speed.y = 1;
-
-		println("In the init function");
 	}
 
 	void update()
@@ -46,26 +49,58 @@ class Solidier extends GameObject
 		//			checks if the solidier hits anything 
 		// if (isXBorder && isYBorder)
 		// {
-			if (position.x > goalPosition.x && position.x != goalPosition.x)
+
+
+
+		if (position.x == goalPosition.x && position.y == goalPosition.y)
+		{
+
+			println("This works");
+			// println("pos x " + position.x + " pos y " + position.y + " pointsHit " + pointsHit);
+			pointsHit ++;
+			
+			if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
 			{
-				position.x --;
-				// position.add(speed);
+				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y + (height * 0.05f);
 			}
-			if (position.x < goalPosition.x && position.x != goalPosition.x) 
+			else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
 			{
-				position.x ++;
-				// position.add(speed);
+				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y - (height * 0.05f);
 			}
-			if (position.y > goalPosition.y && position.y != goalPosition.y)
+			else
 			{
-				position.y --;
-				// position.add(speed);
+				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y + (height * 0.05f);
 			}
-			if (position.y < goalPosition.y && position.y != goalPosition.y) 
+
+			if (pointsHit == ((mapLayout.size() / 2) - 1))
 			{
-				position.y++;
-				// position.add(speed);
+				goalPosition = endPoint;
 			}
+		}
+
+		if (position.x > goalPosition.x && position.x != goalPosition.x)
+		{
+			position.x --;
+			// position.add(speed);
+		}
+		if (position.x < goalPosition.x && position.x != goalPosition.x) 
+		{
+			position.x ++;
+			// position.add(speed);
+		}
+		if (position.y > goalPosition.y && position.y != goalPosition.y)
+		{
+			position.y --;
+			// position.add(speed);
+		}
+		if (position.y < goalPosition.y && position.y != goalPosition.y) 
+		{
+			position.y++;
+			// position.add(speed);
+		}
 		// }
 		// else if (isXBorder && !isYBorder)
 		// {
