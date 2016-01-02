@@ -39,7 +39,7 @@ void setup()
 {
 	fullScreen();
 	background(0, 128, 0);
-	frameRate(90);
+	frameRate(60);
 	
 	// map = new Map();
 	//NOTE: This will be replaced by input from the user as to which map they want
@@ -53,7 +53,7 @@ void setup()
 	// ss = new Solidier();
 }
 
-int counter = 0;
+int elapsed = 0;
 
 void draw()
 {
@@ -94,4 +94,6 @@ void draw()
 	}
 	stroke(0);
 	line(0,216,width,216);
+
+	elapsed++;
 }

@@ -67,16 +67,19 @@ class Solidier extends GameObject
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
 				goalPosition.y = mapLayout.get(pointsHit).y + (height * 0.05f);
+				println("x is the same");
 			}
 			else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
 				goalPosition.y = mapLayout.get(pointsHit).y - (height * 0.05f);
+				println("y is the same");
 			}
 			else
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
 				goalPosition.y = mapLayout.get(pointsHit).y + (height * 0.05f);
+				println("both are the same");
 			}
 
 			if (pointsHit == ((mapLayout.size() / 2) - 1))

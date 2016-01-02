@@ -23,7 +23,6 @@ class Projectile extends GameObject
 		position.add(forward);
 		if (position.x < 0 || position.y < 0 || position.x > width || position.y > height)
     	{
-      		// Im dead!
       		projectile.remove(this);
     	}
 	}
@@ -34,7 +33,7 @@ class Projectile extends GameObject
 		translate(position.x, position.y);
 		rotate(theta);
 		stroke(spriteColour);
-		ellipse(0, spriteHeight, spriteWidth, -spriteHeight);
+		ellipse(0, 5, 0, -5);
 		popMatrix();
 	}
 }
