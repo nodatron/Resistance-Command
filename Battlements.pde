@@ -13,7 +13,7 @@ class Battlements extends GameObject
 	{
 		super(level);
 		position.x = width * xRatio;
-		position.y = height * yRatio;
+		position.y = MAP_HEIGHT * yRatio;
 		isTargetting = false;
 		init();
 	}
@@ -28,17 +28,15 @@ class Battlements extends GameObject
 	void update()
 	{
 		// forward.x = sin(theta);
-  //   	forward.y = - cos(theta);
+  		//forward.y = - cos(theta);
 
 		for (Solidier s : solidier)
 		{
 			theta = PVector.angleBetween(s.position, this.position);
 			// println(s.position);
-			if(PVector.dist(position, s.position) <= 300 && elapsed > 30)
+			if(PVector.dist(this.position, s.position) <= 300 && elapsed > 30)
 			{
 				elapsed = 0;
-				isTargetting = true;
-				// theta = PVector.angleBetween(position, s.position);
 				Projectile p = new Projectile();
 				p.position.x = position.x;
 				p.position.y = position.y;

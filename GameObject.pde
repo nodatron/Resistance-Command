@@ -37,7 +37,7 @@ abstract class GameObject
 		theta = 0.0f;
 		speed = new PVector();
 		spriteWidth = width * 0.04f;
-		spriteHeight = height * 0.04f;
+		spriteHeight = MAP_HEIGHT * 0.04f;
 	}
 
 	abstract void init();

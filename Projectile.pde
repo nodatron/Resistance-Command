@@ -19,7 +19,7 @@ class Projectile extends GameObject
 		forward.y = - cos(theta);
 
 		position.add(forward);
-		// if (position.x < 0 || position.y < 0 || position.x > width || position.y > height)
+		// if (position.x < 0 || position.y < 0 || position.x > width || position.y > MAP_HEIGHT)
   //   	{
   //     		projectile.remove(this);
   //   	}

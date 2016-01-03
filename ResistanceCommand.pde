@@ -36,13 +36,15 @@ PVector endPoint;
 
 // Map map;
 // Solidier ss;
+//Setting the height of the map
+float MAP_HEIGHT;
 
 void setup()
 {
 	fullScreen();
 	background(0, 128, 0);
 	frameRate(60);
-	
+	MAP_HEIGHT = height * 0.9f;
 	//NOTE: This will be replaced by input from the user as to which map they want
 	utils.initMap(1, 1);
 	for(int i = 0 ; i < 5 ; i ++)
@@ -61,6 +63,11 @@ void draw()
 	background(0, 128, 0);
 	shape(currentlevel);
 	//FIXME: This doesnt work when you remove stuff from the arraylist
+	// for(GameObject go : gameObjects)
+	// {
+	// 	go.update();
+	// 	go.render();
+	// }
 	for (Solidier s : solidier)
 	// for (int i = 0; i < 100; ++i)
 	{
@@ -96,6 +103,7 @@ void draw()
 		b.update();
 	}
 	stroke(0);
+
 
 	elapsed++;
 }

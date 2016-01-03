@@ -2,10 +2,6 @@
 
 class Solidier extends GameObject
 {
-	// Used for checking if the unit hits off a solidier
-	boolean isXBorder;
-	boolean isYBorder;
-
 	int pointsHit;
 
 	Solidier ()
@@ -28,10 +24,10 @@ class Solidier extends GameObject
 		//Get the position of the unit
 		//NOTE: 	- This will be replaced by info read from a file
 		position.x = mapLayout.get(0).x + (width * 0.05f);
-		position.y = mapLayout.get(0).y + (height  * 0.10f);
+		position.y = mapLayout.get(0).y + (MAP_HEIGHT  * 0.10f);
 
 		goalPosition.x = mapLayout.get(0).x + (width * 0.05f);
-		goalPosition.y = mapLayout.get(0).y + (height  * 0.10f);
+		goalPosition.y = mapLayout.get(0).y + (MAP_HEIGHT  * 0.10f);
 
 		// This will be changed for movement towards the goal positon
 		speed.x = 1;
@@ -49,11 +45,11 @@ class Solidier extends GameObject
 		//			checks if the solidier hits anything 
 		// if (isXBorder && isYBorder)
 		// {
-		if(pointsHit == (mapLayout.size() / 2))
-		{
-			println("I'm dead");
-			solidier.remove(this);
-		}
+		// if(pointsHit == (mapLayout.size() / 2))
+		// {
+		// 	println("I'm dead");
+		// 	solidier.remove(this);
+		// }
 
 		if (position.x == goalPosition.x && position.y == goalPosition.y)
 		{
@@ -63,17 +59,17 @@ class Solidier extends GameObject
 			if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y - (height * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y - (MAP_HEIGHT * 0.05f);
 			}
 			else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y + (height * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y + (MAP_HEIGHT * 0.05f);
 			}
 			else
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y + (height * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y + (MAP_HEIGHT * 0.05f);
 			}
 
 			if (pointsHit == ((mapLayout.size() / 2) - 1))

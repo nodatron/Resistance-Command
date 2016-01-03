@@ -76,11 +76,11 @@ class RCUtils
 					}
 					else if(lines[0].equals("endpoint"))
 					{
-						endPoint = new PVector(width * xRatio, height * yRatio);
+						endPoint = new PVector(width * xRatio, MAP_HEIGHT * yRatio);
 					}
 					else 
 					{
-						PVector point = new PVector(width * xRatio, height * yRatio);
+						PVector point = new PVector(width * xRatio, MAP_HEIGHT * yRatio);
 						mapLayout.add(point);
 					}
 				}
