@@ -72,6 +72,7 @@ class RCUtils
 					{
 						Battlements tower = new Battlements(level, xRatio, yRatio);
 						battlements.add(tower);
+						gameObjects.add(tower);
 					}
 					else if(lines[0].equals("endpoint"))
 					{

@@ -55,31 +55,25 @@ class Solidier extends GameObject
 			solidier.remove(this);
 		}
 
-
 		if (position.x == goalPosition.x && position.y == goalPosition.y)
 		{
-
-			println("This works");
-			// println("pos x " + position.x + " pos y " + position.y + " pointsHit " + pointsHit);
 			pointsHit ++;
+			// println(pointsHit);
 			
 			if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y + (height * 0.05f);
-				println("x is the same");
+				goalPosition.y = mapLayout.get(pointsHit).y - (height * 0.05f);
 			}
 			else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
 			{
-				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y - (height * 0.05f);
-				println("y is the same");
+				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y + (height * 0.05f);
 			}
 			else
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
 				goalPosition.y = mapLayout.get(pointsHit).y + (height * 0.05f);
-				println("both are the same");
 			}
 
 			if (pointsHit == ((mapLayout.size() / 2) - 1))
@@ -108,15 +102,6 @@ class Solidier extends GameObject
 			position.y++;
 			// position.add(speed);
 		}
-		// }
-		// else if (isXBorder && !isYBorder)
-		// {
-
-		// }
-		// else if (!isXBorder && isYBorder)
-		// {
-
-		// }
 		
 	}	
 

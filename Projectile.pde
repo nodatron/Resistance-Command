@@ -11,8 +11,6 @@ class Projectile extends GameObject
 	{
 		// utils.getProjectileInfo(level);
 		spriteColour = utils.getColourEnemy(level);
-		spriteWidth = 0;
-		spriteHeight = height * 0.5f;
 	}
 
 	void update()
@@ -21,10 +19,10 @@ class Projectile extends GameObject
 		forward.y = - cos(theta);
 
 		position.add(forward);
-		if (position.x < 0 || position.y < 0 || position.x > width || position.y > height)
-    	{
-      		projectile.remove(this);
-    	}
+		// if (position.x < 0 || position.y < 0 || position.x > width || position.y > height)
+  //   	{
+  //     		projectile.remove(this);
+  //   	}
 	}
 
 	void render() 
@@ -33,7 +31,7 @@ class Projectile extends GameObject
 		translate(position.x, position.y);
 		rotate(theta);
 		stroke(spriteColour);
-		ellipse(0, 5, 0, -5);
+		ellipse(0, -5, 0, 5);
 		popMatrix();
 	}
 }

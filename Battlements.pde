@@ -32,13 +32,9 @@ class Battlements extends GameObject
 
 		for (Solidier s : solidier)
 		{
-			theta = PI + PVector.angleBetween(s.position, position);
-			if(PVector.dist(position, s.position) <= 300 && elapsed > 12)
-			// if (s.position.x + s.spriteWidth > position.x - 100 
-			// 	|| s.position.x - s.spriteWidth < position.y + 100 
-			// 	|| s.position.y + s.spriteHeight > position.y - 100 
-			// 	|| s.position.y - s.spriteHeight < position.y + 100
-			// 	&& isTargetting == false)
+			theta = PVector.angleBetween(s.position, this.position);
+			// println(s.position);
+			if(PVector.dist(position, s.position) <= 300 && elapsed > 30)
 			{
 				elapsed = 0;
 				isTargetting = true;
@@ -48,6 +44,7 @@ class Battlements extends GameObject
 				p.position.y = position.y;
 				p.theta = theta;
 				projectile.add(p);
+				gameObjects.add(p);
 			}
 		}
 	}
@@ -56,7 +53,7 @@ class Battlements extends GameObject
 	{
 		pushMatrix();
 		translate(position.x, position.y);
-		rotate(theta);
+		// rotate(theta);
 		stroke(spriteColour);
 		ellipse(0, 0, spriteWidth, spriteHeight);
 		popMatrix();

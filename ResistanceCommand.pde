@@ -2,7 +2,7 @@
 
 //TODO(30/12/2015) 	1. Move the stuff from the map class into the utils class becuase it doesnt make sense to have a map class   DONE
 //					2. Make the Solidiers move in the way of the map   MOSTLY DONE
-//					3. Make the battlements fire at the solidiers.
+//					3. Make the battlements fire at the solidiers.		MOSTLY DONE
 //					4. Make collision detection for the solidiers and the battlements
 //   				5. Make the damage from the towers get effected by the armour of the solidiers and do the same for the solidiers being hit by the battlements
 //					6. Make the powerups for the solidiers
@@ -23,6 +23,8 @@ RCUtils utils = new RCUtils();
 
 ArrayList<PVector> mapLayout = new ArrayList<PVector>();
 
+ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+
 ArrayList<Battlements> battlements = new ArrayList<Battlements>();
 
 ArrayList<Solidier> solidier = new ArrayList<Solidier>();
@@ -41,16 +43,15 @@ void setup()
 	background(0, 128, 0);
 	frameRate(60);
 	
-	// map = new Map();
 	//NOTE: This will be replaced by input from the user as to which map they want
-	// map.init(1, 1);
 	utils.initMap(1, 1);
 	for(int i = 0 ; i < 5 ; i ++)
 	{
 		Solidier s = new Solidier();
 		solidier.add(s);
+		gameObjects.add(s);
 	}
-	// ss = new Solidier();
+
 }
 
 int elapsed = 0;
@@ -61,14 +62,16 @@ void draw()
 	shape(currentlevel);
 	//FIXME: This doesnt work when you remove stuff from the arraylist
 	for (Solidier s : solidier)
+	// for (int i = 0; i < 100; ++i)
 	{
 	// 	if(solidier.get(i).pointsHit == (mapLayout.size() / 2))
 	// 	{
 	// 		solidier.remove(i);
 	// 		continue;
 	// 	}
-		s.render();
-		s.update();
+
+			s.render();
+			s.update();
 	}
 	// for (Solidier s : solidier)
 	// {
@@ -93,7 +96,6 @@ void draw()
 		b.update();
 	}
 	stroke(0);
-	line(0,216,width,216);
 
 	elapsed++;
 }
