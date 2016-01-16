@@ -1,22 +1,12 @@
 //more damage for each solidier
-class AttackBoost implements Powerup extends GameObject
+class AttackBoost implements Powerup 
 {
 	AttackBoost()
 	{
 
 	}
 
-	void init()
-	{
-
-	}
-
-	void update()
-	{
-
-	}
-
-	void render()
+	void buff(ArrayList<Solidier> soliders) 
 	{
 
 	}

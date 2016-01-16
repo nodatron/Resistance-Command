@@ -1,22 +1,12 @@
 //Speed boost for all friendly soliders
-class Blitz implements Powerup extends GameObject
+class Blitz implements Powerup
 {
 	Blitz ()
 	{
 
 	}
 
-	void init()
-	{
-
-	}
-
-	void update()
-	{
-
-	}
-
-	void render()
+	void buff(ArrayList<Solidier> soliders) 
 	{
 
 	}
