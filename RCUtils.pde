@@ -54,6 +54,30 @@ class RCUtils
 		}
 	}
 
+	int getAttackDamage (int level, String unitType)
+	{
+		if (unitType.equals("battlement"))
+		{
+			switch (level)
+			{
+				case 1: return 10;
+				case 2: return 20;
+				case 3: return 30;
+				default: return 10;
+			}
+		}
+		else if (unitType.equals("solidier"))
+		{
+			switch (level)
+			{
+				case 1: return 10;
+				case 2: return 20;
+				case 3: return 30;
+				default: return 10;
+			}
+		}
+	}
+
 	void initMap(int mapNo, int level)
 	{
 		// Selects which map that the user wants

@@ -20,16 +20,15 @@ class Solidier extends GameObject
 	{
 		// Gets the colour of the solider
 		spriteColour = utils.getColourFriendly(level);
+		attack = getAttackDamage(level, "solidier");
 
-		//Get the position of the unit
-		//NOTE: 	- This will be replaced by info read from a file
+		//Get the starting position of the unit
 		position.x = mapLayout.get(0).x + (width * 0.05f);
 		position.y = mapLayout.get(0).y + (MAP_HEIGHT  * 0.10f);
 
 		goalPosition.x = mapLayout.get(0).x + (width * 0.05f);
 		goalPosition.y = mapLayout.get(0).y + (MAP_HEIGHT  * 0.10f);
 
-		// This will be changed for movement towards the goal positon
 		forward.x = 1;
 		forward.y = 1;
 	}

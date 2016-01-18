@@ -6,6 +6,7 @@ abstract class GameObject
 	int armour;
 	int cost;
 	int reward;
+	int attack;
 
 	//Position stuff
 	PVector position;
@@ -31,6 +32,7 @@ abstract class GameObject
 		armour = level * 5;
 		cost = level * 500;
 		reward = cost / 2;
+		attack = 10;
 		position = new PVector();
 		goalPosition = new PVector();
 		forward = new PVector();

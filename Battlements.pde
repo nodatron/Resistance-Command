@@ -23,6 +23,7 @@ class Battlements extends GameObject
 		// Gets the colour of the battlement
 		//NOTE: This will be changed for a sprite
 		spriteColour = utils.getColourEnemy(level);
+		attack = utils.getAttackDamage(level, "Battlement");
 	}
 
 	void update()
