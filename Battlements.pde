@@ -33,7 +33,6 @@ class Battlements extends GameObject
 		for (Solidier s : solidier)
 		{
 			theta = findDirectionToShoot(s.position, this.position);
-			// theta = PVector.angleBetween(s.position, this.position);
 
 			if(PVector.dist(this.position, s.position) <= 300 && elapsed > 30)
 			{

@@ -6,7 +6,7 @@ class AttackBoost implements Powerup
 
 	}
 
-	void buff(ArrayList<Solidier> soliders) 
+	void buff(Solidier soliders) 
 	{
 
 	}

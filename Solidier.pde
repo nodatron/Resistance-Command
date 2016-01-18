@@ -30,8 +30,8 @@ class Solidier extends GameObject
 		goalPosition.y = mapLayout.get(0).y + (MAP_HEIGHT  * 0.10f);
 
 		// This will be changed for movement towards the goal positon
-		speed.x = 1;
-		speed.y = 1;
+		forward.x = 1;
+		forward.y = 1;
 	}
 
 	void update()
@@ -80,23 +80,35 @@ class Solidier extends GameObject
 
 		if (position.x > goalPosition.x && position.x != goalPosition.x)
 		{
-			position.x --;
-			// position.add(speed);
+			forward.x = -1;
+			forward.y = 0;
+			if(buffActive) blitz.buff(this);
+			// position.x --;
+			position.add(forward);
 		}
 		if (position.x < goalPosition.x && position.x != goalPosition.x) 
 		{
-			position.x ++;
-			// position.add(speed);
+			forward.x = 1;
+			forward.y = 0;
+			if(buffActive) blitz.buff(this);
+			position.add(forward);
+			// position.x ++;
 		}
 		if (position.y > goalPosition.y && position.y != goalPosition.y)
 		{
-			position.y --;
-			// position.add(speed);
+			forward.x = 0;
+			forward.y = -1;
+			if(buffActive) blitz.buff(this);
+			position.add(forward);
+			// position.y --;
 		}
 		if (position.y < goalPosition.y && position.y != goalPosition.y) 
 		{
-			position.y++;
-			// position.add(speed);
+			forward.x = 0;
+			forward.y = 1;
+			if(buffActive) blitz.buff(this);
+			position.add(forward);
+			// position.y++;
 		}
 		
 	}	
@@ -107,6 +119,7 @@ class Solidier extends GameObject
 		translate(position.x, position.y);
 		stroke(spriteColour);
 		ellipse(0, 0, spriteWidth, spriteHeight);
+		println("Solider Postion" + position);
 		popMatrix();
 	}
 }

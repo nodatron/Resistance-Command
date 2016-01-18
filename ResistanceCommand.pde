@@ -1,4 +1,4 @@
-//FIXME: The firing of the towers is not working at all 
+//FIXME: Some weird bug with the solidiers refusing to move when you activate the blitz buff at a certain time
 
 //TODO(30/12/2015) 	1. Move the stuff from the map class into the utils class becuase it doesnt make sense to have a map class   DONE
 //					2. Make the Solidiers move in the way of the map   MOSTLY DONE
@@ -54,9 +54,15 @@ void setup()
 		gameObjects.add(s);
 	}
 
+
+	blitz = new Blitz();
 }
 
 int elapsed = 0;
+
+Powerup blitz;
+int blitzTimer = 0;
+boolean buffActive = false;
 
 void draw()
 {
@@ -104,6 +110,22 @@ void draw()
 	}
 	stroke(0);
 
+	if (mouseY > MAP_HEIGHT && !buffActive)
+	{
+		// blitz.buff(solidier);
+		println("Buff activated");
+		buffActive = true;
+		
+	}
+
+	if(buffActive) startBuffCounter();
 
 	elapsed++;
+	
+}
+
+void startBuffCounter()
+{
+	blitzTimer++;
+	println("blitzTimer: "+blitzTimer);
 }
