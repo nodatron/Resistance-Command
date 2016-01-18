@@ -1,8 +1,8 @@
 //FIXME: Some weird bug with the solidiers refusing to move when you activate the blitz buff at a certain time
-
+//FIXME: First map the solidiers are not going the full way to the end of the map
 //TODO(30/12/2015) 	1. Move the stuff from the map class into the utils class becuase it doesnt make sense to have a map class   DONE
-//					2. Make the Solidiers move in the way of the map   MOSTLY DONE
-//					3. Make the battlements fire at the solidiers.		MOSTLY DONE
+//					2. Make the Solidiers move in the way of the map   DONE
+//					3. Make the battlements fire at the solidiers.	DONE
 //					4. Make collision detection for the solidiers and the battlements
 //   				5. Make the damage from the towers get effected by the armour of the solidiers and do the same for the solidiers being hit by the battlements
 //					6. Make the powerups for the solidiers
@@ -61,7 +61,9 @@ void setup()
 int elapsed = 0;
 
 Powerup blitz;
-int blitzTimer = 0;
+// int blitzTimer = 0;
+// int attackBoostTimer = 0;
+int buffTimer = 0;
 boolean buffActive = false;
 
 void draw()
@@ -110,12 +112,20 @@ void draw()
 	}
 	stroke(0);
 
-	if (mouseY > MAP_HEIGHT && !buffActive)
+	if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f)
 	{
 		// blitz.buff(solidier);
 		println("Buff activated");
-		buffActive = true;
-		
+		buffActive = true;	
+	}
+
+	if(buffActive) startBuffCounter();
+
+	if (mouseY > MAP_HEIGHT && !buffActive && mouseX < width * 0.5f)
+	{
+		// blitz.buff(solidier);
+		println("Buff activated");
+		buffActive = true;	
 	}
 
 	if(buffActive) startBuffCounter();
@@ -126,6 +136,7 @@ void draw()
 
 void startBuffCounter()
 {
-	blitzTimer++;
-	println("blitzTimer: "+blitzTimer);
+	buffTimer++;
+	// blitzTimer++;
+	// println("blitzTimer: "+blitzTimer);
 }

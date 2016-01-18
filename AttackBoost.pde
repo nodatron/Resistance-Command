@@ -9,9 +9,10 @@ class AttackBoost implements Powerup
 
 	void buff(Solidier solidiers) 
 	{
-		if (attackBoostTimer < buffTime)
+		if (buffTimer < buffTime)
 		{
 			//boost the attack damage of the soliders
+			solidiers.attackbonus = 10;
 		}
 	}
 }

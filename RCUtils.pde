@@ -60,22 +60,23 @@ class RCUtils
 		{
 			switch (level)
 			{
-				case 1: return 10;
-				case 2: return 20;
-				case 3: return 30;
-				default: return 10;
+				case 1: { return 10; }
+				case 2: { return 20; }
+				case 3: { return 30; }
+				default: { return 10; }
 			}
 		}
 		else if (unitType.equals("solidier"))
 		{
 			switch (level)
 			{
-				case 1: return 10;
-				case 2: return 20;
-				case 3: return 30;
-				default: return 10;
+				case 1: { return 10; }
+				case 2: { return 20; }
+				case 3: { return 30; }
+				default: { return 10; }
 			}
 		}
+		return 0;
 	}
 
 	void initMap(int mapNo, int level)

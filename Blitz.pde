@@ -10,7 +10,7 @@ class Blitz implements Powerup
 
 	void buff(Solidier solidiers) 
 	{
-		if (blitzTimer <= buffTime)
+		if (buffTimer <= buffTime)
 		{
 			solidiers.forward.mult(2);
 		}

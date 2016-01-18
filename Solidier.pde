@@ -3,6 +3,7 @@
 class Solidier extends GameObject
 {
 	int pointsHit;
+	int attackbonus;
 
 	Solidier ()
 	{
@@ -13,6 +14,7 @@ class Solidier extends GameObject
 	{
 		super(level);
 		pointsHit = 0;
+		attackbonus = 0;
 		init();
 	}
 
@@ -20,7 +22,7 @@ class Solidier extends GameObject
 	{
 		// Gets the colour of the solider
 		spriteColour = utils.getColourFriendly(level);
-		attack = getAttackDamage(level, "solidier");
+		attack = utils.getAttackDamage(level, "solidier");
 
 		//Get the starting position of the unit
 		position.x = mapLayout.get(0).x + (width * 0.05f);
@@ -49,6 +51,9 @@ class Solidier extends GameObject
 		// 	println("I'm dead");
 		// 	solidier.remove(this);
 		// }
+
+		//Resetting the attack bonus to 0 when the buff is not active
+		if (!buffActive) attackbonus = 0;
 
 		if (position.x == goalPosition.x && position.y == goalPosition.y)
 		{
@@ -121,4 +126,5 @@ class Solidier extends GameObject
 		println("Solider Postion" + position);
 		popMatrix();
 	}
+
 }
