@@ -32,8 +32,9 @@ class Battlements extends GameObject
 
 		for (Solidier s : solidier)
 		{
-			theta = PVector.angleBetween(s.position, this.position);
-			// println(s.position);
+			theta = findDirectionToShoot(s.position, this.position);
+			// theta = PVector.angleBetween(s.position, this.position);
+
 			if(PVector.dist(this.position, s.position) <= 300 && elapsed > 30)
 			{
 				elapsed = 0;
@@ -55,5 +56,35 @@ class Battlements extends GameObject
 		stroke(spriteColour);
 		ellipse(0, 0, spriteWidth, spriteHeight);
 		popMatrix();
+	}
+
+	float findDirectionToShoot (PVector solidierPos, PVector battlementPos)
+	{
+		if (solidierPos.x == battlementPos.x)
+		{
+			if (solidierPos.y > battlementPos.y)
+			{
+				// Shoot down
+				return PI;
+			}
+			else
+			{
+				// Shoot up
+				return TWO_PI;
+			}
+		}
+		else 
+		{
+			if (solidierPos.x > battlementPos.x)
+			{
+				// Shoot right 
+				return PI * 0.5f;
+			}
+			else
+			{
+				// Shoot Left
+				return PI * 1.5f;
+			}
+		}
 	}
 }
