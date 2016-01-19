@@ -1,5 +1,5 @@
 //Speed boost for all friendly soliders
-class Blitz implements Powerup
+class Blitz extends GameObject implements Powerup
 {
 	int buffTime;
 	Blitz ()
@@ -14,5 +14,18 @@ class Blitz implements Powerup
 		{
 			solidiers.forward.mult(2);
 		}
+	}
+
+	void init()
+	{
+
+	}
+	void update()
+	{
+
+	}
+	void render()
+	{
+		
 	}
 }

@@ -1,5 +1,5 @@
 //more damage for each solidier
-class AttackBoost implements Powerup 
+class AttackBoost extends GameObject implements Powerup 
 {
 	int buffTime;
 	AttackBoost()
@@ -14,5 +14,20 @@ class AttackBoost implements Powerup
 			//boost the attack damage of the soliders
 			solidiers.attackbonus = 10;
 		}
+	}
+
+	void init()
+	{
+		
+	}
+
+	void update()
+	{
+
+	}
+	
+	void render()
+	{
+
 	}
 }

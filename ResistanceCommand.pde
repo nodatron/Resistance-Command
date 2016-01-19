@@ -10,11 +10,19 @@
 //					7. Make a score go up for every solidier that goes through the last point of the game
 //					8. Make the sprites for the game i.e. foot solidier, knight, battering ram, archer tower, catapult tower, balista tower
 //					9. Make the splash screen for the game and make it look awesome
-//					10. Add in diffiulty if i have the time (pussy, filthy casual and true gamer who sees no sunlight)
-//					11.Optimize the game of there is a need to
+//					10. Add in diffiulty if i have the time 
+//					11. Optimize the game of there is a need to
 //NOTE:  Try to break the fucking game as much as possible
 
 
+
+/**************
+NOTE: To make the deletion of the objects work i need to create an arraylist of just GameObjects
+		Need to have a way of checking if a solidier, bullet or battlement is dead
+		If the are dead i.e. live = 0 or they have gone offscreen
+		In draw() i check if the object is Alive, if it is then draw and update it
+		if not then get rid of the object
+********************/
 
 
 
@@ -24,12 +32,6 @@ RCUtils utils = new RCUtils();
 ArrayList<PVector> mapLayout = new ArrayList<PVector>();
 
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
-
-ArrayList<Battlements> battlements = new ArrayList<Battlements>();
-
-ArrayList<Solidier> solidier = new ArrayList<Solidier>();
-
-ArrayList<Projectile> projectile = new ArrayList<Projectile>();
 
 PShape currentlevel;
 PVector endPoint;
@@ -50,7 +52,6 @@ void setup()
 	for(int i = 0 ; i < 5 ; i ++)
 	{
 		Solidier s = new Solidier();
-		solidier.add(s);
 		gameObjects.add(s);
 	}
 
@@ -71,45 +72,19 @@ void draw()
 	background(0, 128, 0);
 	shape(currentlevel);
 	//FIXME: This doesnt work when you remove stuff from the arraylist
-	// for(GameObject go : gameObjects)
-	// {
-	// 	go.update();
-	// 	go.render();
-	// }
-	for (Solidier s : solidier)
-	// for (int i = 0; i < 100; ++i)
+	for(int i = 0 ; i < gameObjects.size() ; i ++)
 	{
-	// 	if(solidier.get(i).pointsHit == (mapLayout.size() / 2))
-	// 	{
-	// 		solidier.remove(i);
-	// 		continue;
-	// 	}
-
-			s.render();
-			s.update();
+		if(gameObjects.get(i).isAlive)
+		{
+			gameObjects.get(i).update();
+			gameObjects.get(i).render();
+		}
+		else 
+		{
+			gameObjects.remove(i);
+		}
 	}
-	// for (Solidier s : solidier)
-	// {
-	// 	if(s.pointsHit == (mapLayout.size() / 2))
-	// 	{
-	// 		solidier.remove(s);
-	// 		continue;
-	// 	}
-	// 	s.render();
-	// 	s.update();
-	// }
-	// ss.update();
-	// ss.render();
-	for (Projectile p : projectile)
-	{
-		p.render();
-		p.update();
-	}
-	for (Battlements b : battlements) 
-	{
-		b.render();
-		b.update();
-	}
+	
 	stroke(0);
 
 	if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f)

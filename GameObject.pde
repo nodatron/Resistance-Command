@@ -7,6 +7,7 @@ abstract class GameObject
 	int cost;
 	int reward;
 	int attack;
+	boolean isAlive;
 
 	//Position stuff
 	PVector position;
@@ -33,6 +34,7 @@ abstract class GameObject
 		cost = level * 500;
 		reward = cost / 2;
 		attack = 10;
+		isAlive = true;
 		position = new PVector();
 		goalPosition = new PVector();
 		forward = new PVector();

@@ -1,12 +1,13 @@
 //can use the function .angleBetween() to find the right way to fire, this is for vectors
 class Battlements extends GameObject
 {
-	boolean isTargetting;
+	boolean isWithinRange;
+	PVector solpos;
 
 	Battlements ()
 	{
 		super();
-		isTargetting = true;
+		isWithinRange = false;
 	}
 	
 	Battlements (int level, float xRatio, float yRatio)
@@ -14,7 +15,7 @@ class Battlements extends GameObject
 		super(level);
 		position.x = width * xRatio;
 		position.y = MAP_HEIGHT * yRatio;
-		isTargetting = false;
+		isWithinRange = false;
 		init();
 	}
 
@@ -31,19 +32,21 @@ class Battlements extends GameObject
 		// forward.x = sin(theta);
   		//forward.y = - cos(theta);
 
-		for (Solidier s : solidier)
+		for (int i = 0 ; i < gameObjects.size() ; i ++)
 		{
-			theta = findDirectionToShoot(s.position, this.position);
-
-			if(PVector.dist(this.position, s.position) <= 300 && elapsed > 30)
+			if(gameObjects.get(i) instanceof Solidier)
 			{
-				elapsed = 0;
-				Projectile p = new Projectile();
-				p.position.x = position.x;
-				p.position.y = position.y;
-				p.theta = theta;
-				projectile.add(p);
-				gameObjects.add(p);
+				theta = findDirectionToShoot(gameObjects.get(i).position, this.position);
+
+				if(PVector.dist(this.position, gameObjects.get(i).position) <= 300 && elapsed > 30)
+				{
+					elapsed = 0;
+					Projectile p = new Projectile();
+					p.position.x = position.x;
+					p.position.y = position.y;
+					p.theta = theta;
+					gameObjects.add(p);
+				}
 			}
 		}
 	}
