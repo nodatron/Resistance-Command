@@ -1,13 +1,13 @@
 battlement,0.25,0.2
-battlement,0.6,0.7
+battlement,0.6,0.5
 mapPoint,0.0,0.1
 mapPoint,0.25,0.15
 mapPoint,0.65,0.15
 mapPoint,0.65,0.7
-mapPoint,0.75,1
-mapPoint,0.45,1
+mapPoint,0.70,1
+mapPoint,0.50,1
 mapPoint,0.55,0.7
 mapPoint,0.55,0.25
 mapPoint,0.25,0.25
 mapPoint,0.0,0.3
-endpoint,0.6,0.9
+endpoint,0.6,0.8

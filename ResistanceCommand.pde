@@ -57,11 +57,12 @@ void setup()
 
 
 	blitz = new Blitz();
+	gameObjects.add(blitz);
 }
 
 int elapsed = 0;
 
-Powerup blitz;
+Blitz blitz;
 // int blitzTimer = 0;
 // int attackBoostTimer = 0;
 int buffTimer = 0;
@@ -87,7 +88,7 @@ void draw()
 	
 	stroke(0);
 
-	if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f)
+	if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f && mouseX < width * 0.6f)
 	{
 		// blitz.buff(solidier);
 		println("Buff activated");

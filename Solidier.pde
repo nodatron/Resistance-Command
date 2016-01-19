@@ -26,10 +26,10 @@ class Solidier extends GameObject
 
 		//Get the starting position of the unit
 		position.x = mapLayout.get(0).x + (width * 0.05f);
-		position.y = mapLayout.get(0).y + (MAP_HEIGHT  * 0.10f);
+		position.y = mapLayout.get(0).y + (height   * 0.10f);
 
 		goalPosition.x = mapLayout.get(0).x + (width * 0.05f);
-		goalPosition.y = mapLayout.get(0).y + (MAP_HEIGHT  * 0.10f);
+		goalPosition.y = mapLayout.get(0).y + (height   * 0.10f);
 
 		forward.x = 1;
 		forward.y = 1;
@@ -52,33 +52,35 @@ class Solidier extends GameObject
 		// 	solidier.remove(this);
 		// }
 
+		checkCollison();
+
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive) attackbonus = 0;
 
 		if (position.x == goalPosition.x && position.y == goalPosition.y)
 		{
 			pointsHit ++;
-			// println(pointsHit);
 			
 			if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y - (MAP_HEIGHT * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
 			}
 			else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y + (MAP_HEIGHT * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
 			}
 			else
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y + (MAP_HEIGHT * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
 			}
 
 			if (pointsHit == ((mapLayout.size() / 2) - 1))
 			{
 				goalPosition = endPoint;
+				isAlive = false;
 			}
 		}
 
@@ -127,4 +129,8 @@ class Solidier extends GameObject
 		popMatrix();
 	}
 
+	void checkCollison()
+	{
+		
+	}
 }

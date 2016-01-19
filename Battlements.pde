@@ -14,7 +14,7 @@ class Battlements extends GameObject
 	{
 		super(level);
 		position.x = width * xRatio;
-		position.y = MAP_HEIGHT * yRatio;
+		position.y = height  * yRatio;
 		isWithinRange = false;
 		init();
 	}
