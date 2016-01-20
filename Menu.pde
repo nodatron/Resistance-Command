@@ -1,5 +1,6 @@
 class Menu extends GameObject
 {
+	PFont menuFont;
 	
 	Menu () 
 	{
