@@ -1,12 +1,15 @@
 //FIXME: Some weird bug with the solidiers refusing to move when you activate the blitz buff at a certain time
 //FIXME: First map the solidiers are not going the full way to the end of the map
+//FIXME: Collsion with the battlements and solidiers is recognised but the solidiers still continue
+
 //TODO(30/12/2015) 	1. Move the stuff from the map class into the utils class becuase it doesnt make sense to have a map class   DONE
 //					2. Make the Solidiers move in the way of the map   DONE
 //					3. Make the battlements fire at the solidiers.	DONE
-//					4. Make collision detection for the solidiers and the battlements
-//   				5. Make the damage from the towers get effected by the armour of the solidiers and do the same for the solidiers being hit by the battlements
-//					6. Make the powerups for the solidiers
-//						ideas: speed boost, armour boost, all heal, barrage on towers, 
+//					4. Make collision detection for the solidiers and the battlements	MOSTLY DONE
+//   				5. Make the damage from the towers get effected by the armour of the solidiers and do the same for the solidiers being hit 
+//					by the battlements	DONE
+//					6. Make the powerups for the Solidiers
+//						ideas: speed boost, armour boost, all heal, barrage on towers, 				SOME ARE DONE
 //					7. Make a score go up for every solidier that goes through the last point of the game
 //					8. Make the sprites for the game i.e. foot solidier, knight, battering ram, archer tower, catapult tower, balista tower
 //					9. Make the splash screen for the game and make it look awesome
