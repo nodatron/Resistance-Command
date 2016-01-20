@@ -64,6 +64,7 @@ void setup()
 
 int elapsed = 0;
 
+// boolean allowedMove;
 Blitz blitz;
 // int blitzTimer = 0;
 // int attackBoostTimer = 0;

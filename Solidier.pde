@@ -4,6 +4,7 @@ class Solidier extends GameObject
 {
 	int pointsHit;
 	int attackbonus;
+	boolean allowedMove;
 
 	Solidier ()
 	{
@@ -15,6 +16,7 @@ class Solidier extends GameObject
 		super(level);
 		pointsHit = 0;
 		attackbonus = 0;
+		allowedMove = false;
 		init();
 	}
 
@@ -56,14 +58,25 @@ class Solidier extends GameObject
 		{
 			Boolean hit = checkCollison(gameObjects.get(i));
 			if(hit && gameObjects.get(i) instanceof Projectile)
+			{
 				gameObjects.remove(i);
+			}
+			else if(hit && gameObjects.get(i) instanceof Battlements)
+			{
+				allowedMove = false;
+			}
+			else 
+			{
+				allowedMove = true;			
+			}
+			println("allowedMove: "+allowedMove);
 		}
-
+		println("allowedMove: "+allowedMove);
 		if(health <= 0)
 		{
 			isAlive = false;
 		}
-		else 
+		if(allowedMove)
 		{
 			//Resetting the attack bonus to 0 when the buff is not active
 			if (!buffActive) attackbonus = 0;
@@ -129,6 +142,7 @@ class Solidier extends GameObject
 			}
 		}
 		
+		
 	}	
 
 	void render()
@@ -151,6 +165,15 @@ class Solidier extends GameObject
 				println("Hit");
 				return true;
 			}
+			if (object instanceof Battlements)
+			{
+				return true;
+			}
+		}
+		else 
+		{
+			allowedMove = true;
+			return false;
 		}
 		return false;
 	}

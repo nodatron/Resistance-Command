@@ -33,7 +33,7 @@ abstract class GameObject
 		armour = level * 5;
 		cost = level * 500;
 		reward = cost / 2;
-		attack = 20;
+		attack = 10;
 		isAlive = true;
 		position = new PVector();
 		goalPosition = new PVector();
