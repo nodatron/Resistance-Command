@@ -52,69 +52,81 @@ class Solidier extends GameObject
 		// 	solidier.remove(this);
 		// }
 
-		checkCollison();
-
-		//Resetting the attack bonus to 0 when the buff is not active
-		if (!buffActive) attackbonus = 0;
-
-		if (position.x == goalPosition.x && position.y == goalPosition.y)
+		for (int i = 0 ; i < gameObjects.size() ; i++)
 		{
-			pointsHit ++;
-			
-			if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
-			{
-				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
-			}
-			else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
-			{
-				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-			}
-			else
-			{
-				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-			}
-
-			if (pointsHit == ((mapLayout.size() / 2) - 1))
-			{
-				goalPosition = endPoint;
-				isAlive = false;
-			}
+			Boolean hit = checkCollison(gameObjects.get(i));
+			if(hit && gameObjects.get(i) instanceof Projectile)
+				gameObjects.remove(i);
 		}
 
-		if (position.x > goalPosition.x && position.x != goalPosition.x)
+		if(health <= 0)
 		{
-			forward.x = -1;
-			forward.y = 0;
-			if(buffActive) blitz.buff(this);
-			// position.x --;
-			position.add(forward);
+			isAlive = false;
 		}
-		if (position.x < goalPosition.x && position.x != goalPosition.x) 
+		else 
 		{
-			forward.x = 1;
-			forward.y = 0;
-			if(buffActive) blitz.buff(this);
-			position.add(forward);
-			// position.x ++;
-		}
-		if (position.y > goalPosition.y && position.y != goalPosition.y)
-		{
-			forward.x = 0;
-			forward.y = -1;
-			if(buffActive) blitz.buff(this);
-			position.add(forward);
-			// position.y --;
-		}
-		if (position.y < goalPosition.y && position.y != goalPosition.y) 
-		{
-			forward.x = 0;
-			forward.y = 1;
-			if(buffActive) blitz.buff(this);
-			position.add(forward);
-			// position.y++;
+			//Resetting the attack bonus to 0 when the buff is not active
+			if (!buffActive) attackbonus = 0;
+
+			if (position.x == goalPosition.x && position.y == goalPosition.y)
+			{
+				pointsHit ++;
+				
+				if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
+				{
+					goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+					goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
+				}
+				else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
+				{
+					goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+					goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+				}
+				else
+				{
+					goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
+					goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+				}
+
+				if (pointsHit == ((mapLayout.size() / 2) - 1))
+				{
+					goalPosition = endPoint;
+					isAlive = false;
+				}
+			}
+
+			if (position.x > goalPosition.x && position.x != goalPosition.x)
+			{
+				forward.x = -1;
+				forward.y = 0;
+				if(buffActive) blitz.buff(this);
+				// position.x --;
+				position.add(forward);
+			}
+			if (position.x < goalPosition.x && position.x != goalPosition.x) 
+			{
+				forward.x = 1;
+				forward.y = 0;
+				if(buffActive) blitz.buff(this);
+				position.add(forward);
+				// position.x ++;
+			}
+			if (position.y > goalPosition.y && position.y != goalPosition.y)
+			{
+				forward.x = 0;
+				forward.y = -1;
+				if(buffActive) blitz.buff(this);
+				position.add(forward);
+				// position.y --;
+			}
+			if (position.y < goalPosition.y && position.y != goalPosition.y) 
+			{
+				forward.x = 0;
+				forward.y = 1;
+				if(buffActive) blitz.buff(this);
+				position.add(forward);
+				// position.y++;
+			}
 		}
 		
 	}	
@@ -125,12 +137,21 @@ class Solidier extends GameObject
 		translate(position.x, position.y);
 		stroke(spriteColour);
 		ellipse(0, 0, spriteWidth, spriteHeight);
-		println("Solider Postion" + position);
 		popMatrix();
 	}
 
-	void checkCollison()
+	boolean checkCollison(GameObject object)
 	{
-		
+		if (object.position.x < position.x + (spriteWidth * 0.5f) && object.position.x > position.x - (spriteWidth * 0.5f)
+			&& object.position.y < position.y + (spriteHeight * 0.5f) && object.position.y > position.y - (spriteHeight * 0.5f))
+		{
+			if (object instanceof Projectile)
+			{
+				health -= (object.attack - armour);
+				println("Hit");
+				return true;
+			}
+		}
+		return false;
 	}
 }

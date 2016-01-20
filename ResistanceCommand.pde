@@ -49,11 +49,13 @@ void setup()
 	MAP_HEIGHT = height * 0.9f;
 	//NOTE: This will be replaced by input from the user as to which map they want
 	utils.initMap(1, 1);
-	for(int i = 0 ; i < 5 ; i ++)
-	{
-		Solidier s = new Solidier();
-		gameObjects.add(s);
-	}
+	// for(int i = 0 ; i < 5 ; i ++)
+	// {
+	// 	Solidier s = new Solidier();
+	// 	gameObjects.add(s);
+	// }
+	Solidier s = new Solidier();
+	gameObjects.add(s);
 
 
 	blitz = new Blitz();
