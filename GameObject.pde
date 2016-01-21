@@ -17,6 +17,7 @@ abstract class GameObject
 	float theta;
 
 	//Apperance   -replaced by sprites later
+	PImage sprite;
 	float spriteWidth;
 	float spriteHeight;
 	color spriteColour;

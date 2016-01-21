@@ -199,28 +199,36 @@ class RCUtils
 		else if (isMenu)
 		{
 			//the player is in the controls page
+			// gameObjects.clear();
 			menu.update();
 			menu.render();
 		}
 	}
 
-	void updateMode()
+	void checkKeys()
 	{
-		if (isMenu)
+		if(keys['P'])
 		{
-			if(keys['P'])
-			{
-				isGame = true;
-				isMenu = false;
-			}
+			isGame = true;
+			isMenu = false;
+			isInstructions = false;
 		}
-		else if (isGame)
+		else if(keys['M'])
 		{
-			if(keys['M'])
-			{
-				isGame = false;
-				isMenu = true;
-			}
+			isGame = false;
+			isMenu = true;
+			isInstructions = false;
 		}
+		else if(keys['I'])
+		{
+			isGame = false;
+			isMenu = false;
+			isInstructions = true;
+		}
+	}
+
+	void startBuffCounter()
+	{
+		buffTimer++;
 	}
 }

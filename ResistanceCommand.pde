@@ -48,6 +48,7 @@ void setup()
 	frameRate(60);
 	MAP_HEIGHT = height * 0.9f;
 	//NOTE: This will be replaced by input from the user as to which map they want
+	//NOTE: This will have to be moved 
 	utils.initMap(1, 1);
 	// for(int i = 0 ; i < 5 ; i ++)
 	// {
@@ -78,6 +79,7 @@ boolean buffActive = false;
 
 boolean isMenu = true;
 boolean isGame = false;
+boolean isInstructions = false;
 boolean[] keys = new boolean[512];
 
 void keyPressed()
@@ -93,57 +95,7 @@ void keyReleased()
 
 void draw()
 {
-	utils.updateMode();
+	utils.checkKeys();
 	utils.checkMode();
-	// if (isMenu)
-	// {
-	// 	menu.update();
-	// 	menu.render();
-	// }
-	// else if (isGame)
-	// {
-		// background(0, 128, 0);
-		// shape(currentlevel);
-		// for(int i = 0 ; i < gameObjects.size() ; i ++)
-		// {
-		// 	if(gameObjects.get(i).isAlive)
-		// 	{
-		// 		gameObjects.get(i).update();
-		// 		gameObjects.get(i).render();
-		// 	}
-		// 	else 
-		// 	{
-		// 		gameObjects.remove(i);
-		// 	}
-		// }
-		
-		// stroke(0);
-
-		// if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f && mouseX < width * 0.6f)
-		// {
-		// 	// blitz.buff(solidier);
-		// 	println("Buff activated");
-		// 	buffActive = true;	
-		// }
-
-		// if(buffActive) startBuffCounter();
-
-		// if (mouseY > MAP_HEIGHT && !buffActive && mouseX < width * 0.5f)
-		// {
-		// 	// blitz.buff(solidier);
-		// 	println("Buff activated");
-		// 	buffActive = true;	
-		// }
-
-		// if(buffActive) startBuffCounter();
-
-		// elapsed++;
-	// }
 }
 
-void startBuffCounter()
-{
-	buffTimer++;
-	// blitzTimer++;
-	// println("blitzTimer: "+blitzTimer);
-}

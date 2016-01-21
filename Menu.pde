@@ -32,5 +32,6 @@ class Menu extends GameObject
 		image(backgroundImage, 0, 0, width, height);
 		textAlign(CENTER, CENTER);
 		text("Click to Play or press P", position.x, position.y);
+		text("Click to Show Controls or press I", position.x, position.y + 50);
 	}
 }

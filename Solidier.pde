@@ -22,6 +22,8 @@ class Solidier extends GameObject
 
 	void init()
 	{
+
+		sprite = loadImage("solidier.jpg");
 		// Gets the colour of the solider
 		spriteColour = utils.getColourFriendly(level);
 		attack = utils.getAttackDamage(level, "solidier");
@@ -64,15 +66,18 @@ class Solidier extends GameObject
 			else if(hit && gameObjects.get(i) instanceof Battlements)
 			{
 				allowedMove = false;
+				println("in battlement if for loop" + i + " allowedMove: "+allowedMove);
+				break;
 			}
 			else 
 			{
 				allowedMove = true;			
 			}
-			println("allowedMove: "+allowedMove);
+			println("for loop" + i + "allowedMove: "+allowedMove);
 		}
 
 		println("allowedMove: "+allowedMove);
+		
 
 		if(health <= 0)
 		{
@@ -108,8 +113,10 @@ class Solidier extends GameObject
 				isAlive = false;
 			}
 		}
+		println("Before the if allowedMove: "+allowedMove);
 		if(allowedMove)
 		{
+			println("inside the if allowedMove: "+allowedMove);
 			if (position.x > goalPosition.x && position.x != goalPosition.x)
 			{
 				forward.x = -1;
@@ -152,7 +159,8 @@ class Solidier extends GameObject
 		pushMatrix();
 		translate(position.x, position.y);
 		stroke(spriteColour);
-		ellipse(0, 0, spriteWidth, spriteHeight);
+		image(sprite, -(spriteWidth * 0.5f), -(spriteHeight * 0.5f), spriteWidth, spriteHeight);
+		// ellipse(0, 0, spriteWidth, spriteHeight);
 		popMatrix();
 	}
 
