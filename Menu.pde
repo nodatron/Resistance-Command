@@ -2,33 +2,35 @@ class Menu extends GameObject
 {
 	int menuTextSize;
 	PImage backgroundImage;
-	color textColour;
+	color buttonColour;
 	Menu () 
 	{
 		super();
+		init();
 	}
 
 	void init()
 	{
-		backgroundImage = loadImage("menubackground.jpg");
+		backgroundImage = loadImage("rcbackground.jpg");
 		menuTextSize = 32;
 	}
 
 	void update() 
 	{
 		position.x = width * 0.5f;
-		position.y = height * 0.5f;
+		position.y = height * 0.75f;
 
-		textColour = color(random(0, 255),
+		//NOTE: This needs to change for a specific colour
+		buttonColour = color(random(0, 255),
 						   random(0, 255),
 						   random(0, 255));
 	}
 
 	void render()
 	{
-		fill(textColour);
-		text("Resistance Command: Tower Offense", 
-			  position.x, 
-			  position.y);
+		fill(buttonColour);
+		image(backgroundImage, 0, 0, width, height);
+		textAlign(CENTER, CENTER);
+		text("Click to Play or press P", position.x, position.y);
 	}
 }

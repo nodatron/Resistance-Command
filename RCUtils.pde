@@ -146,4 +146,81 @@ class RCUtils
 		}
 	}
 
+	void checkMode()
+	{
+		if (isGame)		//FIXME: The game doesnt reset the position or the firing of the solidiers and the projectiles when you switch 
+						// between the game modes
+		{
+			//the player is in a game
+			// switch (gameLevel)
+			// {
+			// 	case 1:
+			// 	case 2:
+			// 	case 3:
+			// 	default:
+			// }
+			background(0, 128, 0);
+			shape(currentlevel);
+			for(int i = 0 ; i < gameObjects.size() ; i ++)
+			{
+				if(gameObjects.get(i).isAlive)
+				{
+					gameObjects.get(i).update();
+					gameObjects.get(i).render();
+				}
+				else 
+				{
+					gameObjects.remove(i);
+				}
+			}
+			
+			stroke(0);
+
+			if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f && mouseX < width * 0.6f)
+			{
+				// blitz.buff(solidier);
+				println("Buff activated");
+				buffActive = true;	
+			}
+
+			if(buffActive) startBuffCounter();
+
+			if (mouseY > MAP_HEIGHT && !buffActive && mouseX < width * 0.5f)
+			{
+				// blitz.buff(solidier);
+				println("Buff activated");
+				buffActive = true;	
+			}
+
+			if(buffActive) startBuffCounter();
+
+			elapsed++;
+		}
+		else if (isMenu)
+		{
+			//the player is in the controls page
+			menu.update();
+			menu.render();
+		}
+	}
+
+	void updateMode()
+	{
+		if (isMenu)
+		{
+			if(keys['P'])
+			{
+				isGame = true;
+				isMenu = false;
+			}
+		}
+		else if (isGame)
+		{
+			if(keys['M'])
+			{
+				isGame = false;
+				isMenu = true;
+			}
+		}
+	}
 }
