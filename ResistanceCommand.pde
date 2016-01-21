@@ -10,7 +10,7 @@
 //					by the battlements	DONE
 //					6. Make the powerups for the Solidiers
 //						ideas: speed boost, armour boost, all heal, barrage on towers, 				SOME ARE DONE
-//					7. Make a score go up for every solidier that goes through the last point of the game
+//					7. Make a score go up for every solidier that goes through the last point of the game 
 //					8. Make the sprites for the game i.e. foot solidier, knight, battering ram, archer tower, catapult tower, balista tower
 //					9. Make the splash screen for the game and make it look awesome
 //					10. Add in diffiulty if i have the time 
@@ -63,7 +63,10 @@ void setup()
 
 	blitz = new Blitz();
 	gameObjects.add(blitz);
+	menu = new Menu();
 }
+
+Menu menu;
 
 int elapsed = 0;
 
@@ -77,8 +80,9 @@ boolean buffActive = false;
 void draw()
 {
 	background(0, 128, 0);
+	// menu.update();
+	// menu.render();
 	shape(currentlevel);
-	//FIXME: This doesnt work when you remove stuff from the arraylist
 	for(int i = 0 ; i < gameObjects.size() ; i ++)
 	{
 		if(gameObjects.get(i).isAlive)

@@ -56,7 +56,7 @@ class Solidier extends GameObject
 
 		for (int i = 0 ; i < gameObjects.size() ; i++)
 		{
-			Boolean hit = checkCollison(gameObjects.get(i));
+			boolean hit = checkCollison(gameObjects.get(i));
 			if(hit && gameObjects.get(i) instanceof Projectile)
 			{
 				gameObjects.remove(i);
@@ -71,43 +71,45 @@ class Solidier extends GameObject
 			}
 			println("allowedMove: "+allowedMove);
 		}
+
 		println("allowedMove: "+allowedMove);
+
 		if(health <= 0)
 		{
 			isAlive = false;
 		}
-		if(allowedMove)
+		
+		//Resetting the attack bonus to 0 when the buff is not active
+		if (!buffActive) attackbonus = 0;
+
+		if (position.x == goalPosition.x && position.y == goalPosition.y)
 		{
-			//Resetting the attack bonus to 0 when the buff is not active
-			if (!buffActive) attackbonus = 0;
-
-			if (position.x == goalPosition.x && position.y == goalPosition.y)
+			pointsHit ++;
+			
+			if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
 			{
-				pointsHit ++;
-				
-				if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
-				{
-					goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-					goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
-				}
-				else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
-				{
-					goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-					goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-				}
-				else
-				{
-					goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
-					goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-				}
-
-				if (pointsHit == ((mapLayout.size() / 2) - 1))
-				{
-					goalPosition = endPoint;
-					isAlive = false;
-				}
+				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
+			}
+			else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
+			{
+				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+			}
+			else
+			{
+				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
+				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
 			}
 
+			if (pointsHit == ((mapLayout.size() / 2) - 1))
+			{
+				goalPosition = endPoint;
+				isAlive = false;
+			}
+		}
+		if(allowedMove)
+		{
 			if (position.x > goalPosition.x && position.x != goalPosition.x)
 			{
 				forward.x = -1;
@@ -167,6 +169,7 @@ class Solidier extends GameObject
 			}
 			if (object instanceof Battlements)
 			{
+				println("Battlement Hit");
 				return true;
 			}
 		}
