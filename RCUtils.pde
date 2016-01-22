@@ -203,6 +203,11 @@ class RCUtils
 			menu.update();
 			menu.render();
 		}
+		else if (isInstructions)
+		{
+			instruct.init();
+			instruct.render();
+		}
 	}
 
 	void checkKeys()

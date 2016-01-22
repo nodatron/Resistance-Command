@@ -67,6 +67,7 @@ void setup()
 }
 
 Menu menu;
+Instructions instruct = new Instructions();
 
 int elapsed = 0;
 
