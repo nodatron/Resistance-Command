@@ -161,7 +161,7 @@ class RCUtils
 			// }
 			background(0, 128, 0);
 			shape(currentlevel);
-			for(int i = 0 ; i < gameObjects.size() ; i ++)
+			for(int i = gameObjects.size() - 1 ; i >= 0; i --)
 			{
 				if(gameObjects.get(i).isAlive)
 				{

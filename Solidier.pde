@@ -41,20 +41,6 @@ class Solidier extends GameObject
 
 	void update()
 	{
-		// NOTE:	MIGHT NEED THIS** Get the distance between the solider and final position
-		// distance = distance.sub(position, goalPosition, distance);
-
-		// Moves the solider towards the final position
-		//NOTE: 	This should be changed for a more advanced version of movement if I have the time
-		// TODO: this is how i will get them in a path
-		//			checks if the solidier hits anything 
-		// if (isXBorder && isYBorder)
-		// {
-		// if(pointsHit == (mapLayout.size() / 2))
-		// {
-		// 	println("I'm dead");
-		// 	solidier.remove(this);
-		// }
 
 		for (int i = gameObjects.size() - 1 ; i >= 0 ; i--)
 		{
@@ -66,18 +52,12 @@ class Solidier extends GameObject
 			else if(hit && gameObjects.get(i) instanceof Battlements)
 			{
 				allowedMove = false;
-				println("in battlement if for loop" + i + " allowedMove: "+allowedMove);
-				// break;
 			}
 			else 
 			{
 				allowedMove = true;			
 			}
-			println("for loop" + i + "allowedMove: "+allowedMove);
-		}
-
-		println("allowedMove: "+allowedMove);
-		
+		}		
 
 		if(health <= 0)
 		{
@@ -113,10 +93,8 @@ class Solidier extends GameObject
 				isAlive = false;
 			}
 		}
-		println("Before the if allowedMove: "+allowedMove);
 		if(allowedMove)
 		{
-			println("inside the if allowedMove: "+allowedMove);
 			if (position.x > goalPosition.x && position.x != goalPosition.x)
 			{
 				forward.x = -1;
@@ -172,12 +150,10 @@ class Solidier extends GameObject
 			if (object instanceof Projectile)
 			{
 				health -= (object.attack - armour);
-				println("Hit");
 				return true;
 			}
 			if (object instanceof Battlements)
 			{
-				println("Battlement Hit");
 				return true;
 			}
 		}
