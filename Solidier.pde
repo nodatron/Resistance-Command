@@ -56,7 +56,7 @@ class Solidier extends GameObject
 		// 	solidier.remove(this);
 		// }
 
-		for (int i = 0 ; i < gameObjects.size() ; i++)
+		for (int i = gameObjects.size() - 1 ; i >= 0 ; i--)
 		{
 			boolean hit = checkCollison(gameObjects.get(i));
 			if(hit && gameObjects.get(i) instanceof Projectile)
@@ -67,7 +67,7 @@ class Solidier extends GameObject
 			{
 				allowedMove = false;
 				println("in battlement if for loop" + i + " allowedMove: "+allowedMove);
-				break;
+				// break;
 			}
 			else 
 			{
