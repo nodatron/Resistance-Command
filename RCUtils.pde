@@ -50,18 +50,18 @@ class RCUtils
 					{
 						endPoint = new PVector(width * xRatio, height  * yRatio);
 					}
-					else 
+					else
 					{
 						PVector point = new PVector(width * xRatio, height  * yRatio);
 						mapLayout.add(point);
 					}
 				}
-				
+
 				currentlevel = createShape();
 				currentlevel.beginShape();
 				currentlevel.fill(153, 75, 0);
 				currentlevel.stroke(153, 75, 0);
-				for (int i = 0 ; i < mapLayout.size() ; i ++) 
+				for (int i = 0 ; i < mapLayout.size() ; i ++)
 				{
 					currentlevel.vertex(mapLayout.get(i).x, mapLayout.get(i).y);
 				}
@@ -96,7 +96,7 @@ class RCUtils
 
 	void checkMode()
 	{
-		if (isGame)		//FIXME: The game doesnt reset the position or the firing of the solidiers and the projectiles when you switch 
+		if (isGame)		//FIXME: The game doesnt reset the position or the firing of the solidiers and the projectiles when you switch
 						// between the game modes
 		{
 			//the player is in a game
@@ -107,6 +107,28 @@ class RCUtils
 			// 	case 3:
 			// 	default:
 			// }
+
+			if(solidierLvl1Bought)
+			{
+				println("Solidier bought");
+				Solidier newSol = new Solidier(1);
+				gameObjects.add(newSol);
+				solidierLvl1Bought = false;
+			}
+
+			if(solidierLvl2Bought)
+			{
+				Solidier newSol = new Solidier(2);
+				gameObjects.add(newSol);
+				solidierLvl2Bought = false;
+			}
+
+			if(solidierLvl3Bought)
+			{
+				Solidier newSol = new Solidier(3);
+				gameObjects.add(newSol);
+				solidierLvl3Bought = false;
+			}
 			background(0, 128, 0);
 			shape(currentlevel);
 			for(int i = 0 ; i < gameObjects.size() ; i ++)
@@ -116,32 +138,33 @@ class RCUtils
 					gameObjects.get(i).update();
 					gameObjects.get(i).render();
 				}
-				else 
+				else
 				{
 					gameObjects.remove(i);
 				}
 			}
-			
+
 			stroke(0);
 			ui.update();
 			ui.render();
+			ui.checkUIButtonPressed();
 
-			if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f && mouseX < width * 0.6f)
-			{
-				// blitz.buff(solidier);
-				println("Buff activated");
-				buffActive = true;	
-			}
-
-			if(buffActive) startBuffCounter();
-
-			if (mouseY > MAP_HEIGHT && !buffActive && mouseX < width * 0.5f)
-			{
-				// blitz.buff(solidier);
-				println("Buff activated");
-				buffActive = true;	
-			}
-
+			// if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f && mouseX < width * 0.6f)
+			// {
+			// 	// blitz.buff(solidier);
+			// 	println("Buff activated");
+			// 	buffActive = true;
+			// }
+			//
+			// if(buffActive) startBuffCounter();
+			//
+			// if (mouseY > MAP_HEIGHT && !buffActive && mouseX < width * 0.5f)
+			// {
+			// 	// blitz.buff(solidier);
+			// 	println("Buff activated");
+			// 	buffActive = true;
+			// }
+			//
 			if(buffActive) startBuffCounter();
 
 			elapsed++;

@@ -6,14 +6,14 @@
 //					2. Make the Solidiers move in the way of the map   DONE
 //					3. Make the battlements fire at the solidiers.	DONE
 //					4. Make collision detection for the solidiers and the battlements	MOSTLY DONE
-//   				5. Make the damage from the towers get effected by the armour of the solidiers and do the same for the solidiers being hit 
+//   				5. Make the damage from the towers get effected by the armour of the solidiers and do the same for the solidiers being hit
 //					by the battlements	DONE
 //					6. Make the powerups for the Solidiers
 //						ideas: speed boost, armour boost, all heal, barrage on towers, 				SOME ARE DONE
-//					7. Make a score go up for every solidier that goes through the last point of the game 
+//					7. Make a score go up for every solidier that goes through the last point of the game
 //					8. Make the sprites for the game i.e. foot solidier, knight, battering ram, archer tower, catapult tower, balista tower
 //					9. Make the splash screen for the game and make it look awesome
-//					10. Add in diffiulty if i have the time 
+//					10. Add in diffiulty if i have the time
 //					11. Optimize the game of there is a need to
 
 
@@ -54,7 +54,7 @@ void setup()
 	frameRate(60);
 	MAP_HEIGHT = height * 0.9f;
 	//NOTE: This will be replaced by input from the user as to which map they want
-	//NOTE: This will have to be moved 
+	//NOTE: This will have to be moved
 	utils.initMap(1, 1);
 	// for(int i = 0 ; i < 5 ; i ++)
 	// {
@@ -66,7 +66,7 @@ void setup()
 	ui = new Ui();
 
 	blitz = new Blitz();
-	gameObjects.add(blitz);
+	// gameObjects.add(blitz);
 	menu = new Menu();
 	menu.update();
 	menu.render();
@@ -75,6 +75,10 @@ void setup()
 Ui ui;
 Menu menu;
 Instructions instruct = new Instructions();
+
+boolean solidierLvl1Bought = false;
+boolean solidierLvl2Bought = false;
+boolean solidierLvl3Bought = false;
 
 boolean canAffordSolidierLvl1 = false;
 boolean canAffordSolidierLvl2 = false;
@@ -110,4 +114,3 @@ void draw()
 	utils.checkKeys();
 	utils.checkMode();
 }
-
