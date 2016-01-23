@@ -15,8 +15,14 @@
 //					9. Make the splash screen for the game and make it look awesome
 //					10. Add in diffiulty if i have the time 
 //					11. Optimize the game of there is a need to
-//NOTE:  Try to break the fucking game as much as possible
 
+
+//					12. Make the buttons for the spawning of the units
+//					13. Player can use keys to spawn the units and the buffs
+//					14. Add the battlement image to the game
+//					15. Make the battlements take damage from the user when they are hit
+//					16. Make a healthbar or some visual queue come up for the health for the solidiers and the battlements
+//NOTE:  Try to break the fucking game as much as possible
 
 
 /**************

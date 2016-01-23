@@ -59,17 +59,33 @@ class Instructions
 		text("S", textXPosButton, tablePos.y + (cellHeight * 2.0f) + halfCellHeight);
 		text("Spawns a solidier at the highest level", 
 			 textXPosFunction, tablePos.y + (cellHeight * 2.0f) + halfCellHeight);
+
 		text("1", textXPosButton, tablePos.y + (cellHeight * 3.0f) + halfCellHeight);
 		text("Spawns a level one solidier", 
 			 textXPosFunction, tablePos.y + (cellHeight * 3.0f) + halfCellHeight);
+
 		text("2", textXPosButton, tablePos.y + (cellHeight * 4.0f) + halfCellHeight);
 		text("Spawns a level 2 solidier", 
 			 textXPosFunction, tablePos.y + (cellHeight * 4.0f) + halfCellHeight);
+
 		text("3", textXPosButton, tablePos.y + (cellHeight * 5.0f) + halfCellHeight);
 		text("Spawns a level 3 solidier", 
 			 textXPosFunction, tablePos.y + (cellHeight * 5.0f) + halfCellHeight);
+
 		text("M", textXPosButton, tablePos.y + (cellHeight * 6.0f) + halfCellHeight);
 		text("Back to menu", 
 			 textXPosFunction, tablePos.y + (cellHeight * 6.0f) + halfCellHeight);
+
+		text("B", textXPosButton, tablePos.y + (cellHeight * 7.0f) + halfCellHeight);
+		text("Activate the blitz powerup", 
+			 textXPosFunction, tablePos.y + (cellHeight * 7.0f) + halfCellHeight);
+
+		text("A", textXPosButton, tablePos.y + (cellHeight * 8.0f) + halfCellHeight);
+		text("Activate the attack boost powerup", 
+			 textXPosFunction, tablePos.y + (cellHeight * 8.0f) + halfCellHeight);
+
+		text("H", textXPosButton, tablePos.y + (cellHeight * 9.0f) + halfCellHeight);
+		text("Fully heal all the ally units", 
+			 textXPosFunction, tablePos.y + (cellHeight * 9.0f) + halfCellHeight);
 	}
 }

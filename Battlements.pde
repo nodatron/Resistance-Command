@@ -22,8 +22,8 @@ class Battlements extends GameObject
 	void init()
 	{
 		// Gets the colour of the battlement
-		//NOTE: This will be changed for a sprite
 		spriteColour = utils.getColourEnemy(level);
+		sprite = loadImage("battlement.jpg");
 		attack = utils.getAttackDamage(level, "Battlement");
 	}
 
@@ -55,9 +55,9 @@ class Battlements extends GameObject
 	{
 		pushMatrix();
 		translate(position.x, position.y);
-		// rotate(theta);
 		stroke(spriteColour);
-		ellipse(0, 0, spriteWidth, spriteHeight);
+		image(sprite, -(spriteWidth * 0.5f), -(spriteHeight * 0.5f), spriteWidth, spriteHeight);
+		// ellipse(0, 0, spriteWidth, spriteHeight);
 		popMatrix();
 	}
 

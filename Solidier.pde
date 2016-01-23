@@ -138,7 +138,6 @@ class Solidier extends GameObject
 		translate(position.x, position.y);
 		stroke(spriteColour);
 		image(sprite, -(spriteWidth * 0.5f), -(spriteHeight * 0.5f), spriteWidth, spriteHeight);
-		// ellipse(0, 0, spriteWidth, spriteHeight);
 		popMatrix();
 	}
 
