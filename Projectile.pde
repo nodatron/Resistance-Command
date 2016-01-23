@@ -10,7 +10,7 @@ class Projectile extends GameObject
 	void init()
 	{
 		// utils.getProjectileInfo(level);
-		spriteColour = utils.getColourEnemy(level);
+		spriteColour = getColourEnemy(level);
 	}
 
 	void update()
@@ -33,5 +33,31 @@ class Projectile extends GameObject
 		stroke(spriteColour);
 		ellipse(0, -5, 0, 5);
 		popMatrix();
+	}
+
+	color getColourEnemy(int level)
+	{
+		switch (level) 
+		{
+			case 1:
+			{
+				return(color(255, 0, 0));
+			}
+
+			case 2:
+			{
+				return(color(179, 0, 0));
+			}
+
+			case 3:
+			{
+				return(color(51, 0, 0));
+			}
+
+			default:
+			{
+				return(color(0));
+			}
+		}
 	}
 }

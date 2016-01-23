@@ -76,6 +76,10 @@ Ui ui;
 Menu menu;
 Instructions instruct = new Instructions();
 
+boolean canAffordSolidierLvl1 = false;
+boolean canAffordSolidierLvl2 = false;
+boolean canAffordSolidierLvl3 = false;
+
 int elapsed = 0;
 
 // boolean allowedMove;

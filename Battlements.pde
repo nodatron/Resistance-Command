@@ -21,8 +21,7 @@ class Battlements extends GameObject
 
 	void init()
 	{
-		// Gets the colour of the battlement
-		spriteColour = utils.getColourEnemy(level);
+		// Gets the sprite
 		sprite = loadImage("battlement.png");
 		attack = utils.getAttackDamage(level, "Battlement");
 	}

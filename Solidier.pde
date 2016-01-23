@@ -23,9 +23,8 @@ class Solidier extends GameObject
 	void init()
 	{
 
+		// Gets the sprite
 		sprite = loadImage("solidier.png");
-		// Gets the colour of the solider
-		spriteColour = utils.getColourFriendly(level);
 		attack = utils.getAttackDamage(level, "solidier");
 
 		//Get the starting position of the unit
