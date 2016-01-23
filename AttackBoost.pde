@@ -11,6 +11,7 @@ class AttackBoost extends GameObject implements Powerup
 	{
 		if (buffTimer < buffTime)
 		{
+			attackboostActive = true;
 			//boost the attack damage of the soliders
 			solidiers.attackbonus = 10;
 		}

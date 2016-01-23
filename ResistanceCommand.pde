@@ -63,7 +63,7 @@ void setup()
 	// }
 	Solidier s = new Solidier();
 	gameObjects.add(s);
-
+	ui = new Ui();
 
 	blitz = new Blitz();
 	gameObjects.add(blitz);
@@ -72,6 +72,7 @@ void setup()
 	menu.render();
 }
 
+Ui ui;
 Menu menu;
 Instructions instruct = new Instructions();
 
@@ -79,8 +80,8 @@ int elapsed = 0;
 
 // boolean allowedMove;
 Blitz blitz;
-// int blitzTimer = 0;
-// int attackBoostTimer = 0;
+boolean attackboostActive = false;
+boolean blitzActive = false;
 int buffTimer = 0;
 boolean buffActive = false;
 

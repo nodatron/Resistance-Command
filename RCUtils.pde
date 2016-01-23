@@ -161,7 +161,7 @@ class RCUtils
 			// }
 			background(0, 128, 0);
 			shape(currentlevel);
-			for(int i = gameObjects.size() - 1 ; i >= 0; i --)
+			for(int i = 0 ; i < gameObjects.size() ; i ++)
 			{
 				if(gameObjects.get(i).isAlive)
 				{
@@ -175,6 +175,8 @@ class RCUtils
 			}
 			
 			stroke(0);
+			ui.update();
+			ui.render();
 
 			if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f && mouseX < width * 0.6f)
 			{
@@ -236,4 +238,5 @@ class RCUtils
 	{
 		buffTimer++;
 	}
+
 }

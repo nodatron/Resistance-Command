@@ -3,6 +3,7 @@ class Menu extends GameObject
 	int menuTextSize;
 	PImage backgroundImage;
 	color buttonColour;
+
 	Menu () 
 	{
 		super();
@@ -20,10 +21,8 @@ class Menu extends GameObject
 		position.x = width * 0.5f;
 		position.y = height * 0.75f;
 
-		//NOTE: This needs to change for a specific colour
-		buttonColour = color(random(0, 255),
-						   random(0, 255),
-						   random(0, 255));
+
+		buttonColour = color(153, 187, 255);
 	}
 
 	void render()
@@ -31,6 +30,7 @@ class Menu extends GameObject
 		fill(buttonColour);
 		image(backgroundImage, 0, 0, width, height);
 		textAlign(CENTER, CENTER);
+		textSize(menuTextSize);
 		text("Click to Play or press P", position.x, position.y);
 		text("Click to Show Controls or press I", position.x, position.y + 50);
 	}

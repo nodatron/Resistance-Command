@@ -23,7 +23,7 @@ class Solidier extends GameObject
 	void init()
 	{
 
-		sprite = loadImage("solidier.jpg");
+		sprite = loadImage("solidier.png");
 		// Gets the colour of the solider
 		spriteColour = utils.getColourFriendly(level);
 		attack = utils.getAttackDamage(level, "solidier");
@@ -137,6 +137,7 @@ class Solidier extends GameObject
 		pushMatrix();
 		translate(position.x, position.y);
 		stroke(spriteColour);
+		tint(255, 255);
 		image(sprite, -(spriteWidth * 0.5f), -(spriteHeight * 0.5f), spriteWidth, spriteHeight);
 		popMatrix();
 	}
