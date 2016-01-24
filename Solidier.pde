@@ -5,6 +5,8 @@ class Solidier extends GameObject
 	int pointsHit;
 	int attackbonus;
 	boolean allowedMove;
+	color healthColour;
+	color missingHealthColour;
 
 	Solidier ()
 	{
@@ -22,7 +24,8 @@ class Solidier extends GameObject
 
 	void init()
 	{
-
+		health = level * 100;
+		println(health);
 		// Gets the sprite
 		switch(level)
 		{
@@ -58,6 +61,9 @@ class Solidier extends GameObject
 
 		forward.x = 1;
 		forward.y = 1;
+
+		healthColour = color(0, 50, 0);
+		missingHealthColour = color(255, 0, 0);
 	}
 
 	void update()
@@ -158,7 +164,14 @@ class Solidier extends GameObject
 	{
 		pushMatrix();
 		translate(position.x, position.y);
-		stroke(spriteColour);
+		stroke(missingHealthColour);
+		fill(missingHealthColour);
+		rect(-(spriteWidth * 0.5f), -(spriteHeight * 0.5f) - 10, spriteWidth, 10);
+		stroke(healthColour);
+		fill(healthColour);
+		rect(-(spriteWidth * 0.5f), -(spriteHeight * 0.5f) - 10,
+		     map(health, 0, level * 100, 0, spriteWidth),
+			 10);
 		tint(255, 255);
 		image(sprite, -(spriteWidth * 0.5f), -(spriteHeight * 0.5f), spriteWidth, spriteHeight);
 		popMatrix();
@@ -171,7 +184,7 @@ class Solidier extends GameObject
 		{
 			if (object instanceof Projectile)
 			{
-				health -= (object.attack - armour);
+				health -= (object.attack + armour);
 				return true;
 			}
 			if (object instanceof Battlements)
@@ -186,4 +199,5 @@ class Solidier extends GameObject
 		}
 		return false;
 	}
+
 }

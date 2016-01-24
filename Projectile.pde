@@ -11,6 +11,8 @@ class Projectile extends GameObject
 	{
 		// utils.getProjectileInfo(level);
 		spriteColour = getColourEnemy(level);
+
+		attack = 20;
 	}
 
 	void update()
@@ -25,7 +27,7 @@ class Projectile extends GameObject
        	}
 	}
 
-	void render() 
+	void render()
 	{
 		pushMatrix();
 		translate(position.x, position.y);
@@ -37,7 +39,7 @@ class Projectile extends GameObject
 
 	color getColourEnemy(int level)
 	{
-		switch (level) 
+		switch (level)
 		{
 			case 1:
 			{
