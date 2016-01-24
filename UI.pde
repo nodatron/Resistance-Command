@@ -90,15 +90,13 @@ class Ui extends GameObject
 	void checkUIButtonPressed()
 	{
 		// println("method called");
-		if(mousePressed)
+		if(mousePressed && solSpawnTimer > 30)
 		{
-			println("inside first if");
 			if(mouseY > MAP_HEIGHT && mouseY < height
 			   && mouseX > 0 && mouseX < spriteWidth)
 			{
 				// The level one solidier has been pressed
 				solidierLvl1Bought = true;
-				println("solidier lvl one spawned");
 			}
 
 			if(mouseY > MAP_HEIGHT && mouseY < height
@@ -128,6 +126,8 @@ class Ui extends GameObject
 				// Attack boost buff has been pressed
 				attackboostActive = true;
 			}
+
+			solSpawnTimer = 0;
 		}
 	}
 }

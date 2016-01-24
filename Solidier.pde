@@ -24,7 +24,29 @@ class Solidier extends GameObject
 	{
 
 		// Gets the sprite
-		sprite = loadImage("solidier.png");
+		switch(level)
+		{
+			case 1:
+			{
+				sprite = loadImage("solidier.png");
+			} break;
+
+			case 2:
+			{
+				sprite = loadImage("solidier2.png");
+			} break;
+
+			case 3:
+			{
+				sprite = loadImage("solidier3.png");
+			} break;
+
+			default:
+			{
+				sprite = loadImage("solidier.png");
+			} break;
+		}
+		// sprite = loadImage("solidier.png");
 		attack = utils.getAttackDamage(level, "solidier");
 
 		//Get the starting position of the unit
@@ -52,24 +74,24 @@ class Solidier extends GameObject
 			{
 				allowedMove = false;
 			}
-			else 
+			else
 			{
-				allowedMove = true;			
+				allowedMove = true;
 			}
-		}		
+		}
 
 		if(health <= 0)
 		{
 			isAlive = false;
 		}
-		
+
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive) attackbonus = 0;
 
 		if (position.x == goalPosition.x && position.y == goalPosition.y)
 		{
 			pointsHit ++;
-			
+
 			if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
 			{
 				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
@@ -102,7 +124,7 @@ class Solidier extends GameObject
 				// position.x --;
 				position.add(forward);
 			}
-			if (position.x < goalPosition.x && position.x != goalPosition.x) 
+			if (position.x < goalPosition.x && position.x != goalPosition.x)
 			{
 				forward.x = 1;
 				forward.y = 0;
@@ -118,7 +140,7 @@ class Solidier extends GameObject
 				position.add(forward);
 				// position.y --;
 			}
-			if (position.y < goalPosition.y && position.y != goalPosition.y) 
+			if (position.y < goalPosition.y && position.y != goalPosition.y)
 			{
 				forward.x = 0;
 				forward.y = 1;
@@ -127,9 +149,9 @@ class Solidier extends GameObject
 				// position.y++;
 			}
 		}
-		
-		
-	}	
+
+
+	}
 
 	void render()
 	{
@@ -156,7 +178,7 @@ class Solidier extends GameObject
 				return true;
 			}
 		}
-		else 
+		else
 		{
 			allowedMove = true;
 			return false;

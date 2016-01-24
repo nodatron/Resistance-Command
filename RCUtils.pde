@@ -168,6 +168,7 @@ class RCUtils
 			if(buffActive) startBuffCounter();
 
 			elapsed++;
+			solSpawnTimer++;
 		}
 		else if (isMenu)
 		{

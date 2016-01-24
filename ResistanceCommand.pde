@@ -85,6 +85,7 @@ boolean canAffordSolidierLvl2 = false;
 boolean canAffordSolidierLvl3 = false;
 
 int elapsed = 0;
+int solSpawnTimer = 0;
 
 // boolean allowedMove;
 Blitz blitz;
