@@ -73,6 +73,7 @@ class Solidier extends GameObject
 			else if(hit && gameObjects.get(i) instanceof Battlements)
 			{
 				allowedMove = false;
+				gameObjects.get(i).health -= attack + gameObjects.get(i).armour;
 			}
 			else
 			{

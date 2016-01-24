@@ -9,7 +9,7 @@ class Battlements extends GameObject
 		super();
 		isWithinRange = false;
 	}
-	
+
 	Battlements (int level, float xRatio, float yRatio)
 	{
 		super(level);
@@ -48,6 +48,11 @@ class Battlements extends GameObject
 				}
 			}
 		}
+
+		if(health <= 0)
+		{
+			isAlive = false;
+		}
 	}
 
 	void render()
@@ -76,11 +81,11 @@ class Battlements extends GameObject
 				return TWO_PI;
 			}
 		}
-		else 
+		else
 		{
 			if (solidierPos.x > battlementPos.x)
 			{
-				// Shoot right 
+				// Shoot right
 				return PI * 0.5f;
 			}
 			else

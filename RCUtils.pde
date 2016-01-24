@@ -129,6 +129,11 @@ class RCUtils
 				gameObjects.add(newSol);
 				solidierLvl3Bought = false;
 			}
+
+			if(blitzActive)
+			{
+				buffActive = true;
+			}
 			background(0, 128, 0);
 			shape(currentlevel);
 			for(int i = 0 ; i < gameObjects.size() ; i ++)
