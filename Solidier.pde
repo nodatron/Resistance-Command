@@ -94,7 +94,7 @@ class Solidier extends GameObject
 
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive) attackbonus = 0;
-
+		//FIXME: Need to come up with a better way to make the solidiers move 
 		if (position.x == goalPosition.x && position.y == goalPosition.y)
 		{
 			pointsHit ++;
@@ -127,7 +127,7 @@ class Solidier extends GameObject
 			{
 				forward.x = -1;
 				forward.y = 0;
-				if(buffActive) blitz.buff(this);
+				// if(buffActive) blitz.buff(this);
 				// position.x --;
 				position.add(forward);
 			}
@@ -135,7 +135,7 @@ class Solidier extends GameObject
 			{
 				forward.x = 1;
 				forward.y = 0;
-				if(buffActive) blitz.buff(this);
+				// if(buffActive) blitz.buff(this);
 				position.add(forward);
 				// position.x ++;
 			}
@@ -143,7 +143,7 @@ class Solidier extends GameObject
 			{
 				forward.x = 0;
 				forward.y = -1;
-				if(buffActive) blitz.buff(this);
+				// if(buffActive) blitz.buff(this);
 				position.add(forward);
 				// position.y --;
 			}
@@ -151,10 +151,11 @@ class Solidier extends GameObject
 			{
 				forward.x = 0;
 				forward.y = 1;
-				if(buffActive) blitz.buff(this);
+				// if(buffActive) blitz.buff(this);
 				position.add(forward);
 				// position.y++;
 			}
+			if(buffActive) blitz.buff(this);
 		}
 
 
@@ -179,8 +180,10 @@ class Solidier extends GameObject
 
 	boolean checkCollison(GameObject object)
 	{
-		if (object.position.x < position.x + (spriteWidth * 0.5f) && object.position.x > position.x - (spriteWidth * 0.5f)
-			&& object.position.y < position.y + (spriteHeight * 0.5f) && object.position.y > position.y - (spriteHeight * 0.5f))
+		if (object.position.x < position.x + (spriteWidth * 0.5f) && 
+			object.position.x > position.x - (spriteWidth * 0.5f) &&
+			object.position.y < position.y + (spriteHeight * 0.5f) && 
+			object.position.y > position.y - (spriteHeight * 0.5f))
 		{
 			if (object instanceof Projectile)
 			{
@@ -194,7 +197,7 @@ class Solidier extends GameObject
 		}
 		else
 		{
-			allowedMove = true;
+			// allowedMove = true;
 			return false;
 		}
 		return false;

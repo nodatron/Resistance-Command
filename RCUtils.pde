@@ -1,7 +1,7 @@
 class RCUtils
 {
 	RCUtils () {}
-
+	//NOTE: This could be an interface, as eoin what he thinks
 	int getAttackDamage (int level, String unitType)
 	{
 		if (unitType.equals("battlement"))
@@ -26,7 +26,7 @@ class RCUtils
 		}
 		return 0;
 	}
-
+	//NOTE: This could be a map class
 	void initMap(int mapNo, int level)
 	{
 		// Selects which map that the user wants
@@ -153,6 +153,7 @@ class RCUtils
 			ui.update();
 			ui.render();
 			ui.checkUIButtonPressed();
+			ui.checkUIKeyPressed();
 
 			// if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f && mouseX < width * 0.6f)
 			// {

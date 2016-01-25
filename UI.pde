@@ -130,4 +130,37 @@ class Ui extends GameObject
 			solSpawnTimer = 0;
 		}
 	}
+
+	void checkUIKeyPressed()
+	{
+		if(keyPressed && solSpawnTimer > 30)
+		{
+			if(keys['1'])
+			{
+				solidierLvl1Bought = true;
+			}
+
+			if(keys['2'])
+			{
+				solidierLvl2Bought = true;
+			}
+
+			if(keys['3'])
+			{
+				solidierLvl3Bought = true;
+			}
+
+			if(keys['A'])
+			{
+				attackboostActive = true;
+			}	
+
+			if(keys['B'])
+			{
+				blitzActive = true;
+			}
+
+			solSpawnTimer = 0;
+		}
+	}
 }
