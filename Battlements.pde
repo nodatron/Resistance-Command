@@ -37,6 +37,9 @@ class Battlements extends GameObject
 			{
 				theta = findDirectionToShoot(gameObjects.get(i).position, this.position);
 
+				//TODO make the range different for the different levels of towers
+
+				// TODO make the turret only shoot at one enemy at a time
 				if(PVector.dist(this.position, gameObjects.get(i).position) <= 300 && elapsed > 30)
 				{
 					elapsed = 0;

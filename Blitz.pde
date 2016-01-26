@@ -8,7 +8,7 @@ class Blitz extends GameObject implements Powerup
 		buffTime = 18000;
 	}
 
-	void buff(Solidier solidiers) 
+	void buff(Solidier solidiers)
 	{
 		if (buffTimer <= buffTime)
 		{
@@ -17,6 +17,9 @@ class Blitz extends GameObject implements Powerup
 		}
 	}
 
+	//TODO Need to add a popup on the screen that comes up when the powerup is activated that lasts
+	// for a few seconds and then leaves the screen.  Also may want to add the drawing of the ui 
+	// elements for the powerups here
 	void init()
 	{
 

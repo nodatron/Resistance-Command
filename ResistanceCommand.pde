@@ -114,4 +114,5 @@ void draw()
 {
 	utils.checkKeys();
 	utils.checkMode();
+	menu.checkBoxClicked();
 }

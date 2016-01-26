@@ -4,7 +4,7 @@ class Menu extends GameObject
 	PImage backgroundImage;
 	color buttonColour;
 
-	Menu () 
+	Menu ()
 	{
 		super();
 		init();
@@ -16,7 +16,7 @@ class Menu extends GameObject
 		menuTextSize = 32;
 	}
 
-	void update() 
+	void update()
 	{
 		position.x = width * 0.5f;
 		position.y = height * 0.75f;
@@ -33,5 +33,35 @@ class Menu extends GameObject
 		textSize(menuTextSize);
 		text("Click to Play or press P", position.x, position.y);
 		text("Click to Show Controls or press I", position.x, position.y + 50);
+	}
+
+	void checkBoxClicked()
+	{
+		if(isMenu)
+		{
+			float lenght = textWidth("Click to Play or press P");
+			float halfLenght = lenght * 0.5f;
+			if(mousePressed &&
+			   mouseX > position.x - halfLenght &&
+			   mouseX < position.x + halfLenght &&
+			   mouseY > position.y - 15 &&
+			   mouseY < position.y + 15)
+			{
+				isMenu = false;
+				isGame = true;
+				isInstructions = false;
+			}
+
+			 if(mousePressed &&
+				mouseX > position.x - halfLenght &&
+	 		    mouseX < position.x + halfLenght &&
+	 		    mouseY > position.y + 35 &&
+	 			mouseY < position.y + 65)
+	 		 {
+	 		 	isMenu = false;
+	 		 	isGame = false;
+	 			isInstructions = true;
+	 		 }
+		 }
 	}
 }
