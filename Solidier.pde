@@ -94,23 +94,32 @@ class Solidier extends GameObject
 
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive) attackbonus = 0;
-		//FIXME: Need to come up with a better way to make the solidiers move 
-		if (position.x == goalPosition.x && position.y == goalPosition.y)
+		//FIXME: Need to come up with a better way to make the solidiers move
+		if (
+			(position.x >= goalPosition.x && position.y >= goalPosition.y))
+			// (position.x > goalPosition.x - 3 || position.y > goalPosition.y - 5) ||
+			// (position.x < goalPosition.x + 3 || position.y > goalPosition.y + 5))
 		{
 			pointsHit ++;
 
 			if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
 			{
+				position.x = goalPosition.x;
+				position.y = goalPosition.y;
 				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
 				goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
 			}
 			else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
 			{
+				position.x = goalPosition.x;
+				position.y = goalPosition.y;
 				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
 				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
 			}
 			else
 			{
+				position.x = goalPosition.x;
+				position.y = goalPosition.y;
 				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
 				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
 			}
@@ -155,9 +164,11 @@ class Solidier extends GameObject
 				position.add(forward);
 				// position.y++;
 			}
-			if(buffActive) blitz.buff(this);
+			if(blitzActive) blitz.buff(this);
+			// if(attackboostActive) attack.buff(this);
 		}
-
+		println("Current Position of the Solidier" + position);
+		println("Goal Position of the solidier" + goalPosition);
 
 	}
 
@@ -180,9 +191,9 @@ class Solidier extends GameObject
 
 	boolean checkCollison(GameObject object)
 	{
-		if (object.position.x < position.x + (spriteWidth * 0.5f) && 
+		if (object.position.x < position.x + (spriteWidth * 0.5f) &&
 			object.position.x > position.x - (spriteWidth * 0.5f) &&
-			object.position.y < position.y + (spriteHeight * 0.5f) && 
+			object.position.y < position.y + (spriteHeight * 0.5f) &&
 			object.position.y > position.y - (spriteHeight * 0.5f))
 		{
 			if (object instanceof Projectile)

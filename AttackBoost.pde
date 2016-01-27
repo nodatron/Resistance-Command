@@ -2,19 +2,21 @@
 class AttackBoost extends GameObject implements Powerup
 {
 	int buffTime;
+	int bonus;
 	AttackBoost()
 	{
 		buffTime = 7200;
+		bonus = 10;
 		sprite = loadImage("attackboost.png");
 	}
 
-	void buff(Solidier solidiers)
+	void buff(Solidier solidier)
 	{
 		if (buffTimer <= buffTime)
 		{
 			attackboostActive = true;
 			//boost the attack damage of the soliders
-			solidiers.attackbonus = 10;
+			solidier.attackbonus = bonus;
 		}
 		update();
 		render();

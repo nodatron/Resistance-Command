@@ -16,8 +16,8 @@ class Blitz extends GameObject implements Powerup
 			blitzActive = true;
 			solidiers.forward.mult(2);
 		}
-		update();
-		render();
+		// update();
+		// render();
 	}
 	//FIXME The image is not being displayed onto the screen when it is called
 	//TODO Need to add a popup on the screen that comes up when the powerup is activated that lasts

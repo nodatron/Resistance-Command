@@ -36,7 +36,9 @@ class Battlements extends GameObject
 			if(gameObjects.get(i) instanceof Solidier)
 			{
 				theta = findDirectionToShoot(gameObjects.get(i).position, this.position);
-
+				println("Theta for tower" + theta);
+				println("PI " + PI + " TWO PI " + TWO_PI + " half PI " + PI*0.5f + " 1 half PI " + PI*1.5f);
+				println("battle pos " + position);
 				//TODO make the range different for the different levels of towers
 
 				// TODO make the turret only shoot at one enemy at a time
@@ -68,7 +70,7 @@ class Battlements extends GameObject
 		// ellipse(0, 0, spriteWidth, spriteHeight);
 		popMatrix();
 	}
-
+	//FIXME the battlements are not firing in the right direction
 	float findDirectionToShoot (PVector solidierPos, PVector battlementPos)
 	{
 		if (solidierPos.x == battlementPos.x)
