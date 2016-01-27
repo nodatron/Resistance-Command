@@ -67,6 +67,7 @@ void setup()
 
 	blitz = new Blitz();
 	// gameObjects.add(blitz);
+	// gameObjects.add(blitz);
 	menu = new Menu();
 	menu.update();
 	menu.render();

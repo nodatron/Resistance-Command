@@ -22,6 +22,9 @@ abstract class GameObject
 	float spriteHeight;
 	color spriteColour;
 
+	//for the powerups
+	float itint;
+
 	GameObject ()
 	{
 		this(1);
@@ -43,6 +46,7 @@ abstract class GameObject
 		speed = new PVector();
 		spriteWidth = width * 0.04f;
 		spriteHeight = height  * 0.04f;
+		itint = 0;
 	}
 
 	abstract void init();
