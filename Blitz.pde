@@ -41,7 +41,8 @@ class Blitz extends GameObject implements Powerup
 	}
 	void render()
 	{
-		tint(255, itint);
-		image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
+		// tint(255, itint);
+		// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
+		text("BLITZ", width * 0.5f, height * 0.5f);
 	}
 }
