@@ -25,7 +25,6 @@ class Solidier extends GameObject
 	void init()
 	{
 		health = level * 100;
-		println(health);
 		// Gets the sprite
 		switch(level)
 		{
@@ -93,10 +92,8 @@ class Solidier extends GameObject
 		}
 
 		//Resetting the attack bonus to 0 when the buff is not active
-		if (!buffActive) attackbonus = 0;
-		//FIXME: Need to come up with a better way to make the solidiers move
-		if (
-			(position.x >= goalPosition.x && position.y >= goalPosition.y))
+		if (!buffActive && !attackboostActive) attackbonus = 0;
+		if (position.x >= goalPosition.x && position.y >= goalPosition.y)
 			// (position.x > goalPosition.x - 3 || position.y > goalPosition.y - 5) ||
 			// (position.x < goalPosition.x + 3 || position.y > goalPosition.y + 5))
 		{
@@ -167,8 +164,6 @@ class Solidier extends GameObject
 			if(blitzActive) blitz.buff(this);
 			// if(attackboostActive) attack.buff(this);
 		}
-		println("Current Position of the Solidier" + position);
-		println("Goal Position of the solidier" + goalPosition);
 
 	}
 
@@ -211,6 +206,8 @@ class Solidier extends GameObject
 			// allowedMove = true;
 			return false;
 		}
+		//processing is fussy to me this shouldnt be here
+
 		return false;
 	}
 
