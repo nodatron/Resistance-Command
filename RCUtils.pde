@@ -110,7 +110,7 @@ class RCUtils
 
 			if(solidierLvl1Bought)
 			{
-				println("Solidier bought");
+				// println("Solidier bought");
 				Solidier newSol = new Solidier(1);
 				gameObjects.add(newSol);
 				solidierLvl1Bought = false;
@@ -133,8 +133,10 @@ class RCUtils
 			if(blitzActive)
 			{
 				buffActive = true;
-				println("Blitz is being called");
-				blitz.update();
+				// println("Blitz is being called");
+				// blitz.update();
+				// blitz.update();
+				// blitz.render();
 			}
 			background(0, 128, 0);
 			shape(currentlevel);
@@ -175,6 +177,11 @@ class RCUtils
 			// }
 			//
 			if(buffActive) startBuffCounter();
+
+			if(blitzActive)
+			{
+
+			}
 
 			elapsed++;
 			solSpawnTimer++;

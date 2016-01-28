@@ -153,7 +153,7 @@ class Ui extends GameObject
 			if(keys['A'])
 			{
 				attackboostActive = true;
-			}	
+			}
 
 			if(keys['B'])
 			{

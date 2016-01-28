@@ -66,6 +66,7 @@ void setup()
 	ui = new Ui();
 
 	blitz = new Blitz();
+	gameObjects.add(blitz);
 	attackB = new AttackBoost();
 	// gameObjects.add(blitz);
 	// gameObjects.add(blitz);
@@ -96,6 +97,8 @@ boolean attackboostActive = false;
 boolean blitzActive = false;
 int buffTimer = 0;
 boolean buffActive = false;
+
+boolean imageLock = false;
 
 boolean isMenu = true;
 boolean isGame = false;

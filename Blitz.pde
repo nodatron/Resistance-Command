@@ -2,6 +2,7 @@
 class Blitz extends GameObject implements Powerup
 {
 	int buffTime;
+
 	Blitz ()
 	{
 		//Five minutes
@@ -14,7 +15,7 @@ class Blitz extends GameObject implements Powerup
 		if (buffTimer <= buffTime)
 		{
 			blitzActive = true;
-			solidiers.forward.mult(2);
+			solidiers.forward.mult(3);
 		}
 		// update();
 		// render();
@@ -29,23 +30,37 @@ class Blitz extends GameObject implements Powerup
 	}
 	void update()
 	{
+		if (blitzActive)
+		{
+			for (int i = gameObjects.size() - 1 ; i >= 0 ; i --)
+			{
+				if (gameObjects.get(i) instanceof Solidier)
+				{
+					buff((Solidier)gameObjects.get(i));
+					imageLock = true;
+				}
+			}
+		}
 		//Makes BLITZ appear on the screen fading in and out over the course of a 5 seconds
-		if(blitzActive && buffTime < 300)
-		{
-			itint += (300 / 255);
-			println("blitz should appear");
-			render();
-		}
-		else
-		{
-			itint = 0;
-		}
-		render();
+		// println(buffTimer);
+		// if(buffTimer < 300)
+		// {
+		// 	itint += (300 / 255);
+		// 	// println("blitz should appear");
+		// }
+		// else
+		// {
+		// 	itint = 0;
+		// }
 	}
 	void render()
 	{
-		// tint(255, itint);
-		// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
-		text("BLITZ", width * 0.5f, height * 0.5f);
+		println(buffTimer);
+		if(blitzActive && buffTimer < 300)
+		{
+			// tint(255, itint);
+			// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
+			text("BLITZ", width * 0.5f, height * 0.5f);
+		}
 	}
 }
