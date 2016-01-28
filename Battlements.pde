@@ -68,62 +68,9 @@ class Battlements extends GameObject
 		popMatrix();
 	}
 
-	//FIXME the battlements are not firing in the right direction
 	float findDirectionToShoot (PVector solidierPos, PVector battlementPos)
 	{
-		//NOTE This way works for shooting sideways but not for up or down
-		PVector distToSolidier = PVector.sub(solidierPos, battlementPos);
-		return atan2(distToSolidier.x, distToSolidier.y);
-		// if (solidierPos.x > battlementPos.x + 3 && solidierPos.x < battlementPos.x - 3)
-		// {
-		// 	if(solidierPos.y > battlementPos.y)
-		// 	{
-		// 		return PI;
-		// 	}
-		// 	else
-		// 	{
-		// 		return TWO_PI;
-		// 	}
-		// }
-		// else if(solidierPos.y > battlementPos.y + 3 && solidierPos.y < battlementPos.y - 3)
-		// {
-		// 	if (solidierPos.x > battlementPos.x)
-		// 	{
-		// 		// Shoot right
-		// 		return PI * 0.5f;
-		// 	}
-		// 	else
-		// 	{
-		// 		// Shoot Left
-		// 		return PI * 1.5f;
-		// 	}
-		// }
-		// if (solidierPos.x == battlementPos.x)
-		// {
-		// 	if (solidierPos.y > battlementPos.y)
-		// 	{
-		// 		// Shoot down
-		// 		return PI;
-		// 	}
-		// 	else
-		// 	{
-		// 		// Shoot up
-		// 		return TWO_PI;
-		// 	}
-		// }
-		// else
-		// {
-		// 	if (solidierPos.x > battlementPos.x)
-		// 	{
-		// 		// Shoot right
-		// 		return PI * 0.5f;
-		// 	}
-		// 	else
-		// 	{
-		// 		// Shoot Left
-		// 		return PI * 1.5f;
-		// 	}
-		// }
-		// return 0;
+		println("PI " + PI + " TWO_PI " + TWO_PI);
+		return atan2(position.y - solidierPos.y, position.x - solidierPos.x) - HALF_PI;
 	}
 }
