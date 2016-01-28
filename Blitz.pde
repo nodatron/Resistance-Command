@@ -33,11 +33,14 @@ class Blitz extends GameObject implements Powerup
 		if(blitzActive && buffTime < 300)
 		{
 			itint += (300 / 255);
+			println("blitz should appear");
+			render();
 		}
 		else
 		{
 			itint = 0;
 		}
+		render();
 	}
 	void render()
 	{

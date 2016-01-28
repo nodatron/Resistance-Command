@@ -1,6 +1,6 @@
 //NOTE: First map needs to follow along y of 20% of height until 50% of width
 
-class Solidier extends GameObject
+class Solidier extends GameObject implements HealthBar
 {
 	int pointsHit;
 	int attackbonus;
@@ -127,22 +127,24 @@ class Solidier extends GameObject
 				isAlive = false;
 			}
 		}
+
 		if(allowedMove)
 		{
+
 			if (position.x > goalPosition.x && position.x != goalPosition.x)
 			{
 				forward.x = -1;
 				forward.y = 0;
 				// if(buffActive) blitz.buff(this);
 				// position.x --;
-				position.add(forward);
+				// position.add(forward);
 			}
 			if (position.x < goalPosition.x && position.x != goalPosition.x)
 			{
 				forward.x = 1;
 				forward.y = 0;
 				// if(buffActive) blitz.buff(this);
-				position.add(forward);
+				// position.add(forward);
 				// position.x ++;
 			}
 			if (position.y > goalPosition.y && position.y != goalPosition.y)
@@ -150,7 +152,7 @@ class Solidier extends GameObject
 				forward.x = 0;
 				forward.y = -1;
 				// if(buffActive) blitz.buff(this);
-				position.add(forward);
+				// position.add(forward);
 				// position.y --;
 			}
 			if (position.y < goalPosition.y && position.y != goalPosition.y)
@@ -158,10 +160,20 @@ class Solidier extends GameObject
 				forward.x = 0;
 				forward.y = 1;
 				// if(buffActive) blitz.buff(this);
-				position.add(forward);
+				// position.add(forward);
 				// position.y++;
 			}
-			if(blitzActive) blitz.buff(this);
+			if(buffActive)
+			{
+				if(blitzActive)
+				{
+					println("Buffing Solidier");
+					blitz.buff(this);
+				}
+				if(attackboostActive) attackB.buff(this);
+			}
+			position.add(forward);
+			// if(blitzActive) blitz.buff(this);
 			// if(attackboostActive) attack.buff(this);
 		}
 
@@ -174,11 +186,12 @@ class Solidier extends GameObject
 		stroke(missingHealthColour);
 		fill(missingHealthColour);
 		rect(-(spriteWidth * 0.5f), -(spriteHeight * 0.5f) - 10, spriteWidth, 10);
-		stroke(healthColour);
-		fill(healthColour);
-		rect(-(spriteWidth * 0.5f), -(spriteHeight * 0.5f) - 10,
-		     map(health, 0, level * 100, 0, spriteWidth),
-			 10);
+		renderHealthBar();
+		// stroke(healthColour);
+		// fill(healthColour);
+		// rect(-(spriteWidth * 0.5f), -(spriteHeight * 0.5f) - 10,
+		//      map(health, 0, level * 100, 0, spriteWidth),
+		// 	 10);
 		tint(255, 255);
 		image(sprite, -(spriteWidth * 0.5f), -(spriteHeight * 0.5f), spriteWidth, spriteHeight);
 		popMatrix();
@@ -209,6 +222,15 @@ class Solidier extends GameObject
 		//processing is fussy to me this shouldnt be here
 
 		return false;
+	}
+
+	void renderHealthBar()
+	{
+		stroke(healthColour);
+		fill(healthColour);
+		rect(-(spriteWidth * 0.5f), -(spriteHeight * 0.5f) - 10,
+		     map(health, 0, level * 100, 0, spriteWidth),
+			 10);
 	}
 
 }

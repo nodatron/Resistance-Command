@@ -19,7 +19,7 @@ class Projectile extends GameObject
 	{
 		forward.x = sin(theta);
 		forward.y = - cos(theta);
-		println("Forward y " + forward.y);
+		// println("Forward y " + forward.y);
 
 		position.add(forward);
 		if (position.x < 0 || position.y < 0 || position.x > width || position.y > height )

@@ -70,7 +70,7 @@ class Battlements extends GameObject
 
 	float findDirectionToShoot (PVector solidierPos, PVector battlementPos)
 	{
-		println("PI " + PI + " TWO_PI " + TWO_PI);
+		// println("PI " + PI + " TWO_PI " + TWO_PI);
 		return atan2(position.y - solidierPos.y, position.x - solidierPos.x) - HALF_PI;
 	}
 }

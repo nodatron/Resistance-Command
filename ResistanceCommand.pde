@@ -66,7 +66,7 @@ void setup()
 	ui = new Ui();
 
 	blitz = new Blitz();
-	attack = new AttackBoost();
+	attackB = new AttackBoost();
 	// gameObjects.add(blitz);
 	// gameObjects.add(blitz);
 	menu = new Menu();
@@ -91,7 +91,7 @@ int solSpawnTimer = 0;
 
 // boolean allowedMove;
 Blitz blitz;
-AttackBoost attack;
+AttackBoost attackB;
 boolean attackboostActive = false;
 boolean blitzActive = false;
 int buffTimer = 0;

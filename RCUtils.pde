@@ -133,6 +133,8 @@ class RCUtils
 			if(blitzActive)
 			{
 				buffActive = true;
+				println("Blitz is being called");
+				blitz.update();
 			}
 			background(0, 128, 0);
 			shape(currentlevel);

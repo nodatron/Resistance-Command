@@ -1,0 +1,4 @@
+interface HealthBar
+{
+    void renderHealthBar();
+}
