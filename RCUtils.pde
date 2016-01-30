@@ -99,18 +99,8 @@ class RCUtils
 		if (isGame)		//FIXME: The game doesnt reset the position or the firing of the solidiers and the projectiles when you switch
 						// between the game modes
 		{
-			//the player is in a game
-			// switch (gameLevel)
-			// {
-			// 	case 1:
-			// 	case 2:
-			// 	case 3:
-			// 	default:
-			// }
-
 			if(solidierLvl1Bought)
 			{
-				// println("Solidier bought");
 				Solidier newSol = new Solidier(1);
 				gameObjects.add(newSol);
 				solidierLvl1Bought = false;
@@ -133,10 +123,6 @@ class RCUtils
 			if(blitzActive)
 			{
 				buffActive = true;
-				// println("Blitz is being called");
-				// blitz.update();
-				// blitz.update();
-				// blitz.render();
 			}
 
 
@@ -163,22 +149,6 @@ class RCUtils
 			ui.checkUIButtonPressed();
 			ui.checkUIKeyPressed();
 
-			// if (mouseY > MAP_HEIGHT && !buffActive && mouseX > width * 0.5f && mouseX < width * 0.6f)
-			// {
-			// 	// blitz.buff(solidier);
-			// 	println("Buff activated");
-			// 	buffActive = true;
-			// }
-			//
-			// if(buffActive) startBuffCounter();
-			//
-			// if (mouseY > MAP_HEIGHT && !buffActive && mouseX < width * 0.5f)
-			// {
-			// 	// blitz.buff(solidier);
-			// 	println("Buff activated");
-			// 	buffActive = true;
-			// }
-			//
 			if(buffActive) startBuffCounter();
 
 			if(blitzActive)

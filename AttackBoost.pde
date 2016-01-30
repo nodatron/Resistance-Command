@@ -18,8 +18,6 @@ class AttackBoost extends GameObject implements Powerup
 			//boost the attack damage of the soliders
 			solidier.attackbonus = bonus;
 		}
-		update();
-		render();
 	}
 
 	//FIXME The image is not showing up on the screen
@@ -34,21 +32,41 @@ class AttackBoost extends GameObject implements Powerup
 
 	void update()
 	{
-		//Makes BLITZ appear on the screen fading in and out over the course of a 5 seconds
-		if(blitzActive && buffTime < 300)
+		if (attackboostActive)
 		{
-			itint += (300 / 255);
+			for (int i = gameObjects.size() - 1 ; i >= 0 ; i --)
+			{
+				if (gameObjects.get(i) instanceof Solidier)
+				{
+					buff((Solidier)gameObjects.get(i));
+					if(buffTimer < 300)
+					{
+						attackBAnimation = true;
+					}
+					else
+					{
+						attackBAnimation = false;
+					}
+					// itint += (255/300);
+				}
+			}
 		}
-		else
+
+		if(buffTimer > buffTime)
 		{
-			itint = 0;
+			attackboostActive = false;
+			buffActive = false;
 		}
 	}
 
 	void render()
 	{
-		// tint(255, itint);
-		// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
-		text("ATTACK BOOST", width * 0.5f, height * 0.5f);
+		if(attackBAnimation)
+		{
+			// tint(255, itint);
+			// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
+			println(buffTimer);
+			text("ATTACK BOOST", width * 0.5f, height * 0.5f);
+		}
 	}
 }

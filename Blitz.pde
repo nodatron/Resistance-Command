@@ -1,11 +1,12 @@
 //Speed boost for all friendly soliders
+//TODO Make the image appear instead of writing
 class Blitz extends GameObject implements Powerup
 {
 	int buffTime;
 
 	Blitz ()
 	{
-		//Five minutes
+		//NOTE this needs to change **Five minutes
 		buffTime = 18000;
 		sprite = loadImage("blitztext.png");
 	}
@@ -17,8 +18,6 @@ class Blitz extends GameObject implements Powerup
 			blitzActive = true;
 			solidiers.forward.mult(3);
 		}
-		// update();
-		// render();
 	}
 	//FIXME The image is not being displayed onto the screen when it is called
 	//TODO Need to add a popup on the screen that comes up when the powerup is activated that lasts
@@ -26,8 +25,8 @@ class Blitz extends GameObject implements Powerup
 	// elements for the powerups here
 	void init()
 	{
-
 	}
+
 	void update()
 	{
 		if (blitzActive)
@@ -37,38 +36,36 @@ class Blitz extends GameObject implements Powerup
 				if (gameObjects.get(i) instanceof Solidier)
 				{
 					buff((Solidier)gameObjects.get(i));
-					blitzAnimation = true;
+					// itint += (255/300);
+					if(buffTimer < 300)
+					{
+						blitzAnimation = true;
+					}
+					else
+					{
+						blitzAnimation = false;
+					}
 				}
 			}
+
+			if(buffTimer > 1800)
+			{
+				blitzActive = false;
+				buffActive = false;
+				buffTimer = 0;
+			}
 		}
-		// if (blitzAnimation && buffTimer < 300)
-		// {
-		// 	render();
-		// }
-		//Makes BLITZ appear on the screen fading in and out over the course of a 5 seconds
-		// println(buffTimer);
-		// if(buffTimer < 300)
-		// {
-		// 	itint += (300 / 255);
-		// 	// println("blitz should appear");
-		// }
-		// else
-		// {
-		// 	itint = 0;
-		// }
+
 	}
+
 	void render()
 	{
-		println(buffTimer);
-		// if(blitzActive && buffTimer < 300)
-		// {
+		if(blitzAnimation)
+		{
 			// tint(255, itint);
 			// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
-			if(blitzAnimation && buffTimer < 300)
-			{
-				println(buffTimer);
-				text("BLITZ", width * 0.5f, height * 0.5f);
-			}
-		// }
+			println(buffTimer);
+			text("BLITZ", width * 0.5f, height * 0.5f);
+		}
 	}
 }

@@ -53,6 +53,8 @@ void setup()
 	fullScreen();
 	frameRate(60);
 	MAP_HEIGHT = height * 0.9f;
+	blitz = new Blitz();
+	gameObjects.add(blitz);
 	//NOTE: This will be replaced by input from the user as to which map they want
 	//NOTE: This will have to be moved
 	utils.initMap(1, 1);
@@ -65,11 +67,8 @@ void setup()
 	gameObjects.add(s);
 	ui = new Ui();
 
-	blitz = new Blitz();
-	gameObjects.add(blitz);
+
 	attackB = new AttackBoost();
-	// gameObjects.add(blitz);
-	// gameObjects.add(blitz);
 	menu = new Menu();
 	menu.update();
 	menu.render();
@@ -97,10 +96,8 @@ boolean attackboostActive = false;
 boolean blitzActive = false;
 int buffTimer = 0;
 boolean buffActive = false;
-
-boolean imageLock = false;
-
 boolean blitzAnimation = false;
+boolean attackBAnimation = false;
 
 boolean isMenu = true;
 boolean isGame = false;
