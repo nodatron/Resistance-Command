@@ -53,11 +53,18 @@ void setup()
 	fullScreen();
 	frameRate(60);
 	MAP_HEIGHT = height * 0.9f;
+	map = new Map();
+	gameObjects.add(map);
+	map.init(1, 1);
 	blitz = new Blitz();
 	gameObjects.add(blitz);
+	attackB = new AttackBoost();
+	gameObjects.add(attackB);
 	//NOTE: This will be replaced by input from the user as to which map they want
 	//NOTE: This will have to be moved
-	utils.initMap(1, 1);
+
+
+	// utils.initMap(1, 1);
 	// for(int i = 0 ; i < 5 ; i ++)
 	// {
 	// 	Solidier s = new Solidier();
@@ -77,6 +84,7 @@ void setup()
 Ui ui;
 Menu menu;
 Instructions instruct = new Instructions();
+Map map;
 
 boolean solidierLvl1Bought = false;
 boolean solidierLvl2Bought = false;
