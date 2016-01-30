@@ -163,6 +163,7 @@ class Solidier extends GameObject implements HealthBar
 				// position.add(forward);
 				// position.y++;
 			}
+			if(buffActive && blitzActive) blitz.buff(this);
 			// if(buffActive)
 			// {
 			// 	if(blitzActive)

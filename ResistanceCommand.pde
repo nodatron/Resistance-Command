@@ -100,6 +100,8 @@ boolean buffActive = false;
 
 boolean imageLock = false;
 
+boolean blitzAnimation = false;
+
 boolean isMenu = true;
 boolean isGame = false;
 boolean isInstructions = false;
