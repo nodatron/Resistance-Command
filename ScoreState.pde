@@ -10,6 +10,12 @@ class ScoreState extends GameObject implements State
     int amountSpent;
     int amountEarned;
 
+    int textSize;
+    color backgroundColour;
+    color textColour;
+
+    boolean mapFailed;
+
     ScoreState()
     {
         solidiersSpawned = 0;
@@ -19,6 +25,12 @@ class ScoreState extends GameObject implements State
         solidiersDead = 0;
         amountSpent = 0;
         amountEarned = 0;
+
+        backgroundColour = color(0, 0, 26);
+        textColour = color(235, 240, 250);
+        textSize = 26;
+
+        mapFailed = false;
     }
 
     void init()
@@ -32,13 +44,28 @@ class ScoreState extends GameObject implements State
 
     void render()
     {
-        text("Solidiers Spawned: " + solidiersSpawned, 100, 100);
-        text("Level 1 Solidiers spawned: " + lvl1SolSpawned, 100, 150);
-        text("Level 2 Solidiers spawned: " + lvl2SolSpawned, 100, 200);
-        text("Level 3 Solidiers spawned: " + lvl3SolSpawned, 100, 250);
-        text("Soliders Dead: " + solidiersDead, 100, 300);
-        text("Amount Spent: " + amountSpent, 100, 350);
-        text("Amount Earned: " + amountEarned, 100, 400);
+        background(backgroundColour);
+        fill(textColour);
+        textSize(textSize);
+        text("Solidiers Spawned: " + solidiersSpawned, 300, 100);
+        text("Level 1 Solidiers spawned: " + lvl1SolSpawned, 300, 150);
+        text("Level 2 Solidiers spawned: " + lvl2SolSpawned, 300, 200);
+        text("Level 3 Solidiers spawned: " + lvl3SolSpawned, 300, 250);
+        text("Soliders Dead: " + solidiersDead, 300, 300);
+        text("Amount Spent: " + amountSpent, 300, 350);
+        text("Amount Earned: " + amountEarned, 300, 400);
+
+        if(mapFailed)
+        {
+            text("Your Resistance is crushed, Bow down before the King", width / 2, 50);
+            text("Press R to retry the Map", width / 2, height / 2);
+        }
+        else
+        {
+            text("A glourious victory for the resistance", width / 2, 50);
+            text("Press R to try and beat your score", width / 2, height / 2);
+        }
+        text("Press N to go to the Next Map", width / 2, (height / 2) + 50);
     }
 
     void handleInput()

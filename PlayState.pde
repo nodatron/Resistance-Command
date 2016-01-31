@@ -97,13 +97,18 @@ class PlayState extends GameObject implements State
     {
         background(0, 128, 0);
         int gameObjectsLeft = 0;
+        int objectCounter = 0;
         for(int i = 0 ; i < gameObjects.size() ; i ++)
         {
-            if(!(gameObjects.get(i) instanceof Solidier) &&
-               !(gameObjects.get(i) instanceof Battlements))
+            if(!(gameObjects.get(i) instanceof Solidier))
             {
-                   gameObjectsLeft++;
+                if(!(gameObjects.get(i) instanceof Battlements))
+                {
+                    gameObjectsLeft++;
+                }
+                objectCounter++;
             }
+
             if(gameObjects.get(i).isAlive)
             {
                 gameObjects.get(i).update();
@@ -118,11 +123,18 @@ class PlayState extends GameObject implements State
         }
         ui.update();
         ui.render();
-        //No solidiers or battlements left on map, map is complete
+        //Success in beating the map
         if(gameObjectsLeft == gameObjects.size())
         {
             isOver = true;
             gameObjects.clear();
+        }
+        //Failed to complete the map
+        if(objectCounter == gameObjects.size() && playerScore < 100)
+        {
+            isOver = true;
+            gameObjects.clear();
+            scoreState.mapFailed = true;
         }
 
     }
