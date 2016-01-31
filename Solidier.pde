@@ -89,6 +89,7 @@ class Solidier extends GameObject implements HealthBar
 		if(health <= 0)
 		{
 			isAlive = false;
+			scoreState.solidiersDead ++;
 		}
 
 		//Resetting the attack bonus to 0 when the buff is not active
@@ -133,6 +134,7 @@ class Solidier extends GameObject implements HealthBar
 		{
 			isAlive = false;
 			playerScore += reward;
+			scoreState.amountEarned += reward;
 		}
 
 		if(allowedMove)
@@ -173,11 +175,6 @@ class Solidier extends GameObject implements HealthBar
 		fill(missingHealthColour);
 		rect(-(spriteWidth * 0.5f), -(spriteHeight * 0.5f) - 10, spriteWidth, 10);
 		renderHealthBar();
-		// stroke(healthColour);
-		// fill(healthColour);
-		// rect(-(spriteWidth * 0.5f), -(spriteHeight * 0.5f) - 10,
-		//      map(health, 0, level * 100, 0, spriteWidth),
-		// 	 10);
 		tint(255, 255);
 		image(sprite, -(spriteWidth * 0.5f), -(spriteHeight * 0.5f), spriteWidth, spriteHeight);
 		popMatrix();
@@ -200,12 +197,6 @@ class Solidier extends GameObject implements HealthBar
 				return true;
 			}
 		}
-		else
-		{
-			// allowedMove = true;
-			return false;
-		}
-		//processing is fussy to me this shouldnt be here
 
 		return false;
 	}

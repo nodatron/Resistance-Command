@@ -35,6 +35,8 @@ class PlayState extends GameObject implements State
             buffActive = false;
             blitzAnimation = false;
             attackBAnimation = false;
+            elapsed = 0;
+            solSpawnTimer = 0;
         }
         else
         {
@@ -45,6 +47,9 @@ class PlayState extends GameObject implements State
                 gameObjects.add(newSol);
                 solidierLvl1Bought = false;
                 playerScore -= newSol.cost;
+                scoreState.amountSpent += 1 * 100;
+                scoreState.solidiersSpawned ++;
+                scoreState.lvl1SolSpawned ++;
             }
 
             if(solidierLvl2Bought)
@@ -53,6 +58,9 @@ class PlayState extends GameObject implements State
                 gameObjects.add(newSol);
                 solidierLvl2Bought = false;
                 playerScore -= newSol.cost;
+                scoreState.amountSpent += 2 * 100;
+                scoreState.solidiersSpawned ++;
+                scoreState.lvl2SolSpawned ++;
             }
 
             if(solidierLvl3Bought)
@@ -61,6 +69,9 @@ class PlayState extends GameObject implements State
                 gameObjects.add(newSol);
                 solidierLvl3Bought = false;
                 playerScore -= newSol.cost;
+                scoreState.amountSpent += 3 * 100;
+                scoreState.solidiersSpawned ++;
+                scoreState.lvl3SolSpawned ++;
             }
 
             if(blitzActive)
@@ -85,8 +96,14 @@ class PlayState extends GameObject implements State
     void render()
     {
         background(0, 128, 0);
+        int gameObjectsLeft = 0;
         for(int i = 0 ; i < gameObjects.size() ; i ++)
         {
+            if(!(gameObjects.get(i) instanceof Solidier) &&
+               !(gameObjects.get(i) instanceof Battlements))
+            {
+                   gameObjectsLeft++;
+            }
             if(gameObjects.get(i).isAlive)
             {
                 gameObjects.get(i).update();
@@ -96,9 +113,18 @@ class PlayState extends GameObject implements State
             {
                 gameObjects.remove(i);
             }
+
+
         }
         ui.update();
         ui.render();
+        //No solidiers or battlements left on map, map is complete
+        if(gameObjectsLeft == gameObjects.size())
+        {
+            isOver = true;
+            gameObjects.clear();
+        }
+
     }
 
     void handleInput()

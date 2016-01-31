@@ -31,6 +31,7 @@
 //				 : Add and option for the user to make sure they want to quit from the game to the menu
 
 
+
 // Used for util functions throughout the game
 RCUtils utils = new RCUtils();
 ArrayList<PVector> mapLayout = new ArrayList<PVector>();
@@ -49,11 +50,13 @@ void setup()
 	fullScreen();
 	frameRate(60);
 	MAP_HEIGHT = height * 0.9f;
-	playState = new PlayState();
 	menuState = new MenuState();
-	splashState = new SplashState();
 	scoreState = new ScoreState();
+	playState = new PlayState();
+	splashState = new SplashState();
 }
+
+boolean isOver = false;
 
 PlayState playState;
 MenuState menuState;
@@ -98,20 +101,28 @@ void keyReleased()
 
 void draw()
 {
-	if(isMenu)
+	if(isGame && isOver && elapsed > 10)
 	{
-		splashState.update();
-		splashState.render();
+		scoreState.update();
+		scoreState.render();
 	}
-	else if(isGame)
+	else
 	{
-		playState.update();
-		playState.render();
+		if(isMenu)
+		{
+			splashState.update();
+			splashState.render();
+		}
+		else if(isGame)
+		{
+			playState.update();
+			playState.render();
+		}
+		else if (isInstructions)
+		{
+			menuState.update();
+			menuState.render();
+		}
 	}
-	else if (isInstructions)
-	{
-		menuState.update();
-		menuState.render();
-	}
-	println("Player Score " + playerScore);
+	// println("Player Score " + playerScore);
 }
