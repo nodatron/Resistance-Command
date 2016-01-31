@@ -5,8 +5,6 @@ class PlayState extends GameObject implements State
     int mapNumber;
     int level;
     boolean newGame;
-    // AttackBoost attackB;
-    // Blitz blitz;
 
     PlayState()
     {
@@ -46,6 +44,7 @@ class PlayState extends GameObject implements State
                 Solidier newSol = new Solidier(1);
                 gameObjects.add(newSol);
                 solidierLvl1Bought = false;
+                playerScore -= newSol.cost;
             }
 
             if(solidierLvl2Bought)
@@ -53,6 +52,7 @@ class PlayState extends GameObject implements State
                 Solidier newSol = new Solidier(2);
                 gameObjects.add(newSol);
                 solidierLvl2Bought = false;
+                playerScore -= newSol.cost;
             }
 
             if(solidierLvl3Bought)
@@ -60,6 +60,7 @@ class PlayState extends GameObject implements State
                 Solidier newSol = new Solidier(3);
                 gameObjects.add(newSol);
                 solidierLvl3Bought = false;
+                playerScore -= newSol.cost;
             }
 
             if(blitzActive)

@@ -25,6 +25,32 @@ class Ui extends GameObject
 	void update()
 	{
 		//Checking if the button was pressed
+		if(playerScore < 3 * 100)
+		{
+			canAffordSolidierLvl3 = false;
+		}
+		else
+		{
+			canAffordSolidierLvl3 = true;
+		}
+
+		if(playerScore < 2 * 100)
+		{
+			canAffordSolidierLvl2 = false;
+		}
+		else
+		{
+			canAffordSolidierLvl2 = true;
+		}
+
+		if(playerScore < 1 * 100)
+		{
+			canAffordSolidierLvl1 = false;
+		}
+		else
+		{
+			canAffordSolidierLvl1 = true;
+		}
 	}
 
 	void render()
@@ -93,21 +119,24 @@ class Ui extends GameObject
 		if(mousePressed && solSpawnTimer > 30)
 		{
 			if(mouseY > MAP_HEIGHT && mouseY < height
-			   && mouseX > 0 && mouseX < spriteWidth)
+			   && mouseX > 0 && mouseX < spriteWidth &&
+			   canAffordSolidierLvl1)
 			{
 				// The level one solidier has been pressed
 				solidierLvl1Bought = true;
 			}
 
 			if(mouseY > MAP_HEIGHT && mouseY < height
-			   && mouseX > spriteWidth && mouseX < (spriteWidth * 2.0f))
+			   && mouseX > spriteWidth && mouseX < (spriteWidth * 2.0f)
+			   && canAffordSolidierLvl2)
 			{
 				// The level two solidier has been pressed
 				solidierLvl2Bought = true;
 			}
 
 			if(mouseY > MAP_HEIGHT && mouseY < height
-			   && mouseX > (spriteWidth * 2.0f) && mouseX < (spriteWidth * 3.0f))
+			   && mouseX > (spriteWidth * 2.0f) && mouseX < (spriteWidth * 3.0f)
+			   && canAffordSolidierLvl3)
 			{
 				// The level three solidier has been pressed
 				solidierLvl3Bought = true;
@@ -135,17 +164,17 @@ class Ui extends GameObject
 	{
 		if(keyPressed && solSpawnTimer > 30)
 		{
-			if(keys['1'])
+			if(keys['1'] && canAffordSolidierLvl1)
 			{
 				solidierLvl1Bought = true;
 			}
 
-			if(keys['2'])
+			if(keys['2'] && canAffordSolidierLvl2)
 			{
 				solidierLvl2Bought = true;
 			}
 
-			if(keys['3'])
+			if(keys['3'] && canAffordSolidierLvl3)
 			{
 				solidierLvl3Bought = true;
 			}

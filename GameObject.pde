@@ -35,7 +35,7 @@ abstract class GameObject
 		this.level = level;
 		health = level * 100;
 		armour = level * 5;
-		cost = level * 500;
+		cost = level * 100;
 		reward = cost / 2;
 		attack = 10;
 		isAlive = true;

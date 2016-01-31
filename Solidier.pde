@@ -19,11 +19,6 @@ class Solidier extends GameObject implements HealthBar
 		pointsHit = 0;
 		attackbonus = 0;
 		allowedMove = false;
-		init();
-	}
-
-	void init()
-	{
 		health = level * 100;
 		// Gets the sprite
 		switch(level)
@@ -65,6 +60,11 @@ class Solidier extends GameObject implements HealthBar
 		missingHealthColour = color(255, 0, 0);
 	}
 
+	void init()
+	{
+
+	}
+
 	void update()
 	{
 
@@ -93,9 +93,8 @@ class Solidier extends GameObject implements HealthBar
 
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive && !attackboostActive) attackbonus = 0;
+
 		if (position.x >= goalPosition.x && position.y >= goalPosition.y)
-			// (position.x > goalPosition.x - 3 || position.y > goalPosition.y - 5) ||
-			// (position.x < goalPosition.x + 3 || position.y > goalPosition.y + 5))
 		{
 			pointsHit ++;
 
@@ -123,9 +122,17 @@ class Solidier extends GameObject implements HealthBar
 
 			if (pointsHit == ((mapLayout.size() / 2) - 1))
 			{
-				goalPosition = endPoint;
-				isAlive = false;
+				goalPosition.x = endPoint.x;
+				goalPosition.y = endPoint.y;
+				// isAlive = false;
 			}
+
+		}
+
+		if(PVector.dist(position, endPoint) == 0)
+		{
+			isAlive = false;
+			playerScore += reward;
 		}
 
 		if(allowedMove)
@@ -135,49 +142,25 @@ class Solidier extends GameObject implements HealthBar
 			{
 				forward.x = -1;
 				forward.y = 0;
-				// if(buffActive) blitz.buff(this);
-				// position.x --;
-				// position.add(forward);
 			}
 			if (position.x < goalPosition.x && position.x != goalPosition.x)
 			{
 				forward.x = 1;
 				forward.y = 0;
-				// if(buffActive) blitz.buff(this);
-				// position.add(forward);
-				// position.x ++;
 			}
 			if (position.y > goalPosition.y && position.y != goalPosition.y)
 			{
 				forward.x = 0;
 				forward.y = -1;
-				// if(buffActive) blitz.buff(this);
-				// position.add(forward);
-				// position.y --;
 			}
 			if (position.y < goalPosition.y && position.y != goalPosition.y)
 			{
 				forward.x = 0;
 				forward.y = 1;
-				// if(buffActive) blitz.buff(this);
-				// position.add(forward);
-				// position.y++;
 			}
 			if(buffActive && blitzActive) blitz.buff(this);
-			// if(buffActive)
-			// {
-			// 	if(blitzActive)
-			// 	{
-			// 		// println("Buffing Solidier");
-			// 		blitz.buff(this);
-			// 		blitz.update();
-			// 		blitz.render();
-			// 	}
-			// 	if(attackboostActive) attackB.buff(this);
-			// }
+
 			position.add(forward);
-			// if(blitzActive) blitz.buff(this);
-			// if(attackboostActive) attack.buff(this);
 		}
 
 	}

@@ -1,7 +1,7 @@
 //TODO(30/12/2015) 	1. Move the stuff from the map class into the utils class becuase it doesnt make sense to have a map class   DONE
 //					2. Make the Solidiers move in the way of the map   DONE
 //					3. Make the battlements fire at the solidiers.	DONE
-//					4. Make collision detection for the solidiers and the battlements	MOSTLY DONE
+//					4. Make collision detection for the solidiers and the battlements	DONE
 //   				5. Make the damage from the towers get effected by the armour of the solidiers and do the same for the solidiers being hit
 //					by the battlements	DONE
 //					6. Make the powerups for the Solidiers
@@ -20,15 +20,20 @@
 //					16. Make a healthbar or some visual queue come up for the health for the solidiers and the battlements
 //NOTE:  Try to break the fucking game as much as possible
 
+//TODO(31/1/16) : Show the players score when plating the game
+//				: Make the score go down when a unit is bought
+//				: Make the boolean variables true or false based on whether the unit can be bought
+//				: Make half the cost of the units be addded to the score when they make it to the end of the map
+//				: At the end of the game show a screen with score on it aswell as solidiers bought, how many at what level, score spent
+//				: This could probably be a new state callled ScoreState
 
 //FIXME(31/1/16) : Powerups should not be allowed activate if another powerup is active
+//				 : Add and option for the user to make sure they want to quit from the game to the menu
 
 
 // Used for util functions throughout the game
 RCUtils utils = new RCUtils();
-
 ArrayList<PVector> mapLayout = new ArrayList<PVector>();
-
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
 PShape currentlevel;
@@ -37,64 +42,35 @@ PVector endPoint;
 //Setting the height of the map
 float MAP_HEIGHT;
 
+long playerScore = 1000;
+
 void setup()
 {
 	fullScreen();
 	frameRate(60);
 	MAP_HEIGHT = height * 0.9f;
-	// map = new Map();
-	// gameObjects.add(map);
-	// map.init(1, 1);
-	// blitz = new Blitz();
-	// gameObjects.add(blitz);
-	// attackB = new AttackBoost();
-	// gameObjects.add(attackB);
-	//NOTE: This will be replaced by input from the user as to which map they want
-	//NOTE: This will have to be moved
-
-
-	// utils.initMap(1, 1);
-	// for(int i = 0 ; i < 5 ; i ++)
-	// {
-	// 	Solidier s = new Solidier();
-	// 	gameObjects.add(s);
-	// }
-	// Solidier s = new Solidier();
-	// gameObjects.add(s);
-	// ui = new Ui();
-
-
-	// attackB = new AttackBoost();
-	// menu = new Menu();
-	// menu.update();
-	// menu.render();
-
 	playState = new PlayState();
 	menuState = new MenuState();
 	splashState = new SplashState();
+	scoreState = new ScoreState();
 }
 
 PlayState playState;
 MenuState menuState;
 SplashState splashState;
-
-// Ui ui;
-// Menu menu;
-// Instructions instruct = new Instructions();
-// Map map;
+ScoreState scoreState;
 
 boolean solidierLvl1Bought = false;
 boolean solidierLvl2Bought = false;
 boolean solidierLvl3Bought = false;
 
-boolean canAffordSolidierLvl1 = false;
-boolean canAffordSolidierLvl2 = false;
-boolean canAffordSolidierLvl3 = false;
+boolean canAffordSolidierLvl1 = true;
+boolean canAffordSolidierLvl2 = true;
+boolean canAffordSolidierLvl3 = true;
 
 int elapsed = 0;
 int solSpawnTimer = 0;
 
-// boolean allowedMove;
 Blitz blitz;
 AttackBoost attackB;
 boolean attackboostActive = false;
@@ -137,7 +113,5 @@ void draw()
 		menuState.update();
 		menuState.render();
 	}
-	// utils.checkKeys();
-	// utils.checkMode();
-	// menu.checkBoxClicked();
+	println("Player Score " + playerScore);
 }
