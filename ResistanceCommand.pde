@@ -20,6 +20,10 @@
 //					16. Make a healthbar or some visual queue come up for the health for the solidiers and the battlements
 //NOTE:  Try to break the fucking game as much as possible
 
+
+//FIXME(31/1/16) : Powerups should not be allowed activate if another powerup is active
+
+
 // Used for util functions throughout the game
 RCUtils utils = new RCUtils();
 
@@ -38,13 +42,13 @@ void setup()
 	fullScreen();
 	frameRate(60);
 	MAP_HEIGHT = height * 0.9f;
-	map = new Map();
-	gameObjects.add(map);
-	map.init(1, 1);
-	blitz = new Blitz();
-	gameObjects.add(blitz);
-	attackB = new AttackBoost();
-	gameObjects.add(attackB);
+	// map = new Map();
+	// gameObjects.add(map);
+	// map.init(1, 1);
+	// blitz = new Blitz();
+	// gameObjects.add(blitz);
+	// attackB = new AttackBoost();
+	// gameObjects.add(attackB);
 	//NOTE: This will be replaced by input from the user as to which map they want
 	//NOTE: This will have to be moved
 
@@ -55,8 +59,8 @@ void setup()
 	// 	Solidier s = new Solidier();
 	// 	gameObjects.add(s);
 	// }
-	Solidier s = new Solidier();
-	gameObjects.add(s);
+	// Solidier s = new Solidier();
+	// gameObjects.add(s);
 	// ui = new Ui();
 
 
@@ -77,7 +81,7 @@ SplashState splashState;
 // Ui ui;
 // Menu menu;
 // Instructions instruct = new Instructions();
-Map map;
+// Map map;
 
 boolean solidierLvl1Bought = false;
 boolean solidierLvl2Bought = false;
