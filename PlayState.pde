@@ -45,8 +45,6 @@ class PlayState extends GameObject implements State
 
         if(buffActive) startBuffCounter();
 
-
-
         stroke(0);
         ui.update();
         ui.render();
@@ -70,11 +68,18 @@ class PlayState extends GameObject implements State
                 gameObjects.remove(i);
             }
         }
+        ui.update();
+        ui.render();
     }
 
     void handleInput()
     {
         ui.checkUIButtonPressed();
         ui.checkUIKeyPressed();
+    }
+
+    void startBuffCounter()
+    {
+        buffTimer++;
     }
 }

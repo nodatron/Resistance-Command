@@ -60,15 +60,23 @@ void setup()
 	// ui = new Ui();
 
 
-	attackB = new AttackBoost();
-	menu = new Menu();
-	menu.update();
-	menu.render();
+	// attackB = new AttackBoost();
+	// menu = new Menu();
+	// menu.update();
+	// menu.render();
+
+	playState = new PlayState();
+	menuState = new MenuState();
+	splashState = new SplashState();
 }
 
+PlayState playState;
+MenuState menuState;
+SplashState splashState;
+
 // Ui ui;
-Menu menu;
-Instructions instruct = new Instructions();
+// Menu menu;
+// Instructions instruct = new Instructions();
 Map map;
 
 boolean solidierLvl1Bought = false;
@@ -110,7 +118,22 @@ void keyReleased()
 
 void draw()
 {
-	utils.checkKeys();
-	utils.checkMode();
-	menu.checkBoxClicked();
+	if(isMenu)
+	{
+		splashState.update();
+		splashState.render();
+	}
+	else if(isGame)
+	{
+		playState.update();
+		playState.render();
+	}
+	else if (isInstructions)
+	{
+		menuState.update();
+		menuState.render();
+	}
+	// utils.checkKeys();
+	// utils.checkMode();
+	// menu.checkBoxClicked();
 }
