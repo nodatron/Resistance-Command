@@ -1,6 +1,6 @@
-class Instructions
+class MenuState extends GameObject implements State
 {
-	color backgroundColour;
+    color backgroundColour;
 	color textColour;
 	color tableColour;
 
@@ -16,9 +16,9 @@ class Instructions
 	float textXPosButton;
 	float textXPosFunction;
 
-	void init()
-	{
-		numRows = 10;
+    MenuState()
+    {
+        numRows = 10;
 
 		titleTextSize = 64;
 		tableHeaderSize = 48;
@@ -34,11 +34,21 @@ class Instructions
 		tableColour = color(194, 209, 240);
 		textColour = color(235, 240, 250);
 		backgroundColour = color(0, 0, 26);
-	}
+    }
 
-	void render()
-	{
-		background(backgroundColour);
+    void init()
+    {
+
+    }
+
+    void update()
+    {
+        handleInput();
+    }
+
+    void render()
+    {
+        background(backgroundColour);
 		noFill();
 		stroke(tableColour);
 		rect(tablePos.x, tablePos.y,
@@ -81,11 +91,33 @@ class Instructions
 			 textXPosFunction, tablePos.y + (cellHeight * 7.0f) + halfCellHeight);
 
 		text("A", textXPosButton, tablePos.y + (cellHeight * 8.0f) + halfCellHeight);
-		text("Activate the attack boost powerup", 
+		text("Activate the attack boost powerup",
 			 textXPosFunction, tablePos.y + (cellHeight * 8.0f) + halfCellHeight);
 
 		text("H", textXPosButton, tablePos.y + (cellHeight * 9.0f) + halfCellHeight);
 		text("Fully heal all the ally units",
 			 textXPosFunction, tablePos.y + (cellHeight * 9.0f) + halfCellHeight);
-	}
+    }
+
+    void handleInput()
+    {
+        if(keys['P'])
+		{
+			isGame = true;
+			isMenu = false;
+			isInstructions = false;
+		}
+		else if(keys['M'])
+		{
+			isGame = false;
+			isMenu = true;
+			isInstructions = false;
+		}
+		else if(keys['I'])
+		{
+			isGame = false;
+			isMenu = false;
+			isInstructions = true;
+		}
+    }
 }
