@@ -130,7 +130,7 @@ class Solidier extends GameObject implements HealthBar
 
 		}
 
-		if(PVector.dist(position, endPoint) == 0)
+		if(PVector.dist(position, endPoint) <= 5)
 		{
 			isAlive = false;
 			playerScore += reward;

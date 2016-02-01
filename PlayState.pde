@@ -123,18 +123,20 @@ class PlayState extends GameObject implements State
         }
         ui.update();
         ui.render();
-        //Success in beating the map
-        if(gameObjectsLeft == gameObjects.size())
-        {
-            isOver = true;
-            gameObjects.clear();
-        }
-        //Failed to complete the map
-        if(objectCounter == gameObjects.size() && playerScore < 100)
-        {
-            isOver = true;
-            gameObjects.clear();
-            scoreState.mapFailed = true;
+        if(!newGame)
+        {//Success in beating the map
+            if(gameObjectsLeft == gameObjects.size())
+            {
+                isOver = true;
+                gameObjects.clear();
+            }
+            //Failed to complete the map
+            if(objectCounter == gameObjects.size() && playerScore < 100)
+            {
+                isOver = true;
+                gameObjects.clear();
+                scoreState.mapFailed = true;
+            }
         }
 
     }

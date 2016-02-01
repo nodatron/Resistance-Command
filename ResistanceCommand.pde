@@ -30,7 +30,9 @@
 //FIXME(31/1/16) : Powerups should not be allowed activate if another powerup is active
 //				 : Add and option for the user to make sure they want to quit from the game to the menu
 
-
+//FIXME: The animation for the buffs does not display after the first map is retried
+//FIXME: When you go from game to main menu back to game it thinks you have won the game
+//		Need to reset the score and all variables in scorestate when this is done
 
 // Used for util functions throughout the game
 RCUtils utils = new RCUtils();
