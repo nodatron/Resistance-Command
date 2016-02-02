@@ -76,10 +76,6 @@ class ScoreState extends GameObject implements State
         // println("method called");
         if(keyPressed && keys['R'])
         {
-            background(0, 128, 0);
-            gameObjects.clear();
-            mapLayout.clear();
-            println("Resetting");
             isGame = true;
 			isMenu = false;
 			isInstructions = false;
@@ -92,7 +88,6 @@ class ScoreState extends GameObject implements State
             solidiersDead = 0;
             amountSpent = 0;
             amountEarned = 0;
-            playerScore = 1000 * playState.mapNumber + (500 * (playState.level - 1));
         }
 
         if(keyPressed && keys['N'])
@@ -104,7 +99,7 @@ class ScoreState extends GameObject implements State
             level++;
             playState = new PlayState(mapNumber, level);
             isOver = false;
-            playerScore += 1000 * playState.mapNumber + (500 * (playState.level - 1));
+            mapLayout.clear();
         }
     }
 }

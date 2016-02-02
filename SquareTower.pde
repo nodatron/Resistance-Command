@@ -12,7 +12,7 @@ class SquareTower extends Battlements
 
     void getAttackDamage()
     {
-        attack = 20 * level;
+        attack = 6 * level;
     }
 
     void getArmour()

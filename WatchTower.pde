@@ -12,7 +12,7 @@ class WatchTower extends Battlements
 
     void getAttackDamage()
     {
-        attack = 20 * level;
+        attack = 3 * level;
     }
 
     void getArmour()

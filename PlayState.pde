@@ -42,7 +42,6 @@ class PlayState extends GameObject implements State
 
     void update()
     {
-        //TODO if they come from the splash screen to game mode then reload everything into the game
         if(newGame)
         {
             background(0, 128, 0);
@@ -50,7 +49,7 @@ class PlayState extends GameObject implements State
             map.init(mapNumber, level);
             gameObjects.add(blitz);
             gameObjects.add(attackB);
-            playerScore = (mapNumber * baseStartScore) + ((level - 1) * baseLevelBonus);
+            playerScore = (mapNumber * baseStartScore) + ((level - 1) * baseLevelBonus) + scoreState.amountEarned;
             newGame = false;
             blitzActive = false;
             attackboostActive = false;

@@ -5,8 +5,6 @@ class Projectile extends GameObject
 	{
 		super();
 		spriteColour = getColourEnemy(level);
-
-		attack = 20;
 	}
 
 	void update()

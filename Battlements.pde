@@ -39,6 +39,7 @@ class Battlements extends GameObject
 					p.position.x = position.x;
 					p.position.y = position.y;
 					p.theta = theta;
+					p.attack = attack;
 					gameObjects.add(p);
 				}
 			}

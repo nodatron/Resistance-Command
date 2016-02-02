@@ -33,7 +33,7 @@ class Solidier extends GameObject implements HealthBar
 		healthColour = color(0, 50, 0);
 		missingHealthColour = color(255, 0, 0);
 	}
-	
+
 	void update()
 	{
 
