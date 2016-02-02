@@ -48,10 +48,10 @@ class Solidier extends GameObject implements HealthBar
 
 		//Get the starting position of the unit
 		position.x = mapLayout.get(0).x + (width * 0.05f);
-		position.y = mapLayout.get(0).y + (height   * 0.10f);
+		position.y = mapLayout.get(0).y + (height   * 0.05f);
 
 		goalPosition.x = mapLayout.get(0).x + (width * 0.05f);
-		goalPosition.y = mapLayout.get(0).y + (height   * 0.10f);
+		goalPosition.y = mapLayout.get(0).y + (height   * 0.05f);
 
 		forward.x = 1;
 		forward.y = 1;
@@ -95,31 +95,168 @@ class Solidier extends GameObject implements HealthBar
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive && !attackboostActive) attackbonus = 0;
 
-		if (position.x >= goalPosition.x && position.y >= goalPosition.y)
+		// if (position.x >= goalPosition.x && position.y >= goalPosition.y)
+		if(PVector.dist(position, goalPosition) <= 5)
 		{
+
+			// println(pointsHit);
 			pointsHit ++;
 
-			if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
+			position.x = goalPosition.x;
+			position.y = goalPosition.y;
+			if(mapLayout.get(pointsHit).x > mapLayout.get(mapLayout.size() - pointsHit - 1).x)
 			{
-				position.x = goalPosition.x;
-				position.y = goalPosition.y;
-				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
+				if(mapLayout.get(pointsHit).y > mapLayout.get(mapLayout.size() - pointsHit - 1).y)
+				{
+					// goalPosition.y = p2.y + (p1.y - p2.y);
+					goalPosition.y = mapLayout.get(mapLayout.size() - pointsHit - 1).y + ((mapLayout.get(pointsHit).y - mapLayout.get(mapLayout.size() - pointsHit - 1).y) * 0.5f);
+				}
+				else
+				{
+					// goalPosition.y = p1.y + (p2.y - p1.y);
+					goalPosition.y = mapLayout.get(pointsHit).y + ((mapLayout.get(mapLayout.size() - pointsHit - 1).y - mapLayout.get(pointsHit).y) * 0.5f);
+				}
+				// goalPosition.x = p2.x + (p1.x - p2.x);
+				goalPosition.x = mapLayout.get(mapLayout.size() - pointsHit - 1).x + ((mapLayout.get(pointsHit).x - mapLayout.get(mapLayout.size() - pointsHit - 1).x) * 0.5f);
 			}
-			else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
+			else if(mapLayout.get(pointsHit).x < mapLayout.get(mapLayout.size() - pointsHit - 1).x)
 			{
-				position.x = goalPosition.x;
-				position.y = goalPosition.y;
-				goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+				if(mapLayout.get(pointsHit).y > mapLayout.get(mapLayout.size() - pointsHit - 1).y)
+				{
+					goalPosition.y = mapLayout.get(mapLayout.size() - pointsHit - 1).y + ((mapLayout.get(pointsHit).y - mapLayout.get(mapLayout.size() - pointsHit - 1).y) * 0.5f);
+				}
+				else
+				{
+					goalPosition.y = mapLayout.get(pointsHit).y + ((mapLayout.get(mapLayout.size() - pointsHit - 1).y - mapLayout.get(pointsHit).y) * 0.5f);
+				}
+				goalPosition.x = mapLayout.get(pointsHit).x + ((mapLayout.get(mapLayout.size() - pointsHit - 1).x - mapLayout.get(pointsHit).x) * 0.5f);
 			}
-			else
-			{
-				position.x = goalPosition.x;
-				position.y = goalPosition.y;
-				goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
-				goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-			}
+
+			// goalPosition = PVector.dist(mapLayout.get(pointsHit), mapLayout.get(mapLayout.size() - pointsHit));
+			// goalPosition.x = mapLayout.get(mapLayout.size() - pointsHit).x + (mapLayout.get(pointsHit).x - mapLayout.get(mapLayout.size() - pointsHit).x);
+			// goalPosition.y = mapLayout.get(mapLayout.size() - pointsHit).y + (mapLayout.get(pointsHit).y - mapLayout.get(mapLayout.size() - pointsHit).y);
+			// position.x = goalPosition.x;
+			// position.y = goalPosition.y;
+
+
+			//NOTE Testing this way of of getting the point for the movement
+			/*
+				check if mapLayout current x and prev x is the same.
+					- current x > prev x
+						- current y > next y	-x,+y
+						- current y < next y	+x,+y
+					- current x < prev x
+						- current y > next y	-x,-y
+						- current y < next y	+x,-y
+				check if mapLayout current y and prev y is the same.
+					- current y > prev y
+						- current x > next x	-x,+y
+						- current x < next x	-x,-y
+					- current y < prev y
+						- current x > next x	-x,-y
+						- current x < next x	+x,-y
+
+			*/
+
+			//FIXME PRoblem with the logic of this need to give it time tomorrow
+			// if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
+			// {
+			// 	if(mapLayout.get(pointsHit).x > mapLayout.get(pointsHit - 1).x)
+			// 	{
+			// 		if(mapLayout.get(pointsHit).y > mapLayout.get(pointsHit + 1).y)
+			// 		{
+			// 			position.x = goalPosition.x;
+			// 			position.y = goalPosition.y;
+			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+			// 			goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
+			// 		}
+			// 		else
+			// 		{
+			//
+			// 			goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
+			// 			goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
+			// 			position.x = goalPosition.x;
+			// 			position.y = goalPosition.y;
+			// 		}
+			// 	}
+			// 	else
+			// 	{
+			// 		if(mapLayout.get(pointsHit).y > mapLayout.get(pointsHit + 1).y)
+			// 		{
+			// 			position.x = goalPosition.x;
+			// 			position.y = goalPosition.y;
+			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+			// 			goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+			// 		}
+			// 		else
+			// 		{
+			// 			position.x = goalPosition.x;
+			// 			position.y = goalPosition.y;
+			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+			// 			goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
+			// 		}
+			// 	}
+			// }
+			// else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
+			// {
+			// 	if(mapLayout.get(pointsHit).y > mapLayout.get(pointsHit - 1).y)
+			// 	{
+			// 		if(mapLayout.get(pointsHit).x > mapLayout.get(pointsHit + 1).x)
+			// 		{
+			// 			position.x = goalPosition.x;
+			// 			position.y = goalPosition.y;
+			// 			goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
+			// 			goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+			// 		}
+			// 		else
+			// 		{
+			// 			position.x = goalPosition.x;
+			// 			position.y = goalPosition.y;
+			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+			// 			goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+			// 		}
+			// 	}
+			// 	else
+			// 	{
+			// 		if(mapLayout.get(pointsHit).x > mapLayout.get(pointsHit + 1).x)
+			// 		{
+			// 			position.x = goalPosition.x;
+			// 			position.y = goalPosition.y;
+			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+			// 			goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+			// 		}
+			// 		else
+			// 		{
+			// 			position.x = goalPosition.x;
+			// 			position.y = goalPosition.y;
+			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+			// 			goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
+			// 		}
+			// 	}
+			// }
+
+
+			// if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
+			// {
+			// 	position.x = goalPosition.x;
+			// 	position.y = goalPosition.y;
+			// 	goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+			// 	goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
+			// }
+			// else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
+			// {
+			// 	position.x = goalPosition.x;
+			// 	position.y = goalPosition.y;
+			// 	goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
+			// 	goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+			// }
+			// else
+			// {
+			// 	position.x = goalPosition.x;
+			// 	position.y = goalPosition.y;
+			// 	goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
+			// 	goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
+			// }
 
 			if (pointsHit == ((mapLayout.size() / 2) - 1))
 			{

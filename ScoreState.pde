@@ -54,6 +54,7 @@ class ScoreState extends GameObject implements State
         text("Soliders Dead: " + solidiersDead, 300, 300);
         text("Amount Spent: " + amountSpent, 300, 350);
         text("Amount Earned: " + amountEarned, 300, 400);
+        text("Total Score: " + playerScore, 300, 450);
 
         if(mapFailed)
         {

@@ -4,16 +4,17 @@ class Map extends GameObject
 	PShape currentlevel;
 	Map ()
 	{}
-	void init(){}
+	void init()
+	{}
 	//NOTE: This could be a map class
-	void init (int mapNo, int level)
+	void init(int mapNo, int level)
 	{
 		// Selects which map that the user wants
 		switch (mapNo)
 		{
 			case 1:
 			{
-				String[] locations = loadStrings("map1.csv");
+				String[] locations = loadStrings("map1.txt");
 
 				for(String s : locations)
 				{
@@ -47,17 +48,41 @@ class Map extends GameObject
 				currentlevel.endShape(CLOSE);
 			} break;
 
-			// case 2:
-			// {
-			// 	String[] locations = loadStrings("map2.csv");
+			case 2:
+			{
+				String[] locations = loadStrings("map2.txt");
 
-			// 	for(String s : locations)
-			// 	{
-			// 		String ratios = s.split(",");
-			// 		Battlement tower = new Battlement(level, ratios[0], ratios[1]);
-			// 		battlements.add(tower);
-			// 	}
-			// } break;
+				for(String s : locations)
+				{
+					String[] lines = s.split(",");
+					float xRatio = Float.parseFloat(lines[1]);
+					float yRatio = Float.parseFloat(lines[2]);
+					if (lines[0].equals("battlement"))
+					{
+						Battlements tower = new Battlements(level, xRatio, yRatio);
+						gameObjects.add(tower);
+					}
+					else if(lines[0].equals("endpoint"))
+					{
+						endPoint = new PVector(width * xRatio, height  * yRatio);
+					}
+					else
+					{
+						PVector point = new PVector(width * xRatio, height  * yRatio);
+						mapLayout.add(point);
+					}
+				}
+
+				currentlevel = createShape();
+				currentlevel.beginShape();
+				currentlevel.fill(153, 75, 0);
+				currentlevel.stroke(153, 75, 0);
+				for (int i = 0 ; i < mapLayout.size() ; i ++)
+				{
+					currentlevel.vertex(mapLayout.get(i).x, mapLayout.get(i).y);
+				}
+				currentlevel.endShape(CLOSE);
+			} break;
 
 			// case 3:
 			// {

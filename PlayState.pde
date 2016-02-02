@@ -10,7 +10,7 @@ class PlayState extends GameObject implements State
     {
         ui = new Ui();
         map = new Map();
-        mapNumber = 1;
+        mapNumber = 2;
         level = 1;
         newGame = true;
         attackB = new AttackBoost();
@@ -29,6 +29,7 @@ class PlayState extends GameObject implements State
             map.init(mapNumber, level);
             gameObjects.add(blitz);
             gameObjects.add(attackB);
+            playerScore = (mapNumber * 1000) + ((level - 1) * 500);
             newGame = false;
             blitzActive = false;
             attackboostActive = false;
@@ -159,6 +160,9 @@ class PlayState extends GameObject implements State
             //remove all the objects from the game
             gameObjects.clear();
             newGame = true;
+            blitzActive = false;
+			attackboostActive = false;
+			buffActive = false;
 		}
 		else if(keys['I'])
 		{

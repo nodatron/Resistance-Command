@@ -6,6 +6,7 @@ class Ui extends GameObject
 	PImage sol2;
 	PImage sol3;
 	PImage sprite2;
+	color scoreColour;
 
 	Ui ()
 	{
@@ -16,6 +17,7 @@ class Ui extends GameObject
 		sprite2 = loadImage("attackboost.jpg");
 		spriteHeight = height * 0.1f;
 		spriteWidth = width * 0.1f;
+		scoreColour = color(127, 0, 0);
 	}
 
 	void init()
@@ -111,6 +113,9 @@ class Ui extends GameObject
 			tint(255, 127);
 			image(sprite2, width * 0.6f, MAP_HEIGHT, spriteWidth, spriteHeight);
 		}
+
+		fill(scoreColour);
+		text((int)playerScore, width * 0.9f, height * 0.05f);
 	}
 
 	void checkUIButtonPressed()
