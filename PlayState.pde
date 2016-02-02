@@ -5,6 +5,9 @@ class PlayState extends GameObject implements State
     int mapNumber;
     int level;
     boolean newGame;
+    int baseCost;
+    int baseStartScore;
+    int baseLevelBonus;
 
     PlayState()
     {
@@ -15,6 +18,9 @@ class PlayState extends GameObject implements State
         newGame = true;
         attackB = new AttackBoost();
         blitz = new Blitz();
+        baseCost = 100;
+        baseStartScore = 1000;
+        baseLevelBonus = 500;
     }
 
     void init()
@@ -29,7 +35,7 @@ class PlayState extends GameObject implements State
             map.init(mapNumber, level);
             gameObjects.add(blitz);
             gameObjects.add(attackB);
-            playerScore = (mapNumber * 1000) + ((level - 1) * 500);
+            playerScore = (mapNumber * baseStartScore) + ((level - 1) * baseLevelBonus);
             newGame = false;
             blitzActive = false;
             attackboostActive = false;
@@ -44,33 +50,33 @@ class PlayState extends GameObject implements State
             handleInput();
             if(solidierLvl1Bought)
             {
-                Solidier newSol = new Solidier(1);
+                Solidier newSol = new LightSolidier();
                 gameObjects.add(newSol);
                 solidierLvl1Bought = false;
                 playerScore -= newSol.cost;
-                scoreState.amountSpent += 1 * 100;
+                scoreState.amountSpent += 1 * baseCost;
                 scoreState.solidiersSpawned ++;
                 scoreState.lvl1SolSpawned ++;
             }
 
             if(solidierLvl2Bought)
             {
-                Solidier newSol = new Solidier(2);
+                Solidier newSol = new MedSoilidier();
                 gameObjects.add(newSol);
                 solidierLvl2Bought = false;
                 playerScore -= newSol.cost;
-                scoreState.amountSpent += 2 * 100;
+                scoreState.amountSpent += 2 * baseCost;
                 scoreState.solidiersSpawned ++;
                 scoreState.lvl2SolSpawned ++;
             }
 
             if(solidierLvl3Bought)
             {
-                Solidier newSol = new Solidier(3);
+                Solidier newSol = new HeavySolidier();
                 gameObjects.add(newSol);
                 solidierLvl3Bought = false;
                 playerScore -= newSol.cost;
-                scoreState.amountSpent += 3 * 100;
+                scoreState.amountSpent += 3 * baseCost;
                 scoreState.solidiersSpawned ++;
                 scoreState.lvl3SolSpawned ++;
             }

@@ -16,16 +16,9 @@ class Battlements extends GameObject
 		position.x = width * xRatio;
 		position.y = height  * yRatio;
 		isWithinRange = false;
-		init();
 	}
 
-	void init()
-	{
-		// Gets the sprite
-		sprite = loadImage("battlement.png");
-		attack = utils.getAttackDamage(level, "Battlement");
-	}
-
+	void init(){}
 	void update()
 	{
 		// forward.x = sin(theta);

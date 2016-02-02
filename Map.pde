@@ -23,8 +23,9 @@ class Map extends GameObject
 					float yRatio = Float.parseFloat(lines[2]);
 					if (lines[0].equals("battlement"))
 					{
-						Battlements tower = new Battlements(level, xRatio, yRatio);
-						gameObjects.add(tower);
+						// Battlements tower = new Battlements(level, xRatio, yRatio);
+						// gameObjects.add(tower);
+						chooseTower(level, xRatio, yRatio);
 					}
 					else if(lines[0].equals("endpoint"))
 					{
@@ -59,8 +60,9 @@ class Map extends GameObject
 					float yRatio = Float.parseFloat(lines[2]);
 					if (lines[0].equals("battlement"))
 					{
-						Battlements tower = new Battlements(level, xRatio, yRatio);
-						gameObjects.add(tower);
+						chooseTower(level, xRatio, yRatio);
+						// Battlements tower = new Battlements(level, xRatio, yRatio);
+						// gameObjects.add(tower);
 					}
 					else if(lines[0].equals("endpoint"))
 					{
@@ -84,17 +86,42 @@ class Map extends GameObject
 				currentlevel.endShape(CLOSE);
 			} break;
 
-			// case 3:
-			// {
-			// 	String[] locations = loadStrings("map3.csv");
+			case 3:
+			{
+				String[] locations = loadStrings("map3.txt");
 
-			// 	for(String s : locations)
-			// 	{
-			// 		String ratios = s.split(",");
-			// 		Battlement tower = new Battlement(level, ratios[0], ratios[1]);
-			// 		battlements.add(tower);
-			// 	}
-			// } break;
+				for(String s : locations)
+				{
+					String[] lines = s.split(",");
+					float xRatio = Float.parseFloat(lines[1]);
+					float yRatio = Float.parseFloat(lines[2]);
+					if (lines[0].equals("battlement"))
+					{
+						// Battlements tower = new Battlements(level, xRatio, yRatio);
+						// gameObjects.add(tower);
+						chooseTower(level, xRatio, yRatio);
+					}
+					else if(lines[0].equals("endpoint"))
+					{
+						endPoint = new PVector(width * xRatio, height  * yRatio);
+					}
+					else
+					{
+						PVector point = new PVector(width * xRatio, height  * yRatio);
+						mapLayout.add(point);
+					}
+				}
+
+				currentlevel = createShape();
+				currentlevel.beginShape();
+				currentlevel.fill(153, 75, 0);
+				currentlevel.stroke(153, 75, 0);
+				for (int i = 0 ; i < mapLayout.size() ; i ++)
+				{
+					currentlevel.vertex(mapLayout.get(i).x, mapLayout.get(i).y);
+				}
+				currentlevel.endShape(CLOSE);
+			} break;
 		}
 	}
 
@@ -114,5 +141,35 @@ class Map extends GameObject
 		*/
 		shape(currentlevel);
 
+	}
+
+	void chooseTower(int level, float xRatio, float yRatio)
+	{
+		switch(level)
+		{
+			case 1:
+			{
+				Battlements tower = new WatchTower(level, xRatio, yRatio);
+				gameObjects.add(tower);
+			} break;
+
+			case 2:
+			{
+				Battlements tower = new SquareTower(level, xRatio, yRatio);
+				gameObjects.add(tower);
+			} break;
+
+			case 3:
+			{
+				Battlements tower = new Fort(level, xRatio, yRatio);
+				gameObjects.add(tower);
+			} break;
+
+			// default:
+			// {
+			// 	Battlements tower = new WatchTower();
+			// 	gameObjects.add(tower);
+			// } break;
+		}
 	}
 }

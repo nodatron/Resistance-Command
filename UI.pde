@@ -7,6 +7,7 @@ class Ui extends GameObject
 	PImage sol3;
 	PImage sprite2;
 	color scoreColour;
+	int baseCost;
 
 	Ui ()
 	{
@@ -18,6 +19,7 @@ class Ui extends GameObject
 		spriteHeight = height * 0.1f;
 		spriteWidth = width * 0.1f;
 		scoreColour = color(127, 0, 0);
+		baseCost = 100;
 	}
 
 	void init()
@@ -27,7 +29,7 @@ class Ui extends GameObject
 	void update()
 	{
 		//Checking if the button was pressed
-		if(playerScore < 3 * 100)
+		if(playerScore < 3 * baseCost)
 		{
 			canAffordSolidierLvl3 = false;
 		}
@@ -36,7 +38,7 @@ class Ui extends GameObject
 			canAffordSolidierLvl3 = true;
 		}
 
-		if(playerScore < 2 * 100)
+		if(playerScore < 2 * baseCost)
 		{
 			canAffordSolidierLvl2 = false;
 		}
@@ -45,7 +47,7 @@ class Ui extends GameObject
 			canAffordSolidierLvl2 = true;
 		}
 
-		if(playerScore < 1 * 100)
+		if(playerScore < 1 * baseCost)
 		{
 			canAffordSolidierLvl1 = false;
 		}

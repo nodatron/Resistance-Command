@@ -1,4 +1,8 @@
 battlement,0.9,0.75
+battlement,0.3,0.2
+battlement,0.77,0.4
+battlement,0.28,0.4
+battlement,0.5,0.8
 mapPoint,0.0,0.15
 mapPoint,0.9,0.15
 mapPoint,0.9,0.45

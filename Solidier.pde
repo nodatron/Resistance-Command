@@ -19,32 +19,6 @@ class Solidier extends GameObject implements HealthBar
 		pointsHit = 0;
 		attackbonus = 0;
 		allowedMove = false;
-		health = level * 100;
-		// Gets the sprite
-		switch(level)
-		{
-			case 1:
-			{
-				sprite = loadImage("solidier.png");
-			} break;
-
-			case 2:
-			{
-				sprite = loadImage("solidier2.png");
-			} break;
-
-			case 3:
-			{
-				sprite = loadImage("solidier3.png");
-			} break;
-
-			default:
-			{
-				sprite = loadImage("solidier.png");
-			} break;
-		}
-		// sprite = loadImage("solidier.png");
-		attack = utils.getAttackDamage(level, "solidier");
 
 		//Get the starting position of the unit
 		position.x = mapLayout.get(0).x + (width * 0.05f);
@@ -78,7 +52,9 @@ class Solidier extends GameObject implements HealthBar
 			else if(hit && gameObjects.get(i) instanceof Battlements)
 			{
 				allowedMove = false;
-				gameObjects.get(i).health -= attack + gameObjects.get(i).armour;
+				gameObjects.get(i).health -= attack + gameObjects.get(i).armour - attackbonus;
+				health -= gameObjects.get(i).attack + armour;
+				// println("Triggered allowed Move false");
 			}
 			else
 			{
@@ -94,7 +70,7 @@ class Solidier extends GameObject implements HealthBar
 
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive && !attackboostActive) attackbonus = 0;
-
+		println("attack " + attack + " attackbonus " + attackbonus);
 		// if (position.x >= goalPosition.x && position.y >= goalPosition.y)
 		if(PVector.dist(position, goalPosition) <= 5)
 		{
@@ -132,131 +108,6 @@ class Solidier extends GameObject implements HealthBar
 				goalPosition.x = mapLayout.get(pointsHit).x + ((mapLayout.get(mapLayout.size() - pointsHit - 1).x - mapLayout.get(pointsHit).x) * 0.5f);
 			}
 
-			// goalPosition = PVector.dist(mapLayout.get(pointsHit), mapLayout.get(mapLayout.size() - pointsHit));
-			// goalPosition.x = mapLayout.get(mapLayout.size() - pointsHit).x + (mapLayout.get(pointsHit).x - mapLayout.get(mapLayout.size() - pointsHit).x);
-			// goalPosition.y = mapLayout.get(mapLayout.size() - pointsHit).y + (mapLayout.get(pointsHit).y - mapLayout.get(mapLayout.size() - pointsHit).y);
-			// position.x = goalPosition.x;
-			// position.y = goalPosition.y;
-
-
-			//NOTE Testing this way of of getting the point for the movement
-			/*
-				check if mapLayout current x and prev x is the same.
-					- current x > prev x
-						- current y > next y	-x,+y
-						- current y < next y	+x,+y
-					- current x < prev x
-						- current y > next y	-x,-y
-						- current y < next y	+x,-y
-				check if mapLayout current y and prev y is the same.
-					- current y > prev y
-						- current x > next x	-x,+y
-						- current x < next x	-x,-y
-					- current y < prev y
-						- current x > next x	-x,-y
-						- current x < next x	+x,-y
-
-			*/
-
-			//FIXME PRoblem with the logic of this need to give it time tomorrow
-			// if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
-			// {
-			// 	if(mapLayout.get(pointsHit).x > mapLayout.get(pointsHit - 1).x)
-			// 	{
-			// 		if(mapLayout.get(pointsHit).y > mapLayout.get(pointsHit + 1).y)
-			// 		{
-			// 			position.x = goalPosition.x;
-			// 			position.y = goalPosition.y;
-			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-			// 			goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
-			// 		}
-			// 		else
-			// 		{
-			//
-			// 			goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
-			// 			goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
-			// 			position.x = goalPosition.x;
-			// 			position.y = goalPosition.y;
-			// 		}
-			// 	}
-			// 	else
-			// 	{
-			// 		if(mapLayout.get(pointsHit).y > mapLayout.get(pointsHit + 1).y)
-			// 		{
-			// 			position.x = goalPosition.x;
-			// 			position.y = goalPosition.y;
-			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-			// 			goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-			// 		}
-			// 		else
-			// 		{
-			// 			position.x = goalPosition.x;
-			// 			position.y = goalPosition.y;
-			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-			// 			goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
-			// 		}
-			// 	}
-			// }
-			// else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
-			// {
-			// 	if(mapLayout.get(pointsHit).y > mapLayout.get(pointsHit - 1).y)
-			// 	{
-			// 		if(mapLayout.get(pointsHit).x > mapLayout.get(pointsHit + 1).x)
-			// 		{
-			// 			position.x = goalPosition.x;
-			// 			position.y = goalPosition.y;
-			// 			goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
-			// 			goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-			// 		}
-			// 		else
-			// 		{
-			// 			position.x = goalPosition.x;
-			// 			position.y = goalPosition.y;
-			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-			// 			goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-			// 		}
-			// 	}
-			// 	else
-			// 	{
-			// 		if(mapLayout.get(pointsHit).x > mapLayout.get(pointsHit + 1).x)
-			// 		{
-			// 			position.x = goalPosition.x;
-			// 			position.y = goalPosition.y;
-			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-			// 			goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-			// 		}
-			// 		else
-			// 		{
-			// 			position.x = goalPosition.x;
-			// 			position.y = goalPosition.y;
-			// 			goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-			// 			goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
-			// 		}
-			// 	}
-			// }
-
-
-			// if(mapLayout.get(pointsHit).x == mapLayout.get(pointsHit - 1).x)
-			// {
-			// 	position.x = goalPosition.x;
-			// 	position.y = goalPosition.y;
-			// 	goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-			// 	goalPosition.y = mapLayout.get(pointsHit).y - (height  * 0.05f);
-			// }
-			// else if(mapLayout.get(pointsHit).y == mapLayout.get(pointsHit - 1).y)
-			// {
-			// 	position.x = goalPosition.x;
-			// 	position.y = goalPosition.y;
-			// 	goalPosition.x = mapLayout.get(pointsHit).x - (width * 0.05f);
-			// 	goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-			// }
-			// else
-			// {
-			// 	position.x = goalPosition.x;
-			// 	position.y = goalPosition.y;
-			// 	goalPosition.x = mapLayout.get(pointsHit).x + (width * 0.05f);
-			// 	goalPosition.y = mapLayout.get(pointsHit).y + (height  * 0.05f);
-			// }
 
 			if (pointsHit == ((mapLayout.size() / 2) - 1))
 			{
@@ -345,6 +196,10 @@ class Solidier extends GameObject implements HealthBar
 		rect(-(spriteWidth * 0.5f), -(spriteHeight * 0.5f) - 10,
 		     map(health, 0, level * 100, 0, spriteWidth),
 			 10);
+	}
+
+	void getAttackDamage()
+	{
 	}
 
 }
