@@ -16,6 +16,9 @@ class ScoreState extends GameObject implements State
 
     boolean mapFailed;
 
+    int mapNumber;
+    int level;
+
     ScoreState()
     {
         solidiersSpawned = 0;
@@ -31,10 +34,9 @@ class ScoreState extends GameObject implements State
         textSize = 26;
 
         mapFailed = false;
-    }
 
-    void init()
-    {
+        mapNumber = 1;
+        level = 1;
     }
 
     void update()
@@ -74,13 +76,14 @@ class ScoreState extends GameObject implements State
         // println("method called");
         if(keyPressed && keys['R'])
         {
+            background(0, 128, 0);
+            gameObjects.clear();
+            mapLayout.clear();
             println("Resetting");
             isGame = true;
 			isMenu = false;
 			isInstructions = false;
-            playState = new PlayState();
-            playState.mapNumber = 1;
-            playState.level = 1;
+            playState = new PlayState(mapNumber, level);
             isOver = false;
             solidiersSpawned = 0;
             lvl1SolSpawned = 0;
@@ -97,9 +100,9 @@ class ScoreState extends GameObject implements State
             isGame = true;
 			isMenu = false;
 			isInstructions = false;
-            playState = new PlayState();
-            playState.mapNumber ++;
-            playState.level ++;
+            mapNumber++;
+            level++;
+            playState = new PlayState(mapNumber, level);
             isOver = false;
             playerScore += 1000 * playState.mapNumber + (500 * (playState.level - 1));
         }

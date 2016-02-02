@@ -15,11 +15,6 @@ class SplashState extends GameObject implements State
 		halfLength = length * 0.5f;
 	}
 
-	void init()
-	{
-
-	}
-
 	void update()
 	{
 		position.x = width * 0.5f;

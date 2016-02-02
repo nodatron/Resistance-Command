@@ -3,9 +3,10 @@ class Map extends GameObject
 {
 	PShape currentlevel;
 	Map ()
-	{}
-	void init()
-	{}
+	{
+	}
+	// void init()
+	// {}
 	//NOTE: This could be a map class
 	void init(int mapNo, int level)
 	{

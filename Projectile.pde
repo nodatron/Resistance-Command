@@ -4,12 +4,6 @@ class Projectile extends GameObject
 	Projectile ()
 	{
 		super();
-		init();
-	}
-
-	void init()
-	{
-		// utils.getProjectileInfo(level);
 		spriteColour = getColourEnemy(level);
 
 		attack = 20;

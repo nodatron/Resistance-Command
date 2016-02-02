@@ -18,7 +18,7 @@ class Battlements extends GameObject
 		isWithinRange = false;
 	}
 
-	void init(){}
+	// void init(){}
 	void update()
 	{
 		// forward.x = sin(theta);

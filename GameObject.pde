@@ -49,7 +49,7 @@ abstract class GameObject
 		itint = 0;
 	}
 
-	abstract void init();
+	// abstract void init();
 	abstract void update();
 	abstract void render();
 }

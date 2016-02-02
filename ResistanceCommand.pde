@@ -35,11 +35,11 @@
 //		Need to reset the score and all variables in scorestate when this is done
 
 // Used for util functions throughout the game
-RCUtils utils = new RCUtils();
+// RCUtils utils = new RCUtils();
 ArrayList<PVector> mapLayout = new ArrayList<PVector>();
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
-PShape currentlevel;
+// PShape currentlevel;
 PVector endPoint;
 
 //Setting the height of the map
@@ -54,7 +54,7 @@ void setup()
 	MAP_HEIGHT = height * 0.9f;
 	menuState = new MenuState();
 	scoreState = new ScoreState();
-	playState = new PlayState();
+	playState = new PlayState(1, 1);
 	splashState = new SplashState();
 }
 

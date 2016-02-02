@@ -22,9 +22,6 @@ class Ui extends GameObject
 		baseCost = 100;
 	}
 
-	void init()
-	{
-	}
 
 	void update()
 	{
@@ -94,7 +91,7 @@ class Ui extends GameObject
 		}
 
 		//Displays the buffs that are availible
-		if(blitzActive)
+		if(blitzActive && !buffActive)
 		{
 			tint(255, 255);
 			image(sprite, width * 0.5f, MAP_HEIGHT, spriteWidth, spriteHeight);
@@ -105,7 +102,7 @@ class Ui extends GameObject
 			image(sprite, width * 0.5f, MAP_HEIGHT, spriteWidth, spriteHeight);
 		}
 
-		if(attackboostActive)
+		if(attackboostActive && !buffActive)
 		{
 			tint(255, 255);
 			image(sprite2, width * 0.6f, MAP_HEIGHT, spriteWidth, spriteHeight);
@@ -186,12 +183,12 @@ class Ui extends GameObject
 				solidierLvl3Bought = true;
 			}
 
-			if(keys['A'])
+			if(keys['A'] && !buffActive)
 			{
 				attackboostActive = true;
 			}
 
-			if(keys['B'])
+			if(keys['B'] && !buffActive)
 			{
 				blitzActive = true;
 			}

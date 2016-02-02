@@ -36,10 +36,10 @@ class MenuState extends GameObject implements State
 		backgroundColour = color(0, 0, 26);
     }
 
-    void init()
-    {
-
-    }
+    // void init()
+    // {
+    //
+    // }
 
     void update()
     {

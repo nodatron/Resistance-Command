@@ -13,7 +13,7 @@ class PlayState extends GameObject implements State
     {
         ui = new Ui();
         map = new Map();
-        mapNumber = 2;
+        mapNumber = 1;
         level = 1;
         newGame = true;
         attackB = new AttackBoost();
@@ -23,14 +23,29 @@ class PlayState extends GameObject implements State
         baseLevelBonus = 500;
     }
 
-    void init()
-    {}
+    PlayState(int level, int mapNumber)
+    {
+        ui = new Ui();
+        map = new Map();
+        this.mapNumber = mapNumber;
+        this.level = level;
+        newGame = true;
+        attackB = new AttackBoost();
+        blitz = new Blitz();
+        baseCost = 100;
+        baseStartScore = 1000;
+        baseLevelBonus = 500;
+    }
+
+    // void init()
+    // {}
 
     void update()
     {
         //TODO if they come from the splash screen to game mode then reload everything into the game
         if(newGame)
         {
+            background(0, 128, 0);
             gameObjects.add(map);
             map.init(mapNumber, level);
             gameObjects.add(blitz);
