@@ -22,6 +22,8 @@ abstract class GameObject
 	float spriteHeight;
 	color spriteColour;
 
+  AudioPlayer hitSound;
+  
 	//for the powerups
 	float itint;
 

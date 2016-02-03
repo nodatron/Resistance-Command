@@ -1,3 +1,33 @@
+/*TODO(13/02/16)
+	Get the sounds from the web and use them in the game
+	Make sure that the buff icons will light up when they are activated
+	Balance the game so that the player can get through the game without losing every single time
+		-change the health of the units
+		-change the damage of the projectiles and the towers
+		-change the range and the fire rate of the towers
+	Make the new sprites for the 2 other types of battlements
+	Comment all the code
+	Added references to the music makers
+	commit the game to git and leave it alone forever
+
+	Credits
+	DaleT92 - freesound
+	CastIronCarousel
+	chripei
+	GabrielAraujo
+	inchadney
+	cormi
+	Setuniman
+	Kyster
+	Timbre
+	Under7dude
+*/
+
+
+
+
+
+
 //TODO(30/12/2015) 	1. Move the stuff from the map class into the utils class becuase it doesnt make sense to have a map class   DONE
 //					2. Make the Solidiers move in the way of the map   DONE
 //					3. Make the battlements fire at the solidiers.	DONE
@@ -36,6 +66,13 @@
 
 // Used for util functions throughout the game
 // RCUtils utils = new RCUtils();
+
+import ddf.minim.*;
+
+Minim minim;
+AudioPlayer music;
+// Audio audio;
+
 ArrayList<PVector> mapLayout = new ArrayList<PVector>();
 ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
@@ -51,6 +88,8 @@ void setup()
 {
 	fullScreen();
 	frameRate(60);
+  	minim = new Minim(this);
+	// audio = new Audio(minim);
 	MAP_HEIGHT = height * 0.9f;
 	menuState = new MenuState();
 	scoreState = new ScoreState();

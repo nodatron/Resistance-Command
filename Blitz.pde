@@ -3,12 +3,20 @@
 class Blitz extends GameObject implements Powerup
 {
 	int buffTime;
+	boolean powerupSoundPlayed;
+	AudioPlayer sound;
 
 	Blitz ()
 	{
 		//NOTE this needs to change **Five minutes
 		buffTime = 18000;
 		sprite = loadImage("blitztext.png");
+		powerupSoundPlayed = false;
+		blitzActive = false;
+		buffActive = false;
+		blitzAnimation = false;
+		sound = minim.loadFile("powerup.wav");
+		buffTimer = 0;
 	}
 
 	void buff(Solidier solidiers)
@@ -37,15 +45,18 @@ class Blitz extends GameObject implements Powerup
 				{
 					buff((Solidier)gameObjects.get(i));
 					// itint += (255/300);
-					if(buffTimer < 300)
-					{
-						blitzAnimation = true;
-					}
-					else
-					{
-						blitzAnimation = false;
-					}
+
 				}
+			}
+
+			if(buffTimer < 100)
+			{
+				blitzAnimation = true;
+			}
+			else
+			{
+				blitzAnimation = false;
+				powerupSoundPlayed = false;
 			}
 
 			if(buffTimer > 1800)
@@ -53,6 +64,7 @@ class Blitz extends GameObject implements Powerup
 				blitzActive = false;
 				buffActive = false;
 				buffTimer = 0;
+				powerupSoundPlayed = false;
 			}
 		}
 
@@ -66,6 +78,17 @@ class Blitz extends GameObject implements Powerup
 			// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
 			// println(buffTimer);
 			text("BLITZ", width * 0.5f, height * 0.5f);
+			playSound();
+		}
+	}
+
+	void playSound()
+	{
+		if(!powerupSoundPlayed)
+		{
+			sound.rewind();
+			sound.play();
+			powerupSoundPlayed = true;
 		}
 	}
 }

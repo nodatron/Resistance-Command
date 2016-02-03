@@ -4,6 +4,8 @@ class Battlements extends GameObject
 	boolean isWithinRange;
 	PVector solpos;
 
+	AudioPlayer sound;
+
 	Battlements ()
 	{
 		super();
@@ -16,6 +18,7 @@ class Battlements extends GameObject
 		position.x = width * xRatio;
 		position.y = height  * yRatio;
 		isWithinRange = false;
+		sound = minim.loadFile("towerfire.wav");
 	}
 
 	// void init(){}
@@ -35,6 +38,7 @@ class Battlements extends GameObject
 				if(PVector.dist(this.position, gameObjects.get(i).position) <= 300 && elapsed > 30)
 				{
 					elapsed = 0;
+					fire();
 					Projectile p = new Projectile();
 					p.position.x = position.x;
 					p.position.y = position.y;
@@ -66,5 +70,11 @@ class Battlements extends GameObject
 	{
 		// println("PI " + PI + " TWO_PI " + TWO_PI);
 		return atan2(position.y - solidierPos.y, position.x - solidierPos.x) - HALF_PI;
+	}
+
+	void fire()
+	{
+		sound.rewind();
+		sound.play();
 	}
 }

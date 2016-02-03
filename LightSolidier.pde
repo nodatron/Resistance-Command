@@ -1,6 +1,6 @@
 class LightSolidier extends Solidier
 {
-
+    // Audio audio;
     LightSolidier()
     {
         super(1);

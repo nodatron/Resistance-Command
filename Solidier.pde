@@ -8,6 +8,8 @@ class Solidier extends GameObject implements HealthBar
 	color healthColour;
 	color missingHealthColour;
 
+	AudioPlayer sound;
+
 	Solidier ()
 	{
 		this(1);
@@ -19,6 +21,8 @@ class Solidier extends GameObject implements HealthBar
 		pointsHit = 0;
 		attackbonus = 0;
 		allowedMove = false;
+
+
 
 		//Get the starting position of the unit
 		position.x = mapLayout.get(0).x + (width * 0.05f);
@@ -32,6 +36,8 @@ class Solidier extends GameObject implements HealthBar
 
 		healthColour = color(0, 50, 0);
 		missingHealthColour = color(255, 0, 0);
+
+		sound = minim.loadFile("playerhit.wav");
 	}
 
 	void update()
@@ -43,6 +49,7 @@ class Solidier extends GameObject implements HealthBar
 			if(hit && gameObjects.get(i) instanceof Projectile)
 			{
 				gameObjects.remove(i);
+				hit();
 			}
 			else if(hit && gameObjects.get(i) instanceof Battlements)
 			{
@@ -193,8 +200,10 @@ class Solidier extends GameObject implements HealthBar
 			 10);
 	}
 
-	void getAttackDamage()
+	void hit()
 	{
+		sound.rewind();
+		sound.play();
 	}
 
 }

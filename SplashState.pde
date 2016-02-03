@@ -6,9 +6,14 @@ class SplashState extends GameObject implements State
 	float length;
 	float halfLength;
 
+	// AudioPlayer sound;
+ //    boolean menuThemePlayed;
+
 	SplashState ()
 	{
 		super();
+		// sound = minim.loadFile("menutheme.wav");
+		// menuThemePlayed = false;
 		backgroundImage = loadImage("rcbackground.jpg");
 		menuTextSize = 32;
 		length = textWidth("Click to Play or press P");
@@ -24,6 +29,8 @@ class SplashState extends GameObject implements State
 		buttonColour = color(153, 187, 255);
 
 		handleInput();
+
+		// playTheme();
 	}
 
 	void render()
@@ -43,19 +50,24 @@ class SplashState extends GameObject implements State
 			isGame = true;
 			isMenu = false;
 			isInstructions = false;
-			playState.newGame = true;
+			// playState.newGame = true;
+			// menuThemePlayed = false;
+
 		}
 		else if(keys['M'])
 		{
 			isGame = false;
 			isMenu = true;
 			isInstructions = false;
+
 		}
 		else if(keys['I'])
 		{
 			isGame = false;
 			isMenu = false;
 			isInstructions = true;
+			// sound.pause();
+			// menuThemePlayed = false;
 		}
 
 
@@ -68,6 +80,8 @@ class SplashState extends GameObject implements State
 			isMenu = false;
 			isGame = true;
 			isInstructions = false;
+			// sound.pause();
+			// menuThemePlayed = false;
 		}
 
 		 if(mousePressed &&
@@ -79,6 +93,18 @@ class SplashState extends GameObject implements State
 			isMenu = false;
 			isGame = false;
 			isInstructions = true;
+			// sound.pause();
+			// menuThemePlayed = false;
 		 }
 	}
+
+	// void playTheme()
+	// {
+	// 	if(!menuThemePlayed)
+	// 	{
+	// 		sound.rewind();
+	// 		sound.play();
+	// 		menuThemePlayed = true;
+	// 	}
+	// }
 }

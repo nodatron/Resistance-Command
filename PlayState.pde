@@ -9,6 +9,8 @@ class PlayState extends GameObject implements State
     int baseStartScore;
     int baseLevelBonus;
 
+    AudioPlayer sound;
+
     PlayState()
     {
         ui = new Ui();
@@ -35,6 +37,8 @@ class PlayState extends GameObject implements State
         baseCost = 100;
         baseStartScore = 1000;
         baseLevelBonus = 500;
+
+        sound = minim.loadFile("towerhit.aiff");
     }
 
     // void init()
@@ -137,6 +141,10 @@ class PlayState extends GameObject implements State
             }
             else
             {
+                if(gameObjects.get(i) instanceof Battlements)
+                {
+                    battlementDie();
+                }
                 gameObjects.remove(i);
             }
 
@@ -195,5 +203,11 @@ class PlayState extends GameObject implements State
     void startBuffCounter()
     {
         buffTimer++;
+    }
+
+    void battlementDie()
+    {
+        sound.rewind();
+        sound.play();
     }
 }

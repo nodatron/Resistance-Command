@@ -16,6 +16,8 @@ class MenuState extends GameObject implements State
 	float textXPosButton;
 	float textXPosFunction;
 
+
+
     MenuState()
     {
         numRows = 10;
@@ -48,6 +50,7 @@ class MenuState extends GameObject implements State
 
     void render()
     {
+
         background(backgroundColour);
 		noFill();
 		stroke(tableColour);
@@ -120,4 +123,6 @@ class MenuState extends GameObject implements State
 			isInstructions = true;
 		}
     }
+
+
 }

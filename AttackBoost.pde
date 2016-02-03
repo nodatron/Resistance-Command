@@ -3,11 +3,20 @@ class AttackBoost extends GameObject implements Powerup
 {
 	int buffTime;
 	int bonus;
+
+	AudioPlayer sound;
+	boolean powerupSoundPlayed;
 	AttackBoost()
 	{
 		buffTime = 7200;
 		bonus = 10;
 		sprite = loadImage("attackboost.png");
+		sound = minim.loadFile("powerup.wav");
+		powerupSoundPlayed = false;
+		attackboostActive = false;
+		attackBAnimation = false;
+		buffActive = false;
+		buffTimer = 0;
 	}
 
 	void buff(Solidier solidier)
@@ -39,24 +48,25 @@ class AttackBoost extends GameObject implements Powerup
 				if (gameObjects.get(i) instanceof Solidier)
 				{
 					buff((Solidier)gameObjects.get(i));
-					if(buffTimer < 300)
-					{
-						attackBAnimation = true;
-					}
-					else
-					{
-						attackBAnimation = false;
-					}
 					// itint += (255/300);
 				}
 			}
+			if(buffTimer < 300)
+			{
+				attackBAnimation = true;
+			}
+			else
+			{
+				attackBAnimation = false;
+			}
+
+			if(buffTimer > buffTime)
+			{
+				attackboostActive = false;
+				buffActive = false;
+			}
 		}
 
-		if(buffTimer > buffTime)
-		{
-			attackboostActive = false;
-			buffActive = false;
-		}
 	}
 
 	void render()
@@ -65,8 +75,18 @@ class AttackBoost extends GameObject implements Powerup
 		{
 			// tint(255, itint);
 			// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
-			println(buffTimer);
 			text("ATTACK BOOST", width * 0.5f, height * 0.5f);
+			playSound();
+		}
+	}
+
+	void playSound()
+	{
+		if(!powerupSoundPlayed)
+		{
+			sound.rewind();
+			sound.play();
+			powerupSoundPlayed = true;
 		}
 	}
 }
