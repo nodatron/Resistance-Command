@@ -1,4 +1,4 @@
-//can use the function .angleBetween() to find the right way to fire, this is for vectors
+// Class for the towers in the game
 class Battlements extends GameObject
 {
 	boolean isWithinRange;
@@ -21,20 +21,18 @@ class Battlements extends GameObject
 		sound = minim.loadFile("towerfire.wav");
 	}
 
-	// void init(){}
 	void update()
 	{
-		// forward.x = sin(theta);
-  		//forward.y = - cos(theta);
 
+		// check if a solidier is within range and if so fire a bullet
 		for (int i = 0 ; i < gameObjects.size() ; i ++)
 		{
 			if(gameObjects.get(i) instanceof Solidier)
 			{
+				// gets the angle the projectile needs to go
 				theta = findDirectionToShoot(gameObjects.get(i).position, this.position);
-				//TODO make the range different for the different levels of towers
 
-				// TODO make the turret only shoot at one enemy at a time
+				// spawns a new projectile and gives it the neccessary stats, plays a sound and adds the projectile to gameObjects
 				if(PVector.dist(this.position, gameObjects.get(i).position) <= 300 && elapsed > 30)
 				{
 					elapsed = 0;
@@ -49,6 +47,7 @@ class Battlements extends GameObject
 			}
 		}
 
+		// no health means dead
 		if(health <= 0)
 		{
 			isAlive = false;
@@ -57,21 +56,22 @@ class Battlements extends GameObject
 
 	void render()
 	{
+		//draw the tower
 		pushMatrix();
 		translate(position.x, position.y);
 		stroke(spriteColour);
 		tint(255, 255);
 		image(sprite, -(spriteWidth * 0.5f), -(spriteHeight * 0.5f), spriteWidth, spriteHeight);
-		// ellipse(0, 0, spriteWidth, spriteHeight);
 		popMatrix();
 	}
 
 	float findDirectionToShoot (PVector solidierPos, PVector battlementPos)
 	{
-		// println("PI " + PI + " TWO_PI " + TWO_PI);
+		//gets the angle for the bullet to fire
 		return atan2(position.y - solidierPos.y, position.x - solidierPos.x) - HALF_PI;
 	}
 
+	//play the sound
 	void fire()
 	{
 		sound.rewind();

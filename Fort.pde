@@ -1,7 +1,6 @@
+//Higgest level of battlement on the game
 class Fort extends Battlements
 {
-
-
     Fort(int level, float xRatio, float yRatio)
     {
         super(3, xRatio, yRatio);

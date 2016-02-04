@@ -1,5 +1,4 @@
-//Speed boost for all friendly soliders
-//TODO Make the image appear instead of writing
+// Speed boost for all friendly soliders
 class Blitz extends GameObject implements Powerup
 {
 	int buffTime;
@@ -8,7 +7,6 @@ class Blitz extends GameObject implements Powerup
 
 	Blitz ()
 	{
-		//NOTE this needs to change **Five minutes
 		buffTime = 18000;
 		sprite = loadImage("blitztext.png");
 		powerupSoundPlayed = false;
@@ -19,36 +17,32 @@ class Blitz extends GameObject implements Powerup
 		buffTimer = 0;
 	}
 
+	// increases the speed of all the solidiers
 	void buff(Solidier solidiers)
 	{
 		if (buffTimer <= buffTime)
 		{
 			blitzActive = true;
-			solidiers.forward.mult(3);
+			solidiers.forward.mult(2.5);
 		}
 	}
-	//FIXME The image is not being displayed onto the screen when it is called
-	//TODO Need to add a popup on the screen that comes up when the powerup is activated that lasts
-	// for a few seconds and then leaves the screen.  Also may want to add the drawing of the ui
-	// elements for the powerups here
-	// void init()
-	// {
-	// }
+
 
 	void update()
 	{
+		// if buff has been activated buff every solidier
 		if (blitzActive)
 		{
+			// buff all the solidiers
 			for (int i = gameObjects.size() - 1 ; i >= 0 ; i --)
 			{
 				if (gameObjects.get(i) instanceof Solidier)
 				{
 					buff((Solidier)gameObjects.get(i));
-					// itint += (255/300);
-
 				}
 			}
 
+			// display a message for the user for a few seconds
 			if(buffTimer < 100)
 			{
 				blitzAnimation = true;
@@ -59,7 +53,8 @@ class Blitz extends GameObject implements Powerup
 				powerupSoundPlayed = false;
 			}
 
-			if(buffTimer > 1800)
+			//stop the buff after some time
+			if(buffTimer > buffTime)
 			{
 				blitzActive = false;
 				buffActive = false;
@@ -70,18 +65,17 @@ class Blitz extends GameObject implements Powerup
 
 	}
 
+	//display a message and play a sound
 	void render()
 	{
 		if(blitzAnimation)
 		{
-			// tint(255, itint);
-			// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
-			// println(buffTimer);
 			text("BLITZ", width * 0.5f, height * 0.5f);
 			playSound();
 		}
 	}
 
+	//only play the sound once
 	void playSound()
 	{
 		if(!powerupSoundPlayed)

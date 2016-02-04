@@ -1,3 +1,4 @@
+// Menu state NOTE should change to instruction state
 class MenuState extends GameObject implements State
 {
     color backgroundColour;
@@ -38,16 +39,13 @@ class MenuState extends GameObject implements State
 		backgroundColour = color(0, 0, 26);
     }
 
-    // void init()
-    // {
-    //
-    // }
-
+    // checks for input from the user
     void update()
     {
         handleInput();
     }
 
+    // draws the boxes and lists of controls
     void render()
     {
 
@@ -102,20 +100,24 @@ class MenuState extends GameObject implements State
 			 textXPosFunction, tablePos.y + (cellHeight * 9.0f) + halfCellHeight);
     }
 
+    // checks for user input
     void handleInput()
     {
+    	// go to game
         if(keys['P'])
 		{
 			isGame = true;
 			isMenu = false;
 			isInstructions = false;
 		}
+		// go to the splash screen
 		else if(keys['M'])
 		{
 			isGame = false;
 			isMenu = true;
 			isInstructions = false;
 		}
+		//Stay on the same state
 		else if(keys['I'])
 		{
 			isGame = false;

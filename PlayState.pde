@@ -1,3 +1,4 @@
+// Game state or play state for the game
 class PlayState extends GameObject implements State
 {
     Ui ui;
@@ -41,11 +42,10 @@ class PlayState extends GameObject implements State
         sound = minim.loadFile("towerhit.aiff");
     }
 
-    // void init()
-    // {}
 
     void update()
     {
+        // if it is a new game being started, reload everything for the map
         if(newGame)
         {
             background(0, 128, 0);
@@ -65,7 +65,10 @@ class PlayState extends GameObject implements State
         }
         else
         {
+            // check the user input
             handleInput();
+            // adds level 1 solidier
+            // last three lines are for stats
             if(solidierLvl1Bought)
             {
                 Solidier newSol = new LightSolidier();
@@ -77,6 +80,8 @@ class PlayState extends GameObject implements State
                 scoreState.lvl1SolSpawned ++;
             }
 
+            //adds level 2 solidier
+            // last three lines are for stats
             if(solidierLvl2Bought)
             {
                 Solidier newSol = new MedSoilidier();
@@ -88,6 +93,8 @@ class PlayState extends GameObject implements State
                 scoreState.lvl2SolSpawned ++;
             }
 
+            // adds level 3 solidier
+            // last three lines are for stats
             if(solidierLvl3Bought)
             {
                 Solidier newSol = new HeavySolidier();
@@ -99,6 +106,7 @@ class PlayState extends GameObject implements State
                 scoreState.lvl3SolSpawned ++;
             }
 
+            // makes sure only one buff can be active at one time
             if(blitzActive)
             {
                 buffActive = true;
@@ -109,6 +117,7 @@ class PlayState extends GameObject implements State
                 buffActive = true;
             }
 
+            //starts a counter for the buffs
             if(buffActive) startBuffCounter();
 
             stroke(0);
@@ -121,6 +130,7 @@ class PlayState extends GameObject implements State
     void render()
     {
         background(0, 128, 0);
+        
         int gameObjectsLeft = 0;
         int objectCounter = 0;
         for(int i = 0 ; i < gameObjects.size() ; i ++)

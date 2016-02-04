@@ -1,4 +1,4 @@
-//more damage for each solidier
+// Boosts the attack damage for all the solidiers
 class AttackBoost extends GameObject implements Powerup
 {
 	int buffTime;
@@ -6,6 +6,7 @@ class AttackBoost extends GameObject implements Powerup
 
 	AudioPlayer sound;
 	boolean powerupSoundPlayed;
+
 	AttackBoost()
 	{
 		buffTime = 7200;
@@ -19,28 +20,19 @@ class AttackBoost extends GameObject implements Powerup
 		buffTimer = 0;
 	}
 
+	// increases the bonus damage for the solidier
 	void buff(Solidier solidier)
 	{
 		if (buffTimer <= buffTime)
 		{
 			attackboostActive = true;
-			//boost the attack damage of the soliders
 			solidier.attackbonus = bonus;
 		}
 	}
 
-	//FIXME The image is not showing up on the screen
-	//FIXME Need to change how buff is called cause it is causing an index out of bounds exception
-	//TODO Need to add a popup on the screen that comes up when the powerup is activated that lasts
-	// for a few seconds and then leaves the screen.  Also may want to add the drawing of the ui
-	// elements for the powerups here
-	// void init()
-	// {
-	//
-	// }
-
 	void update()
 	{
+		// if the buff has been activated buff every solidier
 		if (attackboostActive)
 		{
 			for (int i = gameObjects.size() - 1 ; i >= 0 ; i --)
@@ -48,9 +40,9 @@ class AttackBoost extends GameObject implements Powerup
 				if (gameObjects.get(i) instanceof Solidier)
 				{
 					buff((Solidier)gameObjects.get(i));
-					// itint += (255/300);
 				}
 			}
+			// makes the word attackboost show on screen for a few seconds then disapear
 			if(buffTimer < 300)
 			{
 				attackBAnimation = true;
@@ -60,6 +52,7 @@ class AttackBoost extends GameObject implements Powerup
 				attackBAnimation = false;
 			}
 
+			// stop the buff after a certain amount of time
 			if(buffTimer > buffTime)
 			{
 				attackboostActive = false;
@@ -71,10 +64,9 @@ class AttackBoost extends GameObject implements Powerup
 
 	void render()
 	{
+		// display the message and play sound
 		if(attackBAnimation)
 		{
-			// tint(255, itint);
-			// image(sprite, width * 0.25f, height * 0.25f, width * 0.5f, height * 0.2f);
 			text("ATTACK BOOST", width * 0.5f, height * 0.5f);
 			playSound();
 		}
@@ -82,6 +74,7 @@ class AttackBoost extends GameObject implements Powerup
 
 	void playSound()
 	{
+		//only play the sound once
 		if(!powerupSoundPlayed)
 		{
 			sound.rewind();

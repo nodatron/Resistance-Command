@@ -1,6 +1,6 @@
+// Higgest level of solidier the user can buy
 class HeavySolidier extends Solidier
 {
-
     HeavySolidier()
     {
         super(3);

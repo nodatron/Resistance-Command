@@ -1,3 +1,4 @@
+// The middle class of solidier
 class MedSoilidier extends Solidier
 {
 
