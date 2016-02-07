@@ -1,3 +1,4 @@
+// User interface for when the game is in playstate
 class Ui extends GameObject
 {
 	Blitz blitz;
@@ -22,7 +23,7 @@ class Ui extends GameObject
 		baseCost = 100;
 	}
 
-
+	// changes the alpha of the images based on whether the user can afford certain units
 	void update()
 	{
 		//Checking if the button was pressed
@@ -91,7 +92,7 @@ class Ui extends GameObject
 		}
 
 		//Displays the buffs that are availible
-		if(blitzActive && !buffActive)
+		if(!blitzActive && !buffActive)
 		{
 			tint(255, 255);
 			image(sprite, width * 0.5f, MAP_HEIGHT, spriteWidth, spriteHeight);
@@ -102,7 +103,7 @@ class Ui extends GameObject
 			image(sprite, width * 0.5f, MAP_HEIGHT, spriteWidth, spriteHeight);
 		}
 
-		if(attackboostActive && !buffActive)
+		if(!attackboostActive && !buffActive)
 		{
 			tint(255, 255);
 			image(sprite2, width * 0.6f, MAP_HEIGHT, spriteWidth, spriteHeight);
@@ -117,9 +118,9 @@ class Ui extends GameObject
 		text((int)playerScore, width * 0.9f, height * 0.05f);
 	}
 
+	// checks if the user presses mouse in certain area
 	void checkUIButtonPressed()
 	{
-		// println("method called");
 		if(mousePressed && solSpawnTimer > 30)
 		{
 			if(mouseY > MAP_HEIGHT && mouseY < height
@@ -164,6 +165,7 @@ class Ui extends GameObject
 		}
 	}
 
+	//checks if the user presses a specific key
 	void checkUIKeyPressed()
 	{
 		if(keyPressed && solSpawnTimer > 30)

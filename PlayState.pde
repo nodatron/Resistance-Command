@@ -130,7 +130,7 @@ class PlayState extends GameObject implements State
     void render()
     {
         background(0, 128, 0);
-        
+
         int gameObjectsLeft = 0;
         int objectCounter = 0;
         for(int i = 0 ; i < gameObjects.size() ; i ++)
@@ -163,7 +163,7 @@ class PlayState extends GameObject implements State
         ui.update();
         ui.render();
         if(!newGame)
-        {//Success in beating the map
+        {   //Success in beating the map
             if(gameObjectsLeft == gameObjects.size())
             {
                 isOver = true;
@@ -180,8 +180,10 @@ class PlayState extends GameObject implements State
 
     }
 
+    //Checks to see the input from the user
     void handleInput()
     {
+        // Checks if the ui elements have been pressed
         ui.checkUIButtonPressed();
         ui.checkUIKeyPressed();
         if(keys['P'])
@@ -210,11 +212,13 @@ class PlayState extends GameObject implements State
 		}
     }
 
+    // counter for the buffs duration
     void startBuffCounter()
     {
         buffTimer++;
     }
 
+    //plays a sound if a battlement dies
     void battlementDie()
     {
         sound.rewind();

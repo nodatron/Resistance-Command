@@ -1,7 +1,8 @@
-//TODO Make a fancy Score Screen for the user to see the stuff
+// Shows and trakes some stats for the player during each game
 class ScoreState extends GameObject implements State
 {
 
+    // Player related stats
     int solidiersSpawned;
     int lvl1SolSpawned;
     int lvl2SolSpawned;
@@ -10,25 +11,24 @@ class ScoreState extends GameObject implements State
     int amountSpent;
     int amountEarned;
 
+    // apperance
     int textSize;
     color backgroundColour;
     color textColour;
-
     boolean mapFailed;
 
+    //for the next and retry parts
     int mapNumber;
     int level;
 
+    //audio related
     boolean winSoundPlayed;
     boolean failSoundPlayed;
-
     AudioPlayer fail;
     AudioPlayer win;
 
     ScoreState()
     {
-        // this.audio = audio;
-
         solidiersSpawned = 0;
         lvl1SolSpawned = 0;
         lvl2SolSpawned = 0;
@@ -55,9 +55,12 @@ class ScoreState extends GameObject implements State
 
     void update()
     {
+        //check for the user input in this state
         handleInput();
     }
 
+    // render all the stats, render appropriate message based on whether the map
+    // was cleared or not and play a sound
     void render()
     {
         background(backgroundColour);
@@ -88,9 +91,10 @@ class ScoreState extends GameObject implements State
 
     }
 
+    // check if the player wants to retry the level or go to the next level if
+    // they can
     void handleInput()
     {
-        // println("method called");
         if(keyPressed && keys['R'])
         {
             mapFailed = false;
@@ -106,9 +110,9 @@ class ScoreState extends GameObject implements State
             solidiersDead = 0;
             amountSpent = 0;
             amountEarned = 0;
+            mapLayout.clear();
             failSoundPlayed = false;
             winSoundPlayed = false;
-            mapLayout.clear();
         }
 
         if(keyPressed && keys['N'] && !mapFailed)
@@ -120,12 +124,13 @@ class ScoreState extends GameObject implements State
             level++;
             playState = new PlayState(mapNumber, level);
             isOver = false;
+            mapLayout.clear();
             failSoundPlayed = false;
             winSoundPlayed = false;
-            mapLayout.clear();
         }
     }
 
+    //play the failure sound
     void failSound()
     {
         if(!failSoundPlayed)
@@ -136,6 +141,7 @@ class ScoreState extends GameObject implements State
         }
     }
 
+    //play the victory sound
     void winSound()
     {
         if(!winSoundPlayed)

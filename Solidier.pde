@@ -1,5 +1,4 @@
-//NOTE: First map needs to follow along y of 20% of height until 50% of width
-
+// Base solidier class
 class Solidier extends GameObject implements HealthBar
 {
 	int pointsHit;
@@ -28,6 +27,7 @@ class Solidier extends GameObject implements HealthBar
 		position.x = mapLayout.get(0).x + (width * 0.05f);
 		position.y = mapLayout.get(0).y + (height   * 0.05f);
 
+		//Get the first goal position of the solidiers
 		goalPosition.x = mapLayout.get(0).x + (width * 0.05f);
 		goalPosition.y = mapLayout.get(0).y + (height   * 0.05f);
 
@@ -42,7 +42,7 @@ class Solidier extends GameObject implements HealthBar
 
 	void update()
 	{
-
+		//Checks the collisions with the solider
 		for (int i = gameObjects.size() - 1 ; i >= 0 ; i--)
 		{
 			boolean hit = checkCollison(gameObjects.get(i));
@@ -56,7 +56,6 @@ class Solidier extends GameObject implements HealthBar
 				allowedMove = false;
 				gameObjects.get(i).health -= attack + gameObjects.get(i).armour - attackbonus;
 				health -= gameObjects.get(i).attack + armour;
-				// println("Triggered allowed Move false");
 			}
 			else
 			{
@@ -64,6 +63,7 @@ class Solidier extends GameObject implements HealthBar
 			}
 		}
 
+		//if they have no health then they die
 		if(health <= 0)
 		{
 			isAlive = false;
@@ -73,11 +73,9 @@ class Solidier extends GameObject implements HealthBar
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive && !attackboostActive) attackbonus = 0;
 		println("attack " + attack + " attackbonus " + attackbonus);
-		// if (position.x >= goalPosition.x && position.y >= goalPosition.y)
+		// AI for the solidiers to make them walk correctly
 		if(PVector.dist(position, goalPosition) <= 5)
 		{
-
-			// println(pointsHit);
 			pointsHit ++;
 
 			position.x = goalPosition.x;
@@ -110,16 +108,17 @@ class Solidier extends GameObject implements HealthBar
 				goalPosition.x = mapLayout.get(pointsHit).x + ((mapLayout.get(mapLayout.size() - pointsHit - 1).x - mapLayout.get(pointsHit).x) * 0.5f);
 			}
 
-
+			// half the sze of mapLayout - 1 means there is one point left to go
+			// so make them head towards the end point
 			if (pointsHit == ((mapLayout.size() / 2) - 1))
 			{
 				goalPosition.x = endPoint.x;
 				goalPosition.y = endPoint.y;
-				// isAlive = false;
 			}
 
 		}
 
+		// the solidier has reached the end o the map
 		if(PVector.dist(position, endPoint) <= 5)
 		{
 			isAlive = false;
@@ -127,9 +126,10 @@ class Solidier extends GameObject implements HealthBar
 			scoreState.amountEarned += reward;
 		}
 
+		// change forward based on where the solidier is in relation to the
+		// the goal position
 		if(allowedMove)
 		{
-
 			if (position.x > goalPosition.x && position.x != goalPosition.x)
 			{
 				forward.x = -1;
@@ -150,6 +150,7 @@ class Solidier extends GameObject implements HealthBar
 				forward.x = 0;
 				forward.y = 1;
 			}
+			// if blitz has been activated buff the solidiers
 			if(buffActive && blitzActive) blitz.buff(this);
 
 			position.add(forward);
@@ -157,6 +158,7 @@ class Solidier extends GameObject implements HealthBar
 
 	}
 
+	//draw the solidier and the healthbar
 	void render()
 	{
 		pushMatrix();
@@ -170,6 +172,7 @@ class Solidier extends GameObject implements HealthBar
 		popMatrix();
 	}
 
+	// checks if the solidier has collided with another object
 	boolean checkCollison(GameObject object)
 	{
 		if (object.position.x < position.x + (spriteWidth * 0.5f) &&
@@ -191,6 +194,7 @@ class Solidier extends GameObject implements HealthBar
 		return false;
 	}
 
+	// draw the healthbar for the solidier
 	void renderHealthBar()
 	{
 		stroke(healthColour);
@@ -200,6 +204,7 @@ class Solidier extends GameObject implements HealthBar
 			 10);
 	}
 
+	// plays a sound
 	void hit()
 	{
 		sound.rewind();

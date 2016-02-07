@@ -1,3 +1,4 @@
+// weakest tower in game
 class WatchTower extends Battlements
 {
     WatchTower(int level, float xRatio, float yRatio)

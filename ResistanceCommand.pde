@@ -23,32 +23,15 @@
 	Under7dude
 */
 
-
-
-
-
-
-//TODO(30/12/2015) 	1. Move the stuff from the map class into the utils class becuase it doesnt make sense to have a map class   DONE
-//					2. Make the Solidiers move in the way of the map   DONE
-//					3. Make the battlements fire at the solidiers.	DONE
-//					4. Make collision detection for the solidiers and the battlements	DONE
-//   				5. Make the damage from the towers get effected by the armour of the solidiers and do the same for the solidiers being hit
-//					by the battlements	DONE
-//					6. Make the powerups for the Solidiers
-//						ideas: speed boost, armour boost, all heal, barrage on towers, 				SOME ARE DONE
-//					7. Make a score go up for every solidier that goes through the last point of the game
-//					8. Make the sprites for the game i.e. foot solidier, knight, battering ram, archer tower, catapult tower, balista tower 	DONE
-//					9. Make the splash screen for the game and make it look awesome		DONE
-//					10. Add in diffiulty if i have the time
-//					11. Optimize the game of there is a need to
-
-
-//					12. Make the buttons for the spawning of the units
-//					13. Player can use keys to spawn the units and the buffs
-//					14. Add the battlement image to the game
-//					15. Make the battlements take damage from the user when they are hit
-//					16. Make a healthbar or some visual queue come up for the health for the solidiers and the battlements
-//NOTE:  Try to break the fucking game as much as possible
+// FIXME(2/7/2016)
+/*
+	*the powerups dont change alpha when they are activated
+	*Make the sprite for the WatchTower and square tower
+	*On the last level the retry doesnt work
+	*Fix the balance of the game
+	*Killing a battlement doesnt give any score when it should
+	*MAKE SURE TO CHECK IF YOU HAVE TO DO SCREENSHOTS OF THE GAME
+*/
 
 //TODO(31/1/16) : Show the players score when plating the game
 //				: Make the score go down when a unit is bought

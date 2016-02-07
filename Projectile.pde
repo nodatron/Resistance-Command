@@ -9,17 +9,19 @@ class Projectile extends GameObject
 
 	void update()
 	{
+		//gets the direction the bullet needs to fire
 		forward.x = sin(theta);
 		forward.y = - cos(theta);
-		// println("Forward y " + forward.y);
 
 		position.add(forward);
+		// get rid of the bullet if it goes outside the map
 		if (position.x < 0 || position.y < 0 || position.x > width || position.y > height )
     	{
       		isAlive = false;
        	}
 	}
 
+	// render the bullet
 	void render()
 	{
 		pushMatrix();
@@ -30,6 +32,8 @@ class Projectile extends GameObject
 		popMatrix();
 	}
 
+	//gets the colour of the bullet based on the enemy level
+	//NOTE this may be taken out
 	color getColourEnemy(int level)
 	{
 		switch (level)
