@@ -13,7 +13,7 @@ class WatchTower extends Battlements
 
     void getAttackDamage()
     {
-        attack = 3 * level;
+        attack = 5 * level;
     }
 
     void getArmour()
@@ -28,7 +28,7 @@ class WatchTower extends Battlements
 
     void getHealth()
     {
-        health = 300 * level;
+        health = 200 * level;
     }
 
 }

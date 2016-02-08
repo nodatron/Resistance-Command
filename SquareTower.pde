@@ -1,3 +1,4 @@
+// Second level of tower
 class SquareTower extends Battlements
 {
     SquareTower(int level, float xRatio, float yRatio)
@@ -12,7 +13,7 @@ class SquareTower extends Battlements
 
     void getAttackDamage()
     {
-        attack = 6 * level;
+        attack = 9 * level;
     }
 
     void getArmour()
@@ -27,6 +28,6 @@ class SquareTower extends Battlements
 
     void getHealth()
     {
-        health = 300 * level;
+        health = 175 * level;
     }
 }

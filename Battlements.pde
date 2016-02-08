@@ -33,7 +33,7 @@ class Battlements extends GameObject
 				theta = findDirectionToShoot(gameObjects.get(i).position, this.position);
 
 				// spawns a new projectile and gives it the neccessary stats, plays a sound and adds the projectile to gameObjects
-				if(PVector.dist(this.position, gameObjects.get(i).position) <= 300 && elapsed > 30)
+				if(PVector.dist(this.position, gameObjects.get(i).position) <= 250 && elapsed > 30)
 				{
 					elapsed = 0;
 					fire();

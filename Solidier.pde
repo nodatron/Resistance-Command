@@ -21,8 +21,6 @@ class Solidier extends GameObject
 		attackbonus = 0;
 		allowedMove = false;
 
-
-
 		//Get the starting position of the unit
 		position.x = mapLayout.get(0).x + (width * 0.05f);
 		position.y = mapLayout.get(0).y + (height   * 0.05f);
@@ -74,7 +72,7 @@ class Solidier extends GameObject
 		if (!buffActive && !attackboostActive) attackbonus = 0;
 		// println("attack " + attack + " attackbonus " + attackbonus);
 		// AI for the solidiers to make them walk correctly
-		if(PVector.dist(position, goalPosition) <= 5)
+		if(PVector.dist(position, goalPosition) <= 8)
 		{
 			pointsHit ++;
 

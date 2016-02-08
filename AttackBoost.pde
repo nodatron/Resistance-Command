@@ -11,7 +11,6 @@ class AttackBoost extends GameObject implements Powerup
 	{
 		buffTime = 7200;
 		bonus = 10;
-		sprite = loadImage("attackboost.png");
 		sound = minim.loadFile("powerup.wav");
 		powerupSoundPlayed = false;
 		attackboostActive = false;

@@ -13,7 +13,7 @@ class Fort extends Battlements
 
     void getAttackDamage()
     {
-        attack = 12 * level;
+        attack = 14 * level;
     }
 
     void getArmour()
@@ -23,11 +23,11 @@ class Fort extends Battlements
 
     void getReward()
     {
-        reward = 200 * level;
+        reward = 300 * level;
     }
 
     void getHealth()
     {
-        health = 300 * level;
+        health = 200 * level;
     }
 }
