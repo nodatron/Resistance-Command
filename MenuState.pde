@@ -24,8 +24,8 @@ class MenuState extends GameObject implements State
         numRows = 10;
 
 		titleTextSize = 64;
-		tableHeaderSize = 48;
-		tableTextSize = 26;
+		tableHeaderSize = 32;
+		tableTextSize = 20;
 
 		tablePos = new PVector(width * 0.25f, height * 0.25f);
 		cellWidth = tablePos.x * 2.0f;
@@ -67,10 +67,6 @@ class MenuState extends GameObject implements State
 		text("Button", textXPosButton, tablePos.y + halfCellHeight);
 		text("Function", textXPosFunction, tablePos.y + halfCellHeight);
 		textSize(tableTextSize);
-		text("S", textXPosButton, tablePos.y + (cellHeight * 2.0f) + halfCellHeight);
-		text("Spawns a solidier at the highest level",
-			 textXPosFunction, tablePos.y + (cellHeight * 2.0f) + halfCellHeight);
-
 		text("1", textXPosButton, tablePos.y + (cellHeight * 3.0f) + halfCellHeight);
 		text("Spawns a level one solidier",
 			 textXPosFunction, tablePos.y + (cellHeight * 3.0f) + halfCellHeight);
@@ -94,10 +90,6 @@ class MenuState extends GameObject implements State
 		text("A", textXPosButton, tablePos.y + (cellHeight * 8.0f) + halfCellHeight);
 		text("Activate the attack boost powerup",
 			 textXPosFunction, tablePos.y + (cellHeight * 8.0f) + halfCellHeight);
-
-		text("H", textXPosButton, tablePos.y + (cellHeight * 9.0f) + halfCellHeight);
-		text("Fully heal all the ally units",
-			 textXPosFunction, tablePos.y + (cellHeight * 9.0f) + halfCellHeight);
     }
 
     // checks for user input

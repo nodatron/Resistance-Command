@@ -43,8 +43,8 @@ class ScoreState extends GameObject implements State
 
         mapFailed = false;
 
-        mapNumber = 1;
-        level = 1;
+        mapNumber = playState.mapNumber;
+        level = playState.level;
 
         winSoundPlayed = false;
         failSoundPlayed = false;
@@ -77,16 +77,25 @@ class ScoreState extends GameObject implements State
 
         if(mapFailed)
         {
-            failSound();
-            text("Your Resistance is crushed, Bow down before the King", width / 2, 50);
-            text("Press R to retry the Map", width / 2, height / 2);
+           failSound();
+           text("Your Resistance is crushed, Bow down before the King", width / 2, 50);
+           text("Press R to retry the Map", width / 2, height / 2);
         }
         else
         {
+            
             winSound();
-            text("A glourious victory for the resistance", width / 2, 50);
-            text("Press R to try and beat your score", width / 2, height / 2);
-            text("Press N to go to the Next Map", width / 2, (height / 2) + 50);
+            if(mapNumber != 3)
+            {
+                text("A glourious victory for the resistance", width / 2, 50);
+                text("Press R to try and beat your score", width / 2, height / 2);
+                text("Press N to go to the Next Map", width / 2, (height / 2) + 50);
+            }
+             else 
+            {
+                text("The Resistance has won the war.", width / 2, 50);
+                text("Press R to try and beat your score", width / 2, height / 2);
+            }
         }
 
     }
@@ -97,6 +106,8 @@ class ScoreState extends GameObject implements State
     {
         if(keyPressed && keys['R'])
         {
+            failSoundPlayed = false;
+            winSoundPlayed = false;
             mapFailed = false;
             isGame = true;
 			isMenu = false;
@@ -111,12 +122,12 @@ class ScoreState extends GameObject implements State
             amountSpent = 0;
             amountEarned = 0;
             mapLayout.clear();
-            failSoundPlayed = false;
-            winSoundPlayed = false;
         }
 
         if(keyPressed && keys['N'] && !mapFailed)
         {
+            failSoundPlayed = false;
+            winSoundPlayed = false;
             isGame = true;
 			isMenu = false;
 			isInstructions = false;
@@ -125,8 +136,6 @@ class ScoreState extends GameObject implements State
             playState = new PlayState(mapNumber, level);
             isOver = false;
             mapLayout.clear();
-            failSoundPlayed = false;
-            winSoundPlayed = false;
         }
     }
 

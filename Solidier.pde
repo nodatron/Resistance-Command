@@ -1,5 +1,5 @@
 // Base solidier class
-class Solidier extends GameObject implements HealthBar
+class Solidier extends GameObject
 {
 	int pointsHit;
 	int attackbonus;
@@ -72,7 +72,7 @@ class Solidier extends GameObject implements HealthBar
 
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive && !attackboostActive) attackbonus = 0;
-		println("attack " + attack + " attackbonus " + attackbonus);
+		// println("attack " + attack + " attackbonus " + attackbonus);
 		// AI for the solidiers to make them walk correctly
 		if(PVector.dist(position, goalPosition) <= 5)
 		{

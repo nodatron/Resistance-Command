@@ -1,5 +1,0 @@
-
-interface HealthBar
-{
-    void renderHealthBar();
-}

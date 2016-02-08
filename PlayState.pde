@@ -131,6 +131,7 @@ class PlayState extends GameObject implements State
     {
         background(0, 128, 0);
 
+
         int gameObjectsLeft = 0;
         int objectCounter = 0;
         for(int i = 0 ; i < gameObjects.size() ; i ++)
@@ -154,6 +155,7 @@ class PlayState extends GameObject implements State
                 if(gameObjects.get(i) instanceof Battlements)
                 {
                     battlementDie();
+                    playerScore += gameObjects.get(i).reward;
                 }
                 gameObjects.remove(i);
             }
@@ -194,6 +196,7 @@ class PlayState extends GameObject implements State
 		}
 		else if(keys['M'])
 		{
+
 			isGame = false;
 			isMenu = true;
 			isInstructions = false;

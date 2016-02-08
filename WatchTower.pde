@@ -8,7 +8,7 @@ class WatchTower extends Battlements
         getArmour();
         getReward();
         getHealth();
-        sprite = loadImage("battlement.png");
+        sprite = loadImage("watchtower.png");
     }
 
     void getAttackDamage()

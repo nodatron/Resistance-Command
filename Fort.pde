@@ -8,7 +8,7 @@ class Fort extends Battlements
         getArmour();
         getReward();
         getHealth();
-        sprite = loadImage("battlement.png");
+        sprite = loadImage("fort.png");
     }
 
     void getAttackDamage()

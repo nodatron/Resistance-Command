@@ -7,7 +7,7 @@ class Blitz extends GameObject implements Powerup
 
 	Blitz ()
 	{
-		buffTime = 18000;
+		buffTime = 1800;
 		sprite = loadImage("blitztext.png");
 		powerupSoundPlayed = false;
 		blitzActive = false;
