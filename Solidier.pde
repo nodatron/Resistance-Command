@@ -70,9 +70,9 @@ class Solidier extends GameObject
 
 		//Resetting the attack bonus to 0 when the buff is not active
 		if (!buffActive && !attackboostActive) attackbonus = 0;
-		// println("attack " + attack + " attackbonus " + attackbonus);
+		
 		// AI for the solidiers to make them walk correctly
-		if(PVector.dist(position, goalPosition) <= 8)
+		if(PVector.dist(position, goalPosition) <= 10)
 		{
 			pointsHit ++;
 

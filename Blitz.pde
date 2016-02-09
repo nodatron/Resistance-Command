@@ -7,7 +7,7 @@ class Blitz extends GameObject implements Powerup
 
 	Blitz ()
 	{
-		buffTime = 1800;
+		buffTime = 1000;
 		powerupSoundPlayed = false;
 		blitzActive = false;
 		buffActive = false;
@@ -22,7 +22,7 @@ class Blitz extends GameObject implements Powerup
 		if (buffTimer <= buffTime)
 		{
 			blitzActive = true;
-			solidiers.forward.mult(2.5);
+			solidiers.forward.mult(2);
 		}
 	}
 

@@ -106,13 +106,12 @@ class ScoreState extends GameObject implements State
     {
         if(keyPressed && keys['R'])
         {
-            failSoundPlayed = false;
-            winSoundPlayed = false;
+            
             mapFailed = false;
             isGame = true;
 			isMenu = false;
 			isInstructions = false;
-            playState = new PlayState(mapNumber, level);
+            playState = new PlayState(level, mapNumber);
             isOver = false;
             solidiersSpawned = 0;
             lvl1SolSpawned = 0;
@@ -122,20 +121,23 @@ class ScoreState extends GameObject implements State
             amountSpent = 0;
             amountEarned = 0;
             mapLayout.clear();
+            failSoundPlayed = false;
+            winSoundPlayed = false;
         }
 
         if(keyPressed && keys['N'] && !mapFailed)
         {
-            failSoundPlayed = false;
-            winSoundPlayed = false;
+            
             isGame = true;
 			isMenu = false;
 			isInstructions = false;
             mapNumber++;
             level++;
-            playState = new PlayState(mapNumber, level);
+            playState = new PlayState(level, mapNumber);
             isOver = false;
             mapLayout.clear();
+            failSoundPlayed = false;
+            winSoundPlayed = false;
         }
     }
 

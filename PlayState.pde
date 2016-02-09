@@ -200,12 +200,6 @@ class PlayState extends GameObject implements State
 			isGame = false;
 			isMenu = true;
 			isInstructions = false;
-            //remove all the objects from the game
-            gameObjects.clear();
-            newGame = true;
-            blitzActive = false;
-			attackboostActive = false;
-			buffActive = false;
 		}
 		else if(keys['I'])
 		{

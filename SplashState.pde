@@ -45,12 +45,6 @@ class SplashState extends GameObject implements State
 			isMenu = false;
 			isInstructions = false;
 		}
-		else if(keys['M'])
-		{
-			isGame = false;
-			isMenu = true;
-			isInstructions = false;
-		}
 		else if(keys['I'])
 		{
 			isGame = false;
