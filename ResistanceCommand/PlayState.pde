@@ -131,11 +131,12 @@ class PlayState extends GameObject implements State
     {
         background(0, 128, 0);
 
-
+        // calls update and render for all game objects
         int gameObjectsLeft = 0;
         int objectCounter = 0;
         for(int i = 0 ; i < gameObjects.size() ; i ++)
         {
+            // increases counters that are used to check if the map is over or the map is cleared
             if(!(gameObjects.get(i) instanceof Solidier))
             {
                 if(!(gameObjects.get(i) instanceof Battlements))
